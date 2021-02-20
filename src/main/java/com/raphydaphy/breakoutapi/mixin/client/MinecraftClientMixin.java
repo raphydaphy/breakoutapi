@@ -1,7 +1,8 @@
 package com.raphydaphy.breakoutapi.mixin.client;
 
 import com.raphydaphy.breakoutapi.BreakoutAPIClient;
-import com.raphydaphy.breakoutapi.editor.Breakout;
+import com.raphydaphy.breakoutapi.breakout.AbstractBreakout;
+import com.raphydaphy.breakoutapi.breakout.Breakout;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.Window;
 import org.lwjgl.glfw.GLFW;
@@ -26,13 +27,13 @@ public class MinecraftClientMixin {
 
 	@Inject(at = @At(value = "INVOKE_STRING", args = "ldc=yield", target = "Lnet/minecraft/util/profiler/Profiler;swap(Ljava/lang/String;)V"), method = "render")
 	private void afterRender(CallbackInfo info) {
-		Breakout breakout = BreakoutAPIClient.CUR_BREAKOUT;
+		AbstractBreakout breakout = BreakoutAPIClient.CUR_BREAKOUT;
 		if (breakout == null) return;
 
 		MinecraftClient.getInstance().getProfiler().swap("breakout");
 
 		Breakout.checkError("before breakout");
-		breakout.render();
+		breakout.setupRender();
 		Breakout.checkError("after breakout");
 	}
 }

@@ -2,9 +2,9 @@ package com.raphydaphy.breakoutapi.network;
 
 import com.raphydaphy.breakoutapi.BreakoutAPI;
 import com.raphydaphy.breakoutapi.BreakoutAPIClient;
-import com.raphydaphy.breakoutapi.editor.Breakout;
+import com.raphydaphy.breakoutapi.breakout.Breakout;
+import com.raphydaphy.breakoutapi.demo.DemoBreakout;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.minecraft.client.MinecraftClient;
 
 public class ClientModPackets {
   public static void register() {
@@ -16,7 +16,7 @@ public class ClientModPackets {
           return;
         }
 
-        BreakoutAPIClient.CUR_BREAKOUT = new Breakout();
+        BreakoutAPIClient.CUR_BREAKOUT = new DemoBreakout();
       });
     });
   }
