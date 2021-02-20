@@ -16,7 +16,6 @@ public class ClientModPackets {
           return;
         }
 
-        MinecraftClient.getInstance().openPauseMenu(true);
         BreakoutAPIClient.CUR_BREAKOUT = new Breakout();
       });
     });

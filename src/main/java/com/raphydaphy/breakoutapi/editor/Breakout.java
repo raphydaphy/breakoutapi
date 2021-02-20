@@ -1,42 +1,55 @@
 package com.raphydaphy.breakoutapi.editor;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.raphydaphy.breakoutapi.BreakoutAPI;
+import com.raphydaphy.breakoutapi.BreakoutAPIClient;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.Framebuffer;
 import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.render.BufferBuilder;
-import net.minecraft.client.render.Tessellator;
-import net.minecraft.client.render.VertexFormat;
-import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.Text;
+import net.minecraft.resource.ResourceType;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.profiler.Profiler;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL30;
 import org.lwjgl.opengl.GL45;
 
-public class Breakout {
+import java.io.IOException;
+import java.io.InputStream;
+
+public class Breakout implements AutoCloseable {
   private BreakoutWindow window;
   private Framebuffer framebuffer;
 
   public Breakout() {
-    checkError("before start");
     this.window = new BreakoutWindow();
-    checkError("window created");
+
+    MinecraftClient client = MinecraftClient.getInstance();
+
+    try {
+      InputStream inputStream = client.getResourcePackDownloader().getPack().open(ResourceType.CLIENT_RESOURCES, new Identifier(BreakoutAPI.MODID, "textures/icons/window_icon_16x16.png"));
+      InputStream inputStream2 = client.getResourcePackDownloader().getPack().open(ResourceType.CLIENT_RESOURCES, new Identifier(BreakoutAPI.MODID, "textures/icons/window_icon_32x32.png"));
+      this.window.setIcon(inputStream, inputStream2);
+    } catch (IOException e) {
+      BreakoutAPI.LOGGER.error("Failed to set breakout window icon!", e);
+    }
+
     this.framebuffer = new Framebuffer(this.window.getFramebufferWidth(), this.window.getFramebufferHeight(), true, MinecraftClient.IS_SYSTEM_MAC);
-    checkError("framebuffer created");
     this.framebuffer.setClearColor(0.0F, 0.0F, 0.0F, 0.0F);
-    checkError("framebuffer cleared");
+
     RenderSystem.setupDefaultState(0, 0, this.window.getFramebufferWidth(), this.window.getFramebufferHeight());
-    checkError("finish setup");
   }
 
   private static Identifier LEAVES_TEXTURE = new Identifier("textures/block/azalea_leaves.png");
   private static Identifier FURNACE_GUI = new Identifier("textures/gui/container/furnace.png");
 
   public void render() {
-    if (window.shouldClose()) return;
+    if (this.window.shouldClose()) {
+      BreakoutAPI.LOGGER.info("Closing breakout window!");
+      this.close();
+      BreakoutAPIClient.CUR_BREAKOUT = null;
+      return;
+    }
+
     GLFW.glfwMakeContextCurrent(this.window.getHandle());
 
     GL30.glClear(GL30.GL_COLOR_BUFFER_BIT);
@@ -79,5 +92,11 @@ public class Breakout {
     if (error != GL30.GL_NO_ERROR) {
       System.out.println("GL Error at stage " + stage + ": " + error);
     }
+  }
+
+  @Override
+  public void close() {
+    framebuffer.delete();
+    GLFW.glfwDestroyWindow(this.window.getHandle());
   }
 }
