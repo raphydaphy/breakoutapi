@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "breakoutapi",
+  "name": "Breakout API",
+  "version": "${version}",
+
+  "description": "Escape the confindments of society by creating new windows",
+  "authors": [
+    "raphydaphy"
+  ],
+  "contact": {
+    "homepage": "https://github.com/raphydaphy/BreakoutAPI",
+    "sources": "https://github.com/raphydaphy/BreakoutAPI"
+  },
+
+  "license": "MIT",
+  "icon": "assets/breakoutapi/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.raphydaphy.breakoutapi.BreakoutAPI"
+    ],
+    "client": [
+      "com.raphydaphy.breakoutapi.BreakoutAPIClient"
+    ]
+  },
+  "mixins": [
+    "breakoutapi.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.7.4",
+    "fabric": "*",
+    "minecraft": ">=1.17-alpha.21.7.a"
+  }
+}
