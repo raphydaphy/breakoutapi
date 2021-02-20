@@ -19,14 +19,20 @@ public class MinecraftClientMixin {
 
 	@Inject(at = @At("HEAD"), method = "render(Z)V")
 	private void beforeRender(CallbackInfo info) {
+		Breakout.checkError("before switch context");
 		GLFW.glfwMakeContextCurrent(this.window.getHandle());
+		Breakout.checkError("after switch context");
 	}
 
-	@Inject(at = @At("RETURN"), method="render(Z)V")
+	@Inject(at = @At(value = "INVOKE_STRING", args = "ldc=yield", target = "Lnet/minecraft/util/profiler/Profiler;swap(Ljava/lang/String;)V"), method = "render")
 	private void afterRender(CallbackInfo info) {
 		Breakout breakout = BreakoutAPIClient.CUR_BREAKOUT;
 		if (breakout == null) return;
 
+		MinecraftClient.getInstance().getProfiler().swap("breakout");
+
+		Breakout.checkError("before breakout");
 		breakout.render();
+		Breakout.checkError("after breakout");
 	}
 }
