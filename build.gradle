@@ -95,7 +95,7 @@ publishing {
     repositories {
 		maven {
 			name = "GitHubPackages"
-			url = "https://maven.pkg.github.com/raphydaphy/BreakoutAPI"
+			url = "https://maven.pkg.github.com/raphydaphy/breakoutapi"
 			credentials {
 				username = System.getenv("GITHUB_ACTOR")
 				password = System.getenv("GITHUB_TOKEN")
