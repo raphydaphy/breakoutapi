@@ -14,7 +14,7 @@ import org.liquidengine.legui.theme.colored.FlatColoredTheme;
 import static org.liquidengine.legui.style.color.ColorUtil.fromInt;
 
 public class DemoGUIWindow extends GUIWindow {
-  private ExampleGui gui;
+  private DemoGUI gui;
 
   public DemoGUIWindow(String title, int width, int height) {
     super(title, width, height);
@@ -35,25 +35,20 @@ public class DemoGUIWindow extends GUIWindow {
 
   @Override
   protected void createGuiElements(int width, int height) {
-    this.gui = new ExampleGui(width, height);
+    this.gui = new DemoGUI(width, height);
     this.gui.setFocusable(false);
     this.gui.getListenerMap().addListener(WindowSizeEvent.class, (WindowSizeEventListener) event -> gui.setSize(event.getWidth(), event.getHeight()));
     this.frame.getContainer().add(this.gui);
+
+    /*
     Component frameContainer = frame.getContainer();
     frameContainer.getStyle().setDisplay(Style.DisplayType.FLEX);
     frameContainer.getStyle().getBackground().setColor(ColorConstants.lightGray());
+    */
   }
 
   @Override
   public void update() {
     super.update();
-
-    if (this.context != null) {
-      Component mouseTargetGui = this.context.getMouseTargetGui();
-      this.gui.getMouseTargetLabel().getTextState().setText("-> " + (mouseTargetGui == null ? null : mouseTargetGui.getClass().getSimpleName()));
-
-      Component focusedGui = this.context.getFocusedGui();
-      this.gui.getFocusedGuiLabel().getTextState().setText("-> " + (focusedGui == null ? null : focusedGui.getClass().getSimpleName()));
-    }
   }
 }

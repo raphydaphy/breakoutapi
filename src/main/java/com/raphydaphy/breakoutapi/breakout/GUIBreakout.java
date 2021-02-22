@@ -29,7 +29,7 @@ public class GUIBreakout extends AbstractBreakout {
     GL30.glClear(GL30.GL_COLOR_BUFFER_BIT | GL30.GL_STENCIL_BUFFER_BIT);
     */
 
-    // window.updateLayout();
+    window.updateLayout();
     this.renderer.render(window.getFrame(), window.getContext());
   }
 

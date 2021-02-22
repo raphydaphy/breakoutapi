@@ -41,7 +41,7 @@ public abstract class GUIWindow extends BreakoutWindow {
   protected abstract void createGuiElements(int width, int height);
 
   public void updateLayout() {
-    LayoutManager.getInstance().layout(this.frame, this.context);
+    LayoutManager.getInstance().layout(this.frame);
   }
 
   public void processSystemEvents() {
