@@ -20,5 +20,5 @@ public interface TextComponent {
      * @param textState new text state to set.
      * @throws NullPointerException in case if textState is null.
      */
-    void setTextState(TextState textState) throws NullPointerException;
+    TextComponent setTextState(TextState textState) throws NullPointerException;
 }

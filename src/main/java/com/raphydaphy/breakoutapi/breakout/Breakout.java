@@ -3,12 +3,13 @@ package com.raphydaphy.breakoutapi.breakout;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.raphydaphy.breakoutapi.breakout.window.BreakoutWindow;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.util.Identifier;
 import org.lwjgl.opengl.GL30;
 
 public abstract class Breakout extends AbstractBreakout {
 
-  public Breakout(BreakoutWindow window) {
-    super(window);
+  public Breakout(Identifier identifier, BreakoutWindow window) {
+    super(identifier, window);
   }
 
   @Override

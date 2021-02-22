@@ -55,8 +55,9 @@ public class ImageView extends Component {
      *
      * @param image image to set.
      */
-    public void setImage(Image image) {
+    public ImageView setImage(Image image) {
         this.image = image;
+        return this;
     }
 
     @Override

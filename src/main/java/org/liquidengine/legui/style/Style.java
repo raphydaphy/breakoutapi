@@ -3,10 +3,10 @@ package org.liquidengine.legui.style;
 import org.joml.Vector4f;
 import org.liquidengine.legui.component.optional.align.HorizontalAlign;
 import org.liquidengine.legui.component.optional.align.VerticalAlign;
+import org.liquidengine.legui.style.border.Border;
 import org.liquidengine.legui.style.border.SimpleLineBorder;
 import org.liquidengine.legui.style.color.ColorConstants;
 import org.liquidengine.legui.style.flex.FlexStyle;
-import org.liquidengine.legui.style.font.TextDirection;
 import org.liquidengine.legui.style.length.Length;
 import org.liquidengine.legui.style.length.Unit;
 import org.liquidengine.legui.style.shadow.Shadow;
@@ -90,8 +90,9 @@ public class Style {
      *
      * @param radius radius to set. Sets border radius to all corners.
      */
-    public void setBorderRadius(float radius) {
+    public Style setBorderRadius(float radius) {
         setBorderRadius(pixel(radius));
+        return this;
     }
 
 
@@ -100,9 +101,10 @@ public class Style {
      *
      * @param radius radius to set. Sets border radius to all corners.
      */
-    public void setBorderRadius(Length radius) {
+    public Style setBorderRadius(Length radius) {
         borderTopLeftRadius = borderTopRightRadius =
                 borderBottomRightRadius = borderBottomLeftRadius = radius;
+        return this;
     }
 
     /**
@@ -111,8 +113,9 @@ public class Style {
      * @param topLeftBottomRight top left and bottom right radius.
      * @param topRightBottomLeft top right and bottom left radius.
      */
-    public void setBorderRadius(float topLeftBottomRight, float topRightBottomLeft) {
+    public Style setBorderRadius(float topLeftBottomRight, float topRightBottomLeft) {
         setBorderRadius(pixel(topLeftBottomRight), pixel(topRightBottomLeft));
+        return this;
     }
 
     /**
@@ -121,9 +124,10 @@ public class Style {
      * @param topLeftBottomRight top left and bottom right radius.
      * @param topRightBottomLeft top right and bottom left radius.
      */
-    public void setBorderRadius(Length topLeftBottomRight, Length topRightBottomLeft) {
+    public Style setBorderRadius(Length topLeftBottomRight, Length topRightBottomLeft) {
         borderTopLeftRadius = borderBottomRightRadius = topLeftBottomRight;
         borderTopRightRadius = borderBottomLeftRadius = topRightBottomLeft;
+        return this;
     }
 
     /**
@@ -133,8 +137,9 @@ public class Style {
      * @param bottomRight        bottom right radius.
      * @param topRightBottomLeft top right and bottom left radius.
      */
-    public void setBorderRadius(float topLeft, float topRightBottomLeft, float bottomRight) {
+    public Style setBorderRadius(float topLeft, float topRightBottomLeft, float bottomRight) {
         setBorderRadius(pixel(topLeft), pixel(topRightBottomLeft), pixel(bottomRight));
+        return this;
     }
 
     /**
@@ -144,10 +149,11 @@ public class Style {
      * @param bottomRight        bottom right radius.
      * @param topRightBottomLeft top right and bottom left radius.
      */
-    public void setBorderRadius(Length topLeft, Length topRightBottomLeft, Length bottomRight) {
+    public Style setBorderRadius(Length topLeft, Length topRightBottomLeft, Length bottomRight) {
         borderTopLeftRadius = topLeft;
         borderTopRightRadius = borderBottomLeftRadius = topRightBottomLeft;
         borderBottomRightRadius = bottomRight;
+        return this;
     }
 
     /**
@@ -158,8 +164,9 @@ public class Style {
      * @param bottomRight bottom right radius.
      * @param bottomLeft  bottom left radius.
      */
-    public void setBorderRadius(float topLeft, float topRight, float bottomRight, float bottomLeft) {
+    public Style setBorderRadius(float topLeft, float topRight, float bottomRight, float bottomLeft) {
         setBorderRadius(pixel(topLeft), pixel(topRight), pixel(bottomRight), pixel(bottomLeft));
+        return this;
     }
 
     /**
@@ -170,11 +177,12 @@ public class Style {
      * @param bottomRight bottom right radius.
      * @param bottomLeft  bottom left radius.
      */
-    public void setBorderRadius(Length topLeft, Length topRight, Length bottomRight, Length bottomLeft) {
+    public Style setBorderRadius(Length topLeft, Length topRight, Length bottomRight, Length bottomLeft) {
         borderTopLeftRadius = topLeft;
         borderTopRightRadius = topRight;
         borderBottomRightRadius = bottomRight;
         borderBottomLeftRadius = bottomLeft;
+        return this;
     }
 
     /**
@@ -191,8 +199,9 @@ public class Style {
      *
      * @param borderTopLeftRadius top left border radius.
      */
-    public void setBorderTopLeftRadius(float borderTopLeftRadius) {
+    public Style setBorderTopLeftRadius(float borderTopLeftRadius) {
         setBorderTopLeftRadius(pixel(borderTopLeftRadius));
+        return this;
     }
 
     /**
@@ -200,8 +209,9 @@ public class Style {
      *
      * @param borderTopLeftRadius top left border radius.
      */
-    public void setBorderTopLeftRadius(Length borderTopLeftRadius) {
+    public Style setBorderTopLeftRadius(Length borderTopLeftRadius) {
         this.borderTopLeftRadius = borderTopLeftRadius;
+        return this;
     }
 
     /**
@@ -218,8 +228,9 @@ public class Style {
      *
      * @param borderTopRightRadius top right border radius.
      */
-    public void setBorderTopRightRadius(float borderTopRightRadius) {
+    public Style setBorderTopRightRadius(float borderTopRightRadius) {
         setBorderTopRightRadius(pixel(borderTopRightRadius));
+        return this;
     }
 
     /**
@@ -227,8 +238,9 @@ public class Style {
      *
      * @param borderTopRightRadius top right border radius.
      */
-    public void setBorderTopRightRadius(Length borderTopRightRadius) {
+    public Style setBorderTopRightRadius(Length borderTopRightRadius) {
         this.borderTopRightRadius = borderTopRightRadius;
+        return this;
     }
 
     /**
@@ -245,8 +257,9 @@ public class Style {
      *
      * @param borderBottomRightRadius bottom right border radius.
      */
-    public void setBorderBottomRightRadius(float borderBottomRightRadius) {
+    public Style setBorderBottomRightRadius(float borderBottomRightRadius) {
         setBorderBottomRightRadius(pixel(borderBottomRightRadius));
+        return this;
     }
 
     /**
@@ -254,8 +267,9 @@ public class Style {
      *
      * @param borderBottomRightRadius bottom right border radius.
      */
-    public void setBorderBottomRightRadius(Length borderBottomRightRadius) {
+    public Style setBorderBottomRightRadius(Length borderBottomRightRadius) {
         this.borderBottomRightRadius = borderBottomRightRadius;
+        return this;
     }
 
     /**
@@ -272,8 +286,9 @@ public class Style {
      *
      * @param borderBottomLeftRadius bottom left border radius.
      */
-    public void setBorderBottomLeftRadius(float borderBottomLeftRadius) {
+    public Style setBorderBottomLeftRadius(float borderBottomLeftRadius) {
         setBorderBottomLeftRadius(pixel(borderBottomLeftRadius));
+        return this;
     }
 
     /**
@@ -281,8 +296,9 @@ public class Style {
      *
      * @param borderBottomLeftRadius bottom left border radius.
      */
-    public void setBorderBottomLeftRadius(Length borderBottomLeftRadius) {
+    public Style setBorderBottomLeftRadius(Length borderBottomLeftRadius) {
         this.borderBottomLeftRadius = borderBottomLeftRadius;
+        return this;
     }
 
     /**
@@ -299,8 +315,9 @@ public class Style {
      *
      * @param width width to set.
      */
-    public void setWidth(float width) {
+    public Style setWidth(float width) {
         setWidth(pixel(width));
+        return this;
     }
 
     /**
@@ -308,8 +325,9 @@ public class Style {
      *
      * @param width width to set.
      */
-    public void setWidth(Length width) {
+    public Style setWidth(Length width) {
         this.width = width;
+        return this;
     }
 
     /**
@@ -321,97 +339,114 @@ public class Style {
         return height;
     }
 
-    public void setHeight(float height) {
+    public Style setHeight(float height) {
         setHeight(pixel(height));
+        return this;
     }
 
-    public void setHeight(Length height) {
+    public Style setHeight(Length height) {
         this.height = height;
+        return this;
     }
 
     public Length getMinWidth() {
         return minWidth;
     }
 
-    public void setMinWidth(float minWidth) {
+    public Style setMinWidth(float minWidth) {
         setMinWidth(pixel(minWidth));
+        return this;
     }
 
-    public void setMinWidth(Length minWidth) {
+    public Style setMinWidth(Length minWidth) {
         this.minWidth = minWidth;
+        return this;
     }
 
     public Length getMinHeight() {
         return minHeight;
     }
 
-    public void setMinHeight(float minHeight) {
+    public Style setMinHeight(float minHeight) {
         setMinHeight(pixel(minHeight));
+        return this;
     }
 
-    public void setMinHeight(Length minHeight) {
+    public Style setMinHeight(Length minHeight) {
         this.minHeight = minHeight;
+        return this;
     }
 
     public Length getMaxWidth() {
         return maxWidth;
     }
 
-    public void setMaxWidth(float maxWidth) {
+    public Style setMaxWidth(float maxWidth) {
         setMaxWidth(pixel(maxWidth));
+        return this;
     }
 
-    public void setMaxWidth(Length maxWidth) {
+    public Style setMaxWidth(Length maxWidth) {
         this.maxWidth = maxWidth;
+        return this;
     }
 
     public Length getMaxHeight() {
         return maxHeight;
     }
 
-    public void setMaxHeight(float maxHeight) {
+    public Style setMaxHeight(float maxHeight) {
         setMaxHeight(pixel(maxHeight));
+        return this;
     }
 
-    public void setMaxHeight(Length maxHeight) {
+    public Style setMaxHeight(Length maxHeight) {
         this.maxHeight = maxHeight;
+        return this;
     }
 
-    public void setPadding(float padding) {
+    public Style setPadding(float padding) {
         this.setPadding(pixel(padding));
+        return this;
     }
 
-    public void setPadding(Length padding) {
+    public Style setPadding(Length padding) {
         paddingLeft = paddingRight =
                 paddingTop = paddingBottom = padding;
+        return this;
     }
 
-    public void setPadding(float topBottom, float leftRight) {
+    public Style setPadding(float topBottom, float leftRight) {
         this.setPadding(pixel(topBottom), pixel(leftRight));
+        return this;
     }
 
-    public void setPadding(Length topBottom, Length leftRight) {
+    public Style setPadding(Length topBottom, Length leftRight) {
         paddingLeft = paddingRight = leftRight;
         paddingTop = paddingBottom = topBottom;
+        return this;
     }
 
-    public void setPadding(float top, float right, float bottom, float left) {
+    public Style setPadding(float top, float right, float bottom, float left) {
         this.setPadding(pixel(top), pixel(right), pixel(bottom), pixel(left));
+        return this;
     }
 
-    public void setPadding(Length top, Length right, Length bottom, Length left) {
+    public Style setPadding(Length top, Length right, Length bottom, Length left) {
         paddingTop = top;
         paddingRight = right;
         paddingBottom = bottom;
         paddingLeft = left;
+        return this;
     }
 
     public Length getPaddingTop() {
         return paddingTop;
     }
 
-    public void setPaddingTop(Length paddingTop) {
+    public Style setPaddingTop(Length paddingTop) {
         this.paddingTop = paddingTop;
+        return this;
     }
 
 
@@ -419,8 +454,9 @@ public class Style {
         return paddingBottom;
     }
 
-    public void setPaddingBottom(Length paddingBottom) {
+    public Style setPaddingBottom(Length paddingBottom) {
         this.paddingBottom = paddingBottom;
+        return this;
     }
 
 
@@ -428,8 +464,9 @@ public class Style {
         return paddingRight;
     }
 
-    public void setPaddingRight(Length paddingRight) {
+    public Style setPaddingRight(Length paddingRight) {
         this.paddingRight = paddingRight;
+        return this;
     }
 
 
@@ -437,84 +474,99 @@ public class Style {
         return paddingLeft;
     }
 
-    public void setPaddingLeft(Length paddingLeft) {
+    public Style setPaddingLeft(Length paddingLeft) {
         this.paddingLeft = paddingLeft;
+        return this;
     }
 
-    public void setMargin(float margin) {
+    public Style setMargin(float margin) {
         setMargin(pixel(margin));
+        return this;
     }
 
-    public void setMargin(Unit margin) {
+    public Style setMargin(Unit margin) {
         marginLeft = marginRight = marginTop = marginBottom = margin;
+        return this;
     }
 
-    public void setMargin(float topBottom, float leftRight) {
+    public Style setMargin(float topBottom, float leftRight) {
         setMargin(pixel(topBottom), pixel(leftRight));
+        return this;
     }
 
-    public void setMargin(Unit topBottom, Unit leftRight) {
+    public Style setMargin(Unit topBottom, Unit leftRight) {
         marginLeft = marginRight = leftRight;
         marginTop = marginBottom = topBottom;
+        return this;
     }
 
-    public void setMargin(float top, float right, float bottom, float left) {
+    public Style setMargin(float top, float right, float bottom, float left) {
         setMargin(pixel(top), pixel(right), pixel(bottom), pixel(left));
+        return this;
     }
 
-    public void setMargin(Unit top, Unit right, Unit bottom, Unit left) {
+    public Style setMargin(Unit top, Unit right, Unit bottom, Unit left) {
         marginTop = top;
         marginRight = right;
         marginBottom = bottom;
         marginLeft = left;
+        return this;
     }
 
     public Unit getMarginTop() {
         return marginTop;
     }
 
-    public void setMarginTop(Unit marginTop) {
+    public Style setMarginTop(Unit marginTop) {
         this.marginTop = marginTop;
+        return this;
     }
 
-    public void setMarginTop(Float marginTop) {
+    public Style setMarginTop(Float marginTop) {
         setMarginTop(pixel(marginTop));
+        return this;
     }
 
     public Unit getMarginBottom() {
         return marginBottom;
     }
 
-    public void setMarginBottom(Unit marginBottom) {
+    public Style setMarginBottom(Unit marginBottom) {
         this.marginBottom = marginBottom;
+        return this;
     }
 
-    public void setMarginBottom(Float marginBottom) {
+    public Style setMarginBottom(Float marginBottom) {
         setMarginBottom(pixel(marginBottom));
+        return this;
     }
 
     public Unit getMarginRight() {
         return marginRight;
     }
 
-    public void setMarginRight(Unit marginRight) {
+    public Style setMarginRight(Unit marginRight) {
         this.marginRight = marginRight;
+        return this;
     }
 
-    public void setMarginRight(Float marginRight) {
+    public Style setMarginRight(Float marginRight) {
         setMarginRight(pixel(marginRight));
+        return this;
     }
 
     public Unit getMarginLeft() {
         return marginLeft;
     }
 
-    public void setMarginLeft(Unit marginLeft) {
+    public Style setMarginLeft(Unit marginLeft) {
         this.marginLeft = marginLeft;
+        return this;
     }
 
-    public void setMarginLeft(Float marginLeft) {
+    public Style setMarginLeft(Float marginLeft) {
         setMarginLeft(pixel(marginLeft));
+        return this;
     }
 
     /**
@@ -531,8 +583,9 @@ public class Style {
      *
      * @param top top style.
      */
-    public void setTop(float top) {
+    public Style setTop(float top) {
         setTop(pixel(top));
+        return this;
     }
 
     /**
@@ -540,8 +593,9 @@ public class Style {
      *
      * @param top top style.
      */
-    public void setTop(Length top) {
+    public Style setTop(Length top) {
         this.top = top;
+        return this;
     }
 
     /**
@@ -558,8 +612,9 @@ public class Style {
      *
      * @param bottom bottom style.
      */
-    public void setBottom(float bottom) {
+    public Style setBottom(float bottom) {
         setBottom(pixel(bottom));
+        return this;
     }
 
     /**
@@ -567,8 +622,9 @@ public class Style {
      *
      * @param bottom bottom style.
      */
-    public void setBottom(Length bottom) {
+    public Style setBottom(Length bottom) {
         this.bottom = bottom;
+        return this;
     }
 
     /**
@@ -585,8 +641,9 @@ public class Style {
      *
      * @param right right style.
      */
-    public void setRight(float right) {
+    public Style setRight(float right) {
         setRight(pixel(right));
+        return this;
     }
 
     /**
@@ -594,8 +651,9 @@ public class Style {
      *
      * @param right right style.
      */
-    public void setRight(Length right) {
+    public Style setRight(Length right) {
         this.right = right;
+        return this;
     }
 
     /**
@@ -612,8 +670,9 @@ public class Style {
      *
      * @param left left style.
      */
-    public void setLeft(float left) {
+    public Style setLeft(float left) {
         setLeft(pixel(left));
+        return this;
     }
 
     /**
@@ -621,8 +680,9 @@ public class Style {
      *
      * @param left left style.
      */
-    public void setLeft(Length left) {
+    public Style setLeft(Length left) {
         this.left = left;
+        return this;
     }
 
     /**
@@ -639,11 +699,12 @@ public class Style {
      *
      * @param display display to set.
      */
-    public void setDisplay(DisplayType display) {
+    public Style setDisplay(DisplayType display) {
         if (display == null) {
             this.display = DisplayType.MANUAL;
         }
         this.display = display;
+        return this;
     }
 
     /**
@@ -660,12 +721,13 @@ public class Style {
      *
      * @param background the background
      */
-    public void setBackground(Background background) {
+    public Style setBackground(Background background) {
         if (background != null) {
             this.background = background;
         } else {
             this.background = new Background();
         }
+        return this;
     }
 
     /**
@@ -682,8 +744,9 @@ public class Style {
      *
      * @param border the border
      */
-    public void setBorder(Border border) {
+    public Style setBorder(Border border) {
         this.border = border;
+        return this;
     }
 
     /**
@@ -700,8 +763,9 @@ public class Style {
      *
      * @param font the font
      */
-    public void setFont(String font) {
+    public Style setFont(String font) {
         this.font = font;
+        return this;
     }
 
     /**
@@ -720,8 +784,9 @@ public class Style {
      *
      * @param focusedStrokeColor focused stroke color vector.
      */
-    public void setFocusedStrokeColor(Vector4f focusedStrokeColor) {
+    public Style setFocusedStrokeColor(Vector4f focusedStrokeColor) {
         this.focusedStrokeColor = focusedStrokeColor;
+        return this;
     }
 
     /**
@@ -732,8 +797,9 @@ public class Style {
      * @param b blue value.
      * @param a alpha value.
      */
-    public void setFocusedStrokeColor(float r, float g, float b, float a) {
+    public Style setFocusedStrokeColor(float r, float g, float b, float a) {
         focusedStrokeColor.set(r, g, b, a);
+        return this;
     }
 
     /**
@@ -759,10 +825,11 @@ public class Style {
      *
      * @param position position type to set.
      */
-    public void setPosition(PositionType position) {
+    public Style setPosition(PositionType position) {
         if (position != null) {
             this.position = position;
         }
+        return this;
     }
 
     /**
@@ -771,9 +838,10 @@ public class Style {
      * @param width  minimum width to set.
      * @param height minimum height to set.
      */
-    public void setMinimumSize(float width, float height) {
+    public Style setMinimumSize(float width, float height) {
         setMinWidth(width);
         setMinHeight(height);
+        return this;
     }
 
     /**
@@ -782,25 +850,28 @@ public class Style {
      * @param width  max width to set.
      * @param height max height to set.
      */
-    public void setMaximumSize(float width, float height) {
+    public Style setMaximumSize(float width, float height) {
         setMaxWidth(width);
         setMaxHeight(height);
+        return this;
     }
 
     public Shadow getShadow() {
         return shadow;
     }
 
-    public void setShadow(Shadow shadow) {
+    public Style setShadow(Shadow shadow) {
         this.shadow = shadow;
+        return this;
     }
 
     public Float getFontSize() {
         return fontSize;
     }
 
-    public void setFontSize(Float fontSize) {
+    public Style setFontSize(Float fontSize) {
         this.fontSize = fontSize;
+        return this;
     }
 
     /**
@@ -817,8 +888,9 @@ public class Style {
      *
      * @param horizontalAlign horizontal alignment.
      */
-    public void setHorizontalAlign(HorizontalAlign horizontalAlign) {
+    public Style setHorizontalAlign(HorizontalAlign horizontalAlign) {
         this.horizontalAlign = horizontalAlign;
+        return this;
     }
 
     /**
@@ -835,8 +907,9 @@ public class Style {
      *
      * @param verticalAlign vertical alignment.
      */
-    public void setVerticalAlign(VerticalAlign verticalAlign) {
+    public Style setVerticalAlign(VerticalAlign verticalAlign) {
         this.verticalAlign = verticalAlign;
+        return this;
     }
 
     /**
@@ -853,8 +926,9 @@ public class Style {
      *
      * @param textColor text color.
      */
-    public void setTextColor(Vector4f textColor) {
+    public Style setTextColor(Vector4f textColor) {
         this.textColor = textColor;
+        return this;
     }
 
     /**
@@ -865,8 +939,9 @@ public class Style {
      * @param b blue component.
      * @param a alpha component.
      */
-    public void setTextColor(float r, float g, float b, float a) {
+    public Style setTextColor(float r, float g, float b, float a) {
         this.textColor = new Vector4f(r, g, b, a);
+        return this;
     }
 
     /**
@@ -883,8 +958,9 @@ public class Style {
      *
      * @param highlightColor highlight color.
      */
-    public void setHighlightColor(Vector4f highlightColor) {
+    public Style setHighlightColor(Vector4f highlightColor) {
         this.highlightColor = highlightColor;
+        return this;
     }
 
     /**
@@ -895,8 +971,9 @@ public class Style {
      * @param b blue component.
      * @param a alpha component.
      */
-    public void setHighlightColor(float r, float g, float b, float a) {
+    public Style setHighlightColor(float r, float g, float b, float a) {
         this.highlightColor = new Vector4f(r, g, b, a);
+        return this;
     }
 
     /**

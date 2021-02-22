@@ -375,13 +375,14 @@ public class Widget extends Component {
      *
      * @param titleHeight title height to set.
      */
-    public void setTitleHeight(float titleHeight) {
+    public Widget setTitleHeight(float titleHeight) {
         this.titleContainer.getStyle().setMinHeight(titleHeight);
         this.titleContainer.getStyle().setHeight(titleHeight);
         this.titleContainer.getStyle().setMaxHeight(titleHeight);
         this.title.getStyle().setMinHeight(titleHeight);
         this.title.getStyle().setHeight(titleHeight);
         this.title.getStyle().setMaxHeight(titleHeight);
+        return this;
     }
 
     /**
@@ -398,11 +399,12 @@ public class Widget extends Component {
      *
      * @param titleEnabled title state (enable or not) to set.
      */
-    public void setTitleEnabled(boolean titleEnabled) {
+    public Widget setTitleEnabled(boolean titleEnabled) {
         if (minimized) {
-            return;
+            return this;
         }
         this.titleContainer.getStyle().setDisplay(titleEnabled ? DisplayType.FLEX : DisplayType.NONE);
+        return this;
     }
 
     /**
@@ -419,8 +421,9 @@ public class Widget extends Component {
      *
      * @param closeable widget state (closeable or not) to set.
      */
-    public void setCloseable(boolean closeable) {
+    public Widget setCloseable(boolean closeable) {
         this.closeButton.getStyle().setDisplay(closeable ? DisplayType.MANUAL : DisplayType.NONE);
+        return this;
     }
 
     /**
@@ -477,8 +480,9 @@ public class Widget extends Component {
      *
      * @param closeButtonColor close button text color to set.
      */
-    public void setCloseButtonColor(Vector4f closeButtonColor) {
+    public Widget setCloseButtonColor(Vector4f closeButtonColor) {
         this.closeButton.getStyle().setTextColor(closeButtonColor);
+        return this;
     }
 
     /**
@@ -495,11 +499,12 @@ public class Widget extends Component {
      *
      * @param container widget container to set.
      */
-    public void setContainer(Component container) {
+    public Widget setContainer(Component container) {
         this.remove(this.container);
         this.container = container;
         this.add(1, this.container);
         applyStylesToContainer(this.container);
+        return this;
     }
 
     /**
@@ -516,7 +521,7 @@ public class Widget extends Component {
      *
      * @param draggable new draggable state of widget.
      */
-    public void setDraggable(boolean draggable) {
+    public Widget setDraggable(boolean draggable) {
         if (this.draggable != draggable) {
             if (draggable) {
                 this.title.getListenerMap().addListener(MouseDragEvent.class, mouseDragEventLeguiEventListener);
@@ -525,6 +530,7 @@ public class Widget extends Component {
             }
             this.draggable = draggable;
         }
+        return this;
     }
 
     /**
@@ -541,8 +547,9 @@ public class Widget extends Component {
      *
      * @param minimizable new minimizable state of widget.
      */
-    public void setMinimizable(boolean minimizable) {
+    public Widget setMinimizable(boolean minimizable) {
         this.minimizeButton.getStyle().setDisplay(minimizable ? DisplayType.MANUAL : DisplayType.NONE);
+        return this;
     }
 
     /**
@@ -559,7 +566,7 @@ public class Widget extends Component {
      *
      * @param minimized true to minimize, false to maximize.
      */
-    public void setMinimized(boolean minimized) {
+    public Widget setMinimized(boolean minimized) {
         if (this.minimized != minimized) {
             this.minimized = minimized;
             if (minimized) {
@@ -569,6 +576,7 @@ public class Widget extends Component {
             }
             updateIcons();
         }
+        return this;
     }
 
     public void hide() {
@@ -642,9 +650,10 @@ public class Widget extends Component {
      *
      * @param closeIcon close icon to set.
      */
-    public void setCloseIcon(Icon closeIcon) {
+    public Widget setCloseIcon(Icon closeIcon) {
         this.closeIcon = closeIcon;
         updateIcons();
+        return this;
     }
 
     /**
@@ -661,9 +670,10 @@ public class Widget extends Component {
      *
      * @param maximizeIcon maximize icon to set.
      */
-    public void setMaximizeIcon(Icon maximizeIcon) {
+    public Widget setMaximizeIcon(Icon maximizeIcon) {
         this.maximizeIcon = maximizeIcon;
         updateIcons();
+        return this;
     }
 
     /**
@@ -680,9 +690,10 @@ public class Widget extends Component {
      *
      * @param minimizeIcon minimize icon to set.
      */
-    public void setMinimizeIcon(Icon minimizeIcon) {
+    public Widget setMinimizeIcon(Icon minimizeIcon) {
         this.minimizeIcon = minimizeIcon;
         updateIcons();
+        return this;
     }
 
     /**
@@ -775,9 +786,10 @@ public class Widget extends Component {
         return resizable;
     }
 
-    public void setResizable(boolean resizable) {
+    public Widget setResizable(boolean resizable) {
         this.resizable = resizable;
         this.resizeButton.getStyle().setDisplay(resizable ? DisplayType.MANUAL : DisplayType.NONE);
+        return this;
     }
 
     public Button getResizeButton() {
@@ -798,7 +810,8 @@ public class Widget extends Component {
      *
      * @param ascendible new state.
      */
-    public void setAscendible(boolean ascendible) {
+    public Widget setAscendible(boolean ascendible) {
         this.ascendible = ascendible;
+        return this;
     }
 }

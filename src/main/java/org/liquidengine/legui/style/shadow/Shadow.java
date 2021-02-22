@@ -29,41 +29,46 @@ public class Shadow {
         return hOffset;
     }
 
-    public void sethOffset(float hOffset) {
+    public Shadow sethOffset(float hOffset) {
         this.hOffset = hOffset;
+        return this;
     }
 
     public float getvOffset() {
         return vOffset;
     }
 
-    public void setvOffset(float vOffset) {
+    public Shadow setvOffset(float vOffset) {
         this.vOffset = vOffset;
+        return this;
     }
 
     public float getBlur() {
         return blur;
     }
 
-    public void setBlur(float blur) {
+    public Shadow setBlur(float blur) {
         if (blur > 0) {
             this.blur = blur;
         }
+        return this;
     }
 
     public float getSpread() {
         return spread;
     }
 
-    public void setSpread(float spread) {
+    public Shadow setSpread(float spread) {
         this.spread = spread;
+        return this;
     }
 
     public Vector4f getColor() {
         return color;
     }
 
-    public void setColor(Vector4f color) {
+    public Shadow setColor(Vector4f color) {
         this.color = color;
+        return this;
     }
 }

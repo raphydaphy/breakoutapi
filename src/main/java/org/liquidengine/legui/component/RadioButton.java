@@ -146,11 +146,12 @@ public class RadioButton extends AbstractTextComponent {
      *
      * @param checked true if it should be checked.
      */
-    public void setChecked(boolean checked) {
+    public RadioButton setChecked(boolean checked) {
         this.checked = checked;
         if (radioButtonGroup != null) {
             radioButtonGroup.setSelection(this, checked);
         }
+        return this;
     }
 
     /**
@@ -167,7 +168,7 @@ public class RadioButton extends AbstractTextComponent {
      *
      * @param radioButtonGroup radio button group to set.
      */
-    public void setRadioButtonGroup(RadioButtonGroup radioButtonGroup) {
+    public RadioButton setRadioButtonGroup(RadioButtonGroup radioButtonGroup) {
         if (this.radioButtonGroup != null) {
             this.radioButtonGroup.remove(this);
         }
@@ -180,6 +181,7 @@ public class RadioButton extends AbstractTextComponent {
                 radioButtonGroup.setSelection(this, true);
             }
         }
+        return this;
     }
 
     /**
@@ -196,8 +198,9 @@ public class RadioButton extends AbstractTextComponent {
      *
      * @param iconUnchecked radio image for non-checked state to set.
      */
-    public void setIconUnchecked(Icon iconUnchecked) {
+    public RadioButton setIconUnchecked(Icon iconUnchecked) {
         this.iconUnchecked = iconUnchecked;
+        return this;
     }
 
     /**
@@ -214,8 +217,9 @@ public class RadioButton extends AbstractTextComponent {
      *
      * @param iconChecked radio image for checked state to set.
      */
-    public void setIconChecked(Icon iconChecked) {
+    public RadioButton setIconChecked(Icon iconChecked) {
         this.iconChecked = iconChecked;
+        return this;
     }
 
     @Override

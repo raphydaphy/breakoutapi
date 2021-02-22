@@ -86,15 +86,17 @@ public class SplitPanel extends Panel {
     }
 
     @Override
-    public void setSize(Vector2f size) {
+    public SplitPanel setSize(Vector2f size) {
         super.setSize(size);
         resetStyle();
+        return this;
     }
 
     @Override
-    public void setSize(float width, float height) {
+    public SplitPanel setSize(float width, float height) {
         super.setSize(width, height);
         resetStyle();
+        return this;
     }
 
     private int getLeftGrow() {
@@ -161,9 +163,9 @@ public class SplitPanel extends Panel {
         return separatorThickness;
     }
 
-    public void setSeparatorThickness(float separatorThickness) {
+    public SplitPanel setSeparatorThickness(float separatorThickness) {
         if (separatorThickness <= 0) {
-            return;
+            return this;
         }
         this.separatorThickness = separatorThickness;
         if (HORIZONTAL == orientation) {
@@ -173,39 +175,42 @@ public class SplitPanel extends Panel {
             separator.getStyle().setMaxHeight(separatorThickness);
             separator.getStyle().setMinHeight(separatorThickness);
         }
+        return this;
     }
 
     public Component getTopLeft() {
         return topLeft;
     }
 
-    public void setTopLeft(Component topLeft) {
+    public SplitPanel setTopLeft(Component topLeft) {
         if (topLeft != null) {
             this.remove(this.topLeft);
             this.topLeft = topLeft;
             this.add(0, topLeft);
             resetTopLeft();
         }
+        return this;
     }
 
     public Component getBottomRight() {
         return bottomRight;
     }
 
-    public void setBottomRight(Component bottomRight) {
+    public SplitPanel setBottomRight(Component bottomRight) {
         if (bottomRight != null) {
             this.remove(this.bottomRight);
             this.bottomRight = bottomRight;
             this.add(bottomRight);
             resetBottomRight();
         }
+        return this;
     }
 
     public float getRatio() {
         return ratio;
     }
 
-    public void setRatio(float ratio) {
+    public SplitPanel setRatio(float ratio) {
         if (ratio < 0f) {
             ratio = 0f;
         } else if (ratio > 100f) {
@@ -214,6 +219,7 @@ public class SplitPanel extends Panel {
         this.ratio = ratio;
 
         updateGrow();
+        return this;
     }
 
     public Button getSeparator() {
@@ -224,12 +230,13 @@ public class SplitPanel extends Panel {
         return orientation;
     }
 
-    public void setOrientation(Orientation orientation) {
+    public SplitPanel setOrientation(Orientation orientation) {
         if (orientation == null) {
-            return;
+            return this;
         }
         this.orientation = orientation;
         resetStyle();
+        return this;
     }
 
     private static class SeparatorButton extends Button {

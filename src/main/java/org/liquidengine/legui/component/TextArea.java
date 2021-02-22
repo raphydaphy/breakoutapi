@@ -100,7 +100,7 @@ public class TextArea extends Component implements TextComponent, Viewport {
      *
      * @param animation scroll bar animation to set.
      */
-    public void setAnimation(Animation animation) {
+    public TextArea setAnimation(Animation animation) {
         if (this.animation != null) {
             this.animation.stopAnimation();
         }
@@ -108,6 +108,7 @@ public class TextArea extends Component implements TextComponent, Viewport {
         if (animation != null) {
             this.animation.startAnimation();
         }
+        return this;
     }
 
     private void initialize() {
@@ -178,12 +179,13 @@ public class TextArea extends Component implements TextComponent, Viewport {
      *
      * @param verticalScrollBar vertical scroll bar to set.
      */
-    public void setVerticalScrollBar(ScrollBar verticalScrollBar) {
+    public TextArea setVerticalScrollBar(ScrollBar verticalScrollBar) {
         this.verticalScrollBar.setViewport(null);
         this.remove(this.verticalScrollBar);
         this.verticalScrollBar = verticalScrollBar;
         this.add(verticalScrollBar);
         this.verticalScrollBar.setViewport(this);
+        return this;
     }
 
     /**
@@ -200,15 +202,16 @@ public class TextArea extends Component implements TextComponent, Viewport {
      *
      * @param horizontalScrollBar horizontal scroll bar to set.
      */
-    public void setHorizontalScrollBar(ScrollBar horizontalScrollBar) {
+    public TextArea setHorizontalScrollBar(ScrollBar horizontalScrollBar) {
         this.horizontalScrollBar.setViewport(null);
         this.remove(this.horizontalScrollBar);
         this.horizontalScrollBar = horizontalScrollBar;
         this.add(horizontalScrollBar);
         this.horizontalScrollBar.setViewport(this);
+        return this;
     }
 
-    public void setHorizontalScrollBarVisible(boolean enabled) {
+    public TextArea setHorizontalScrollBarVisible(boolean enabled) {
         if (enabled) {
             Length height = this.horizontalScrollBar.getStyle().getHeight();
             if (height == null) {
@@ -222,9 +225,10 @@ public class TextArea extends Component implements TextComponent, Viewport {
             this.verticalScrollBar.getStyle().setBottom(0f);
         }
         this.horizontalScrollBar.getStyle().setDisplay(enabled ? DisplayType.MANUAL : DisplayType.NONE);
+        return this;
     }
 
-    public void setVerticalScrollBarVisible(boolean enabled) {
+    public TextArea setVerticalScrollBarVisible(boolean enabled) {
         if (enabled) {
             Length width = this.verticalScrollBar.getStyle().getWidth();
             if (width == null) {
@@ -238,18 +242,21 @@ public class TextArea extends Component implements TextComponent, Viewport {
             this.horizontalScrollBar.getStyle().setRight(0f);
         }
         this.verticalScrollBar.getStyle().setDisplay(enabled ? DisplayType.MANUAL : DisplayType.NONE);
+        return this;
     }
 
-    public void setHorizontalScrollBarHeight(float height) {
+    public TextArea setHorizontalScrollBarHeight(float height) {
         this.horizontalScrollBar.getStyle().setHeight(height);
         this.viewport.getStyle().setBottom(height);
         this.verticalScrollBar.getStyle().setBottom(height);
+        return this;
     }
 
-    public void setVerticalScrollBarWidth(float width) {
+    public TextArea setVerticalScrollBarWidth(float width) {
         this.verticalScrollBar.getStyle().setWidth(width);
         this.viewport.getStyle().setRight(width);
         this.horizontalScrollBar.getStyle().setRight(width);
+        return this;
     }
 
     public TextAreaField getTextAreaField() {
@@ -318,8 +325,9 @@ public class TextArea extends Component implements TextComponent, Viewport {
     }
 
     @Override
-    public void setTextState(TextState textState) {
+    public TextArea setTextState(TextState textState) {
         this.textAreaField.setTextState(textState);
+        return this;
     }
 
     /**
@@ -336,8 +344,9 @@ public class TextArea extends Component implements TextComponent, Viewport {
      *
      * @param caretPosition caret position to set.
      */
-    public void setCaretPosition(int caretPosition) {
+    public TextArea setCaretPosition(int caretPosition) {
         textAreaField.setCaretPosition(caretPosition);
+        return this;
     }
 
     /**
@@ -354,8 +363,9 @@ public class TextArea extends Component implements TextComponent, Viewport {
      *
      * @param editable editable text or not.
      */
-    public void setEditable(boolean editable) {
+    public TextArea setEditable(boolean editable) {
         textAreaField.setEditable(editable);
+        return this;
     }
 
     /**
@@ -372,8 +382,9 @@ public class TextArea extends Component implements TextComponent, Viewport {
      *
      * @param mouseCaretPosition mouse caret position to set.
      */
-    public void setMouseCaretPosition(int mouseCaretPosition) {
+    public TextArea setMouseCaretPosition(int mouseCaretPosition) {
         textAreaField.setMouseCaretPosition(mouseCaretPosition);
+        return this;
     }
 
     /**
@@ -390,8 +401,9 @@ public class TextArea extends Component implements TextComponent, Viewport {
      *
      * @param startSelectionIndex start selection index to set.
      */
-    public void setStartSelectionIndex(int startSelectionIndex) {
+    public TextArea setStartSelectionIndex(int startSelectionIndex) {
         textAreaField.setStartSelectionIndex(startSelectionIndex);
+        return this;
     }
 
     /**
@@ -408,8 +420,9 @@ public class TextArea extends Component implements TextComponent, Viewport {
      *
      * @param endSelectionIndex end selection index to set.
      */
-    public void setEndSelectionIndex(int endSelectionIndex) {
+    public TextArea setEndSelectionIndex(int endSelectionIndex) {
         textAreaField.setEndSelectionIndex(endSelectionIndex);
+        return this;
     }
 
     /**
@@ -435,8 +448,9 @@ public class TextArea extends Component implements TextComponent, Viewport {
      *
      * @param tabSize tab size in spaces.
      */
-    public void setTabSize(int tabSize) {
+    public TextArea setTabSize(int tabSize) {
         textAreaField.setTabSize(tabSize);
+        return this;
     }
 
     public static class TextAreaViewport extends Panel {

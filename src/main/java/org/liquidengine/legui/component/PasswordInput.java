@@ -100,8 +100,9 @@ public class PasswordInput extends TextInput {
      *
      * @param maskCharacter mask character to set.
      */
-    public void setMaskCharacter(int maskCharacter) {
+    public PasswordInput setMaskCharacter(int maskCharacter) {
         this.maskCharacter = maskCharacter;
+        return this;
     }
 
     /**
@@ -118,8 +119,9 @@ public class PasswordInput extends TextInput {
      *
      * @param masked true if need to mask text.
      */
-    public void setMasked(boolean masked) {
+    public PasswordInput setMasked(boolean masked) {
         this.masked = masked;
+        return this;
     }
 
 
@@ -156,7 +158,8 @@ public class PasswordInput extends TextInput {
     }
 
     @Override
-    public void setTextState(TextState textState) {
+    public PasswordInput setTextState(TextState textState) {
         this.textState = Objects.requireNonNull(textState);
+        return this;
     }
 }

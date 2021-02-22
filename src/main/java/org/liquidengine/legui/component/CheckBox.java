@@ -138,10 +138,11 @@ public class CheckBox extends AbstractTextComponent {
      *
      * @param iconUnchecked checkbox icon for non-selected state to set.
      */
-    public void setIconUnchecked(Icon iconUnchecked) {
+    public CheckBox setIconUnchecked(Icon iconUnchecked) {
         if (iconUnchecked != null) {
             this.iconUnchecked = iconUnchecked;
         }
+        return this;
     }
 
     /**
@@ -158,10 +159,11 @@ public class CheckBox extends AbstractTextComponent {
      *
      * @param iconChecked checkbox icon for selected state to set.
      */
-    public void setIconChecked(Icon iconChecked) {
+    public CheckBox setIconChecked(Icon iconChecked) {
         if (iconChecked != null) {
             this.iconChecked = iconChecked;
         }
+        return this;
     }
 
     /**
@@ -178,8 +180,9 @@ public class CheckBox extends AbstractTextComponent {
      *
      * @param checked new checkbox state.
      */
-    public void setChecked(boolean checked) {
+    public CheckBox setChecked(boolean checked) {
         this.checked = checked;
+        return this;
     }
 
     /**

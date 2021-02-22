@@ -171,14 +171,15 @@ public class Slider extends Component {
      *
      * @param minValue the minimum value.
      */
-    public void setMinValue(final float minValue) {
+    public Slider setMinValue(final float minValue) {
         if (minValue > this.maxValue) {
             this.maxValue = minValue;
-            return;
+            return this;
         }
         this.minValue = minValue;
         setStepSize(getStepSize());
         setValue(getValue());
+        return this;
     }
 
 
@@ -197,14 +198,15 @@ public class Slider extends Component {
      *
      * @param maxValue the maximum value.
      */
-    public void setMaxValue(final float maxValue) {
+    public Slider setMaxValue(final float maxValue) {
         if (maxValue < this.minValue) {
             this.minValue = maxValue;
-            return;
+            return this;
         }
         this.maxValue = maxValue;
         setStepSize(getStepSize());
         setValue(getValue());
+        return this;
     }
 
 
@@ -223,13 +225,14 @@ public class Slider extends Component {
      *
      * @param stepSize the step size.
      */
-    public void setStepSize(final float stepSize) {
+    public Slider setStepSize(final float stepSize) {
         this.stepSize = stepSize;
         if (stepSize > 0) {
             float difference = this.maxValue - this.minValue;
             this.stepSize = difference < stepSize ? difference : stepSize;
         }
         setValue(getValue());
+        return this;
     }
 
 
@@ -239,11 +242,12 @@ public class Slider extends Component {
      * @param intersector intersector.
      */
     @Override
-    public void setIntersector(Intersector intersector) {
+    public Slider setIntersector(Intersector intersector) {
         if (!(intersector instanceof RectangleIntersector)) {
-            return;
+            return this;
         }
         super.setIntersector(intersector);
+        return this;
     }
 
     /**
@@ -260,7 +264,7 @@ public class Slider extends Component {
      *
      * @param value new slider value.
      */
-    public void setValue(float value) {
+    public Slider setValue(float value) {
         this.value = value;
 
         // respect step size
@@ -281,6 +285,7 @@ public class Slider extends Component {
         } else if (this.value < this.minValue) {
             this.value = this.minValue;
         }
+        return this;
     }
 
     /**
@@ -297,8 +302,9 @@ public class Slider extends Component {
      *
      * @param sliderColor new slider color.
      */
-    public void setSliderColor(Vector4f sliderColor) {
+    public Slider setSliderColor(Vector4f sliderColor) {
         this.sliderColor = sliderColor;
+        return this;
     }
 
     /**
@@ -315,8 +321,9 @@ public class Slider extends Component {
      *
      * @param sliderSize new slider size.
      */
-    public void setSliderSize(float sliderSize) {
+    public Slider setSliderSize(float sliderSize) {
         this.sliderSize = sliderSize;
+        return this;
     }
 
     /**
@@ -333,8 +340,9 @@ public class Slider extends Component {
      *
      * @param sliderActiveColor new slider active color.
      */
-    public void setSliderActiveColor(Vector4f sliderActiveColor) {
+    public Slider setSliderActiveColor(Vector4f sliderActiveColor) {
         this.sliderActiveColor = sliderActiveColor;
+        return this;
     }
 
     /**
@@ -351,8 +359,9 @@ public class Slider extends Component {
      *
      * @param orientation new slider orientation.
      */
-    public void setOrientation(Orientation orientation) {
+    public Slider setOrientation(Orientation orientation) {
         this.orientation = orientation;
+        return this;
     }
 
     /**

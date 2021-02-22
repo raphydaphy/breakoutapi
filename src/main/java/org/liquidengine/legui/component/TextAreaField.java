@@ -134,8 +134,9 @@ public class TextAreaField extends AbstractTextComponent {
      *
      * @param caretPosition caret position to set.
      */
-    public void setCaretPosition(int caretPosition) {
+    public TextAreaField setCaretPosition(int caretPosition) {
         textState.setCaretPosition(caretPosition);
+        return this;
     }
 
     /**
@@ -152,8 +153,9 @@ public class TextAreaField extends AbstractTextComponent {
      *
      * @param editable editable text or not.
      */
-    public void setEditable(boolean editable) {
+    public TextAreaField setEditable(boolean editable) {
         textState.setEditable(editable);
+        return this;
     }
 
     /**
@@ -170,8 +172,9 @@ public class TextAreaField extends AbstractTextComponent {
      *
      * @param mouseCaretPosition mouse caret position to set.
      */
-    public void setMouseCaretPosition(int mouseCaretPosition) {
+    public TextAreaField setMouseCaretPosition(int mouseCaretPosition) {
         textState.setMouseCaretPosition(mouseCaretPosition);
+        return this;
     }
 
     /**
@@ -188,8 +191,9 @@ public class TextAreaField extends AbstractTextComponent {
      *
      * @param startSelectionIndex start selection index to set.
      */
-    public void setStartSelectionIndex(int startSelectionIndex) {
+    public TextAreaField setStartSelectionIndex(int startSelectionIndex) {
         textState.setStartSelectionIndex(startSelectionIndex);
+        return this;
     }
 
     /**
@@ -206,8 +210,9 @@ public class TextAreaField extends AbstractTextComponent {
      *
      * @param endSelectionIndex end selection index to set.
      */
-    public void setEndSelectionIndex(int endSelectionIndex) {
+    public TextAreaField setEndSelectionIndex(int endSelectionIndex) {
         textState.setEndSelectionIndex(endSelectionIndex);
+        return this;
     }
 
     /**
@@ -233,10 +238,11 @@ public class TextAreaField extends AbstractTextComponent {
      *
      * @param tabSize tab size in spaces.
      */
-    public void setTabSize(int tabSize) {
+    public TextAreaField setTabSize(int tabSize) {
         if (tabSize >= 1) {
             this.tabSize = tabSize;
         }
+        return this;
     }
 
     @Override
@@ -297,7 +303,8 @@ public class TextAreaField extends AbstractTextComponent {
         return stickToAlignment;
     }
 
-    public void setStickToAlignment(boolean stickToAlignment) {
+    public TextAreaField setStickToAlignment(boolean stickToAlignment) {
         this.stickToAlignment = stickToAlignment;
+        return this;
     }
 }

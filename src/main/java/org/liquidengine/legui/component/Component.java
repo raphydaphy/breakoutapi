@@ -5,6 +5,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.joml.Vector2f;
+import org.liquidengine.legui.Legui;
 import org.liquidengine.legui.component.misc.listener.component.TabKeyEventListener;
 import org.liquidengine.legui.component.misc.listener.component.TooltipCursorEnterListener;
 import org.liquidengine.legui.event.AddChildEvent;
@@ -185,10 +186,11 @@ public abstract class Component implements Serializable {
      *
      * @param style component style to set.
      */
-    public void setStyle(Style style) {
+    public Component setStyle(Style style) {
         if (style != null) {
             this.style = style;
         }
+        return this;
     }
 
     /**
@@ -217,9 +219,9 @@ public abstract class Component implements Serializable {
      *
      * @param parent component container.
      */
-    public void setParent(Component parent) {
+    public Component setParent(Component parent) {
         if (parent == this) {
-            return;
+            return this;
         }
 
         if (this.parent != null) {
@@ -229,6 +231,7 @@ public abstract class Component implements Serializable {
         if (parent != null) {
             parent.add(this);
         }
+        return this;
     }
 
     /**
@@ -245,8 +248,9 @@ public abstract class Component implements Serializable {
      *
      * @param listenerMap map of event listeners.
      */
-    public void setListenerMap(ListenerMap listenerMap) {
+    public Component setListenerMap(ListenerMap listenerMap) {
         this.listenerMap = listenerMap;
+        return this;
     }
 
     /**
@@ -263,12 +267,13 @@ public abstract class Component implements Serializable {
      *
      * @param position new position for component.
      */
-    public void setPosition(Vector2f position) {
+    public Component setPosition(Vector2f position) {
         if (position != null) {
             this.position = position;
         } else {
             this.position.set(0);
         }
+        return this;
     }
 
     /**
@@ -277,8 +282,9 @@ public abstract class Component implements Serializable {
      * @param x x position relative to parent component.
      * @param y y position relative to parent component.
      */
-    public void setPosition(float x, float y) {
+    public Component setPosition(float x, float y) {
         this.position.set(x, y);
+        return this;
     }
 
     /**
@@ -302,12 +308,13 @@ public abstract class Component implements Serializable {
      *
      * @param size size vector.
      */
-    public void setSize(Vector2f size) {
+    public Component setSize(Vector2f size) {
         if (size != null) {
             this.size = size;
         } else {
             this.size.set(0);
         }
+        return this;
     }
 
     /**
@@ -316,8 +323,9 @@ public abstract class Component implements Serializable {
      * @param width  width to set.
      * @param height height to set.
      */
-    public void setSize(float width, float height) {
+    public Component setSize(float width, float height) {
         this.size.set(width, height);
+        return this;
     }
 
     /**
@@ -347,8 +355,9 @@ public abstract class Component implements Serializable {
      *
      * @param enabled flag to set.
      */
-    public void setEnabled(boolean enabled) {
+    public Component setEnabled(boolean enabled) {
         this.enabled = enabled;
+        return this;
     }
 
     /**
@@ -384,11 +393,12 @@ public abstract class Component implements Serializable {
      *
      * @param intersector intersector.
      */
-    public void setIntersector(Intersector intersector) {
+    public Component setIntersector(Intersector intersector) {
         if (intersector == null) {
-            return;
+            return this;
         }
         this.intersector = intersector;
+        return this;
     }
 
     /**
@@ -414,8 +424,9 @@ public abstract class Component implements Serializable {
      *
      * @param hovered new hovered value.
      */
-    public void setHovered(boolean hovered) {
+    public Component setHovered(boolean hovered) {
         this.hovered = hovered;
+        return this;
     }
 
     /**
@@ -432,8 +443,9 @@ public abstract class Component implements Serializable {
      *
      * @param focused new hovered value.
      */
-    public void setFocused(boolean focused) {
+    public Component setFocused(boolean focused) {
         this.focused = focused;
+        return this;
     }
 
     /**
@@ -450,8 +462,9 @@ public abstract class Component implements Serializable {
      *
      * @param pressed new hovered value.
      */
-    public void setPressed(boolean pressed) {
+    public Component setPressed(boolean pressed) {
         this.pressed = pressed;
+        return this;
     }
 
     /**
@@ -468,10 +481,10 @@ public abstract class Component implements Serializable {
      *
      * @param tooltip tooltip to set.
      */
-    public void setTooltip(Tooltip tooltip) {
+    public Component setTooltip(Tooltip tooltip) {
         // check same tooltip
         if (this.tooltip == tooltip) {
-            return;
+            return this;
         }
         // unbind current tooltip from this component
         if (this.tooltip != null) {
@@ -485,6 +498,7 @@ public abstract class Component implements Serializable {
         if (tooltip != null) {
             tooltip.setComponent(this);
         }
+        return this;
     }
 
     /**
@@ -501,8 +515,9 @@ public abstract class Component implements Serializable {
      *
      * @param tabIndex tab index.
      */
-    public void setTabIndex(int tabIndex) {
+    public Component setTabIndex(int tabIndex) {
         this.tabIndex = tabIndex;
+        return this;
     }
 
     /**
@@ -519,8 +534,9 @@ public abstract class Component implements Serializable {
      *
      * @param tabFocusable new tab affecting state.
      */
-    public void setTabFocusable(boolean tabFocusable) {
+    public Component setTabFocusable(boolean tabFocusable) {
         this.tabFocusable = tabFocusable;
+        return this;
     }
 
     /**
@@ -539,8 +555,9 @@ public abstract class Component implements Serializable {
      *
      * @param focusable new focusable state.
      */
-    public void setFocusable(boolean focusable) {
+    public Component setFocusable(boolean focusable) {
         this.focusable = focusable;
+        return this;
     }
 
     /////////////////////////////////
@@ -595,14 +612,15 @@ public abstract class Component implements Serializable {
      * @return true if component is added.
      * @see List#add(Object)
      */
-    public boolean add(Component component) {
+    public Component add(Component component) {
         if (component == null || component == this || isContains(component)) {
-            return false;
+            // can't add component
+            return this;
         }
-        boolean added = childComponents.add(component);
+        childComponents.add(component);
         changeParent(component);
         EventProcessorProvider.getInstance().pushEvent(new AddChildEvent<>(this, component));
-        return added;
+        return this;
     }
 
     public void add(int index, Component component) {

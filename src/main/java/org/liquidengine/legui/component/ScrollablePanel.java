@@ -101,7 +101,7 @@ public class ScrollablePanel extends Component implements Viewport {
      *
      * @param animation scroll bar animation to set.
      */
-    public void setAnimation(Animation animation) {
+    public ScrollablePanel setAnimation(Animation animation) {
         if (this.animation != null) {
             this.animation.stopAnimation();
         }
@@ -109,6 +109,7 @@ public class ScrollablePanel extends Component implements Viewport {
         if (animation != null) {
             this.animation.startAnimation();
         }
+        return this;
     }
 
     private void initialize() {
@@ -213,15 +214,17 @@ public class ScrollablePanel extends Component implements Viewport {
     }
 
     @Override
-    public void setSize(float width, float height) {
+    public ScrollablePanel setSize(float width, float height) {
         super.setSize(width, height);
         calculateSize();
+        return this;
     }
 
     @Override
-    public void setSize(Vector2f size) {
+    public ScrollablePanel setSize(Vector2f size) {
         super.setSize(size);
         calculateSize();
+        return this;
     }
 
     /**
@@ -238,13 +241,14 @@ public class ScrollablePanel extends Component implements Viewport {
      *
      * @param verticalScrollBar vertical scroll bar to set.
      */
-    public void setVerticalScrollBar(ScrollBar verticalScrollBar) {
+    public ScrollablePanel setVerticalScrollBar(ScrollBar verticalScrollBar) {
         this.verticalScrollBar.setViewport(null);
         this.remove(this.verticalScrollBar);
         this.verticalScrollBar = verticalScrollBar;
         this.add(verticalScrollBar);
         this.verticalScrollBar.setViewport(this);
         calculateSize();
+        return this;
     }
 
     /**
@@ -261,20 +265,21 @@ public class ScrollablePanel extends Component implements Viewport {
      *
      * @param horizontalScrollBar horizontal scroll bar to set.
      */
-    public void setHorizontalScrollBar(ScrollBar horizontalScrollBar) {
+    public ScrollablePanel setHorizontalScrollBar(ScrollBar horizontalScrollBar) {
         this.horizontalScrollBar.setViewport(null);
         this.remove(this.horizontalScrollBar);
         this.horizontalScrollBar = horizontalScrollBar;
         this.add(horizontalScrollBar);
         this.horizontalScrollBar.setViewport(this);
         calculateSize();
+        return this;
     }
 
     public boolean isHorizontalScrollBarVisible() {
         return horizontalScrollBar.getStyle().getDisplay() != DisplayType.NONE;
     }
 
-    public void setHorizontalScrollBarVisible(boolean enabled) {
+    public ScrollablePanel setHorizontalScrollBarVisible(boolean enabled) {
         if (enabled) {
             Length height = this.horizontalScrollBar.getStyle().getHeight();
             if (height == null) {
@@ -289,13 +294,14 @@ public class ScrollablePanel extends Component implements Viewport {
         }
         this.horizontalScrollBar.getStyle().setDisplay(enabled ? DisplayType.MANUAL : DisplayType.NONE);
         calculateSize();
+        return this;
     }
 
     public boolean isVerticalScrollBarVisible() {
         return verticalScrollBar.getStyle().getDisplay() != DisplayType.NONE;
     }
 
-    public void setVerticalScrollBarVisible(boolean enabled) {
+    public ScrollablePanel setVerticalScrollBarVisible(boolean enabled) {
         if (enabled) {
             Length width = this.verticalScrollBar.getStyle().getWidth();
             if (width == null) {
@@ -310,20 +316,23 @@ public class ScrollablePanel extends Component implements Viewport {
         }
         this.verticalScrollBar.getStyle().setDisplay(enabled ? DisplayType.MANUAL : DisplayType.NONE);
         calculateSize();
+        return this;
     }
 
-    public void setHorizontalScrollBarHeight(float height) {
+    public ScrollablePanel setHorizontalScrollBarHeight(float height) {
         this.horizontalScrollBar.getStyle().setHeight(height);
         this.viewport.getStyle().setBottom(height);
         this.verticalScrollBar.getStyle().setBottom(height);
         calculateSize();
+        return this;
     }
 
-    public void setVerticalScrollBarWidth(float width) {
+    public ScrollablePanel setVerticalScrollBarWidth(float width) {
         this.verticalScrollBar.getStyle().setWidth(width);
         this.viewport.getStyle().setRight(width);
         this.horizontalScrollBar.getStyle().setRight(width);
         calculateSize();
+        return this;
     }
 
 
@@ -341,10 +350,11 @@ public class ScrollablePanel extends Component implements Viewport {
      *
      * @param container container which should used to add components to scrollable panel.
      */
-    public void setContainer(Component container) {
+    public ScrollablePanel setContainer(Component container) {
         viewport.remove(this.container);
         this.container = container;
         viewport.add(this.container);
+        return this;
     }
 
     @Override
@@ -407,8 +417,9 @@ public class ScrollablePanel extends Component implements Viewport {
         return autoResize;
     }
 
-    public void setAutoResize(boolean autoResize) {
+    public ScrollablePanel setAutoResize(boolean autoResize) {
         this.autoResize = autoResize;
+        return this;
     }
 
     public static class ScrollablePanelViewport extends Panel {

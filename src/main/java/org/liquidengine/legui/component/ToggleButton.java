@@ -103,8 +103,9 @@ public class ToggleButton extends Button {
      *
      * @param toggled new value.
      */
-    public void setToggled(boolean toggled) {
+    public ToggleButton setToggled(boolean toggled) {
         this.toggled = toggled;
+        return this;
     }
 
     /**
@@ -121,8 +122,9 @@ public class ToggleButton extends Button {
      *
      * @param toggledBackgroundColor new value.
      */
-    public void setToggledBackgroundColor(Vector4f toggledBackgroundColor) {
+    public ToggleButton setToggledBackgroundColor(Vector4f toggledBackgroundColor) {
         this.toggledBackgroundColor = toggledBackgroundColor;
+        return this;
     }
 
     /**
@@ -139,8 +141,9 @@ public class ToggleButton extends Button {
      *
      * @param togglededBackgroundIcon toggled background icon.
      */
-    public void setTogglededBackgroundIcon(Icon togglededBackgroundIcon) {
+    public ToggleButton setTogglededBackgroundIcon(Icon togglededBackgroundIcon) {
         this.togglededBackgroundIcon = togglededBackgroundIcon;
+        return this;
     }
 
     @Override

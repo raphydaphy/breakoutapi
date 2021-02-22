@@ -13,10 +13,12 @@ import org.lwjgl.opengl.GL30;
 import org.lwjgl.opengl.GL45;
 
 public abstract class AbstractBreakout {
+  private Identifier identifier;
   protected BreakoutWindow window;
   protected Framebuffer framebuffer;
 
-  public AbstractBreakout(BreakoutWindow window) {
+  public AbstractBreakout(Identifier identifier, BreakoutWindow window) {
+    this.identifier = identifier;
     this.window = window;
     this.window.setIcon(new Identifier(BreakoutAPI.MODID, "textures/icons/window_icon_16x16.png"), new Identifier(BreakoutAPI.MODID, "textures/icons/window_icon_32x32.png"));
 
@@ -27,23 +29,15 @@ public abstract class AbstractBreakout {
 
     this.onResolutionChanged(this.window.getFramebufferWidth(), this.window.getFramebufferHeight());
     this.window.keeper.getChainResolutionChangedCallback().add(this::onResolutionChanged);
-
-    GLFW.glfwSwapInterval(0);
   }
 
   public abstract void render();
   protected void postRender() {}
 
   public void setupRender() {
-    if (this.window.shouldClose()) {
-      BreakoutAPI.LOGGER.info("Closing breakout window!");
-      this.destroy();
-      BreakoutAPIClient.CUR_BREAKOUT = null;
-      return;
-    }
+    if (this.window.shouldClose()) return;
 
     GLFW.glfwMakeContextCurrent(this.window.getHandle());
-
 
     RenderSystem.pushMatrix();
     RenderSystem.clear(GL30.GL_COLOR_BUFFER_BIT | GL30.GL_DEPTH_BUFFER_BIT, MinecraftClient.IS_SYSTEM_MAC);
@@ -65,6 +59,7 @@ public abstract class AbstractBreakout {
     this.window.swapBuffers();
 
     this.postRender();
+
   }
 
 
@@ -85,5 +80,9 @@ public abstract class AbstractBreakout {
     GLFW.glfwMakeContextCurrent(this.window.getHandle());
     this.framebuffer.resize(width, height, MinecraftClient.IS_SYSTEM_MAC);
     GLFW.glfwMakeContextCurrent(existingContext);
+  }
+
+  public BreakoutWindow getWindow() {
+     return this.window;
   }
 }

@@ -120,8 +120,9 @@ public class SelectBox<T> extends Component {
      *
      * @param buttonWidth button width to set.
      */
-    public void setButtonWidth(float buttonWidth) {
+    public SelectBox setButtonWidth(float buttonWidth) {
         this.buttonWidth = buttonWidth;
+        return this;
     }
 
     /**
@@ -185,18 +186,20 @@ public class SelectBox<T> extends Component {
         return collapseIcon;
     }
 
-    public void setCollapseIcon(Icon collapseIcon) {
+    public SelectBox setCollapseIcon(Icon collapseIcon) {
         this.collapseIcon = collapseIcon;
         updateIcons();
+        return this;
     }
 
     public Icon getExpandIcon() {
         return expandIcon;
     }
 
-    public void setExpandIcon(Icon expandIcon) {
+    public SelectBox setExpandIcon(Icon expandIcon) {
         this.expandIcon = expandIcon;
         updateIcons();
+        return this;
     }
 
     private void updateIcons() {
@@ -229,8 +232,9 @@ public class SelectBox<T> extends Component {
      *
      * @param visibleCount count of visible elements to set.
      */
-    public void setVisibleCount(int visibleCount) {
+    public SelectBox setVisibleCount(int visibleCount) {
         this.visibleCount = visibleCount;
+        return this;
     }
 
     /**
@@ -247,11 +251,12 @@ public class SelectBox<T> extends Component {
      *
      * @param collapsed collapsed state to set.
      */
-    public void setCollapsed(boolean collapsed) {
+    public SelectBox setCollapsed(boolean collapsed) {
         this.collapsed = collapsed;
         if (!collapsed) {
             selectionListPanel.getVerticalScrollBar().setCurValue(0);
         }
+        return this;
     }
 
     /**
@@ -356,9 +361,10 @@ public class SelectBox<T> extends Component {
      * @param element  element to set state.
      * @param selected state of element to set.
      */
-    public void setSelected(T element, boolean selected) {
+    public SelectBox setSelected(T element, boolean selected) {
         int index = elements.indexOf(element);
         setSelected(element, selected, index);
+        return this;
     }
 
     /**
@@ -367,7 +373,7 @@ public class SelectBox<T> extends Component {
      * @param index    index of element to set state.
      * @param selected state of element to set.
      */
-    public void setSelected(int index, boolean selected) {
+    public SelectBox setSelected(int index, boolean selected) {
         if (elements.isEmpty()) {
             selectedElement = null;
             selectionButton.getTextState().setText(NULL);
@@ -375,9 +381,10 @@ public class SelectBox<T> extends Component {
             T element = elements.get(index);
             setSelected(element, selected, index);
         }
+        return this;
     }
 
-    private void setSelected(T element, boolean selected, int index) {
+    private SelectBox setSelected(T element, boolean selected, int index) {
         if (selected) {
             if (index != -1) {
                 SelectBoxElement<T> tSelectBoxElement = selectBoxElements.get(index);
@@ -402,6 +409,7 @@ public class SelectBox<T> extends Component {
                 addElement(element);
             }
         }
+        return this;
     }
 
     /**
@@ -418,9 +426,10 @@ public class SelectBox<T> extends Component {
      *
      * @param elementHeight element height to set.
      */
-    public void setElementHeight(float elementHeight) {
+    public SelectBox setElementHeight(float elementHeight) {
         this.elementHeight = elementHeight;
         resize();
+        return this;
     }
 
     /**

@@ -84,7 +84,7 @@ public class ProgressBar extends Component {
      *
      * @param value current progress status.
      */
-    public void setValue(float value) {
+    public ProgressBar setValue(float value) {
         if (value < MIN_VALUE) {
             this.value = MIN_VALUE;
         } else if (value > MAX_VALUE) {
@@ -92,6 +92,7 @@ public class ProgressBar extends Component {
         } else {
             this.value = value;
         }
+        return this;
     }
 
     /**
@@ -108,8 +109,9 @@ public class ProgressBar extends Component {
      *
      * @param progressColor progress bar color.
      */
-    public void setProgressColor(Vector4f progressColor) {
+    public ProgressBar setProgressColor(Vector4f progressColor) {
         this.progressColor = progressColor;
+        return this;
     }
 
     @Override

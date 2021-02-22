@@ -115,8 +115,9 @@ public class Label extends AbstractTextComponent {
         return textDirection;
     }
 
-    public void setTextDirection(TextDirection textDirection) {
+    public Label setTextDirection(TextDirection textDirection) {
         this.textDirection = Objects.requireNonNull(textDirection);
+        return this;
     }
 
     @Override

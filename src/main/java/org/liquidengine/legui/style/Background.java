@@ -34,12 +34,13 @@ public class Background {
      *
      * @param color background color vector.
      */
-    public void setColor(Vector4f color) {
+    public Background setColor(Vector4f color) {
         if (color != null) {
             this.color = color;
         } else {
             this.color = ColorConstants.transparent();
         }
+        return this;
     }
 
     /**
@@ -50,8 +51,9 @@ public class Background {
      * @param b blue value.
      * @param a alpha value.
      */
-    public void setColor(float r, float g, float b, float a) {
+    public Background setColor(float r, float g, float b, float a) {
         color.set(r, g, b, a);
+        return this;
     }
 
     /**
@@ -68,8 +70,9 @@ public class Background {
      *
      * @param icon the icon
      */
-    public void setIcon(Icon icon) {
+    public Background setIcon(Icon icon) {
         this.icon = icon;
+        return this;
     }
 
     /**
@@ -86,8 +89,9 @@ public class Background {
      *
      * @param position the position
      */
-    public void setPosition(Vector2f position) {
+    public Background setPosition(Vector2f position) {
         this.position = position;
+        return this;
     }
 
     /**
@@ -104,7 +108,8 @@ public class Background {
      *
      * @param size the size
      */
-    public void setSize(Vector2f size) {
+    public Background setSize(Vector2f size) {
         this.size = size;
+        return this;
     }
 }

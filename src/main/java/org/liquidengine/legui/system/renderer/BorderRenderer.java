@@ -1,7 +1,7 @@
 package org.liquidengine.legui.system.renderer;
 
 import org.liquidengine.legui.component.Component;
-import org.liquidengine.legui.style.Border;
+import org.liquidengine.legui.style.border.Border;
 import org.liquidengine.legui.system.context.Context;
 
 import java.util.concurrent.atomic.AtomicBoolean;

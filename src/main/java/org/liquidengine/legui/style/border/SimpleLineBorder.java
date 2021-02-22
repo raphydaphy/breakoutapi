@@ -5,7 +5,6 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.joml.Vector4f;
-import org.liquidengine.legui.style.Border;
 import org.liquidengine.legui.style.color.ColorConstants;
 
 /**
@@ -55,8 +54,9 @@ public class SimpleLineBorder extends Border {
      *
      * @param thickness border thickness to set.
      */
-    public void setThickness(float thickness) {
+    public SimpleLineBorder setThickness(float thickness) {
         this.thickness = thickness;
+        return this;
     }
 
     /**
@@ -73,8 +73,9 @@ public class SimpleLineBorder extends Border {
      *
      * @param color border color to set.
      */
-    public void setColor(Vector4f color) {
+    public SimpleLineBorder setColor(Vector4f color) {
         this.color = color;
+        return this;
     }
 
     @Override

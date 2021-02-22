@@ -1,47 +1,76 @@
 package com.raphydaphy.breakoutapi.breakout;
 
-import com.mojang.blaze3d.platform.GlStateManager;
-import com.raphydaphy.breakoutapi.breakout.window.GUIWindow;
+import com.raphydaphy.breakoutapi.breakout.window.BreakoutWindow;
+import net.minecraft.util.Identifier;
 import org.liquidengine.legui.animation.AnimatorProvider;
+import org.liquidengine.legui.component.Frame;
 import org.liquidengine.legui.listener.processor.EventProcessorProvider;
+import org.liquidengine.legui.system.context.Context;
+import org.liquidengine.legui.system.handler.processor.SystemEventProcessor;
+import org.liquidengine.legui.system.handler.processor.SystemEventProcessorImpl;
+import org.liquidengine.legui.system.layout.LayoutManager;
 import org.liquidengine.legui.system.renderer.Renderer;
 import org.liquidengine.legui.system.renderer.nvg.NvgRenderer;
-import org.lwjgl.glfw.GLFW;
-import org.lwjgl.opengl.GL30;
 
-public class GUIBreakout extends AbstractBreakout {
+public abstract class GUIBreakout extends AbstractBreakout {
+  protected Frame frame;
+  protected Context context;
+
+  protected SystemEventProcessor systemEventProcessor;
   private Renderer renderer;
 
-  public GUIBreakout(GUIWindow window) {
-    super(window);
+  public GUIBreakout(Identifier identifier, BreakoutWindow window) {
+    super(identifier, window);
+
+    this.frame = new Frame(this.window.getWidth(), this.window.getHeight());
+    this.createGuiElements(this.window.getWidth(), this.window.getHeight());
+
+    this.context = new Context(this.getWindow().getHandle());
+
+    this.systemEventProcessor = new SystemEventProcessorImpl();
+    SystemEventProcessor.addDefaultCallbacks(this.window.keeper, this.systemEventProcessor);
 
     this.renderer = new NvgRenderer();
     renderer.initialize();
+
+    this.window.keeper.getChainWindowSizeCallback().add(this::onWindowSizeChanged);
+  }
+
+  protected abstract void createGuiElements(int width, int height);
+
+  public void processSystemEvents() {
+    this.systemEventProcessor.processEvents(this.frame, this.context);
+  }
+
+  public Frame getFrame() {
+    return this.frame;
+  }
+
+  public Context getContext() {
+    return this.context;
   }
 
   @Override
   public void render() {
-    GUIWindow window = (GUIWindow)this.window;
-
-    /*
-    GL30.glClearColor(1, 1, 1, 1);
-    GL30.glViewport(0, 0, this.window.getFramebufferWidth(), this.window.getFramebufferHeight());
-    GL30.glClear(GL30.GL_COLOR_BUFFER_BIT | GL30.GL_STENCIL_BUFFER_BIT);
-    */
-
-    window.updateLayout();
-    this.renderer.render(window.getFrame(), window.getContext());
+    this.context.updateGlfwWindow();
+    LayoutManager.getInstance().layout(this.frame);
+    this.renderer.render(this.getFrame(), this.getContext());
   }
 
   @Override
   public void postRender() {
-    GUIWindow window = (GUIWindow)this.window;
-
     AnimatorProvider.getAnimator().runAnimations();
 
-    window.processSystemEvents();
+    this.processSystemEvents();
     EventProcessorProvider.getInstance().processEvents();
   }
+
+  private void onWindowSizeChanged(long window, int width, int height) {
+    if (window == this.getWindow().getHandle()) {
+      this.frame.setSize(width, height);
+    }
+  }
+
   public void destroy() {
     this.renderer.destroy();
     super.destroy();

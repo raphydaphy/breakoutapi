@@ -189,8 +189,9 @@ public class ScrollBar extends Component {
      *
      * @param scrolling new status to set.
      */
-    public void setScrolling(boolean scrolling) {
+    public ScrollBar setScrolling(boolean scrolling) {
         this.scrolling = scrolling;
+        return this;
     }
 
     /**
@@ -207,8 +208,9 @@ public class ScrollBar extends Component {
      *
      * @param viewport viewport to set.
      */
-    public void setViewport(Viewport viewport) {
+    public ScrollBar setViewport(Viewport viewport) {
         this.viewport = viewport;
+        return this;
     }
 
     /**
@@ -225,10 +227,11 @@ public class ScrollBar extends Component {
      *
      * @param orientation scrollbar orientation to set.
      */
-    public void setOrientation(Orientation orientation) {
+    public ScrollBar setOrientation(Orientation orientation) {
         if (orientation != null) {
             this.orientation = orientation;
         }
+        return this;
     }
 
     /**
@@ -245,8 +248,9 @@ public class ScrollBar extends Component {
      *
      * @param arrowSize arrow size to set.
      */
-    public void setArrowSize(float arrowSize) {
+    public ScrollBar setArrowSize(float arrowSize) {
         this.arrowSize = arrowSize;
+        return this;
     }
 
     /**
@@ -263,8 +267,9 @@ public class ScrollBar extends Component {
      *
      * @param arrowsEnabled value to enable/disable arrows.
      */
-    public void setArrowsEnabled(boolean arrowsEnabled) {
+    public ScrollBar setArrowsEnabled(boolean arrowsEnabled) {
         this.arrowsEnabled = arrowsEnabled;
+        return this;
     }
 
     /**
@@ -281,8 +286,9 @@ public class ScrollBar extends Component {
      *
      * @param scrollColor scrollbar color to set.
      */
-    public void setScrollColor(Vector4f scrollColor) {
+    public ScrollBar setScrollColor(Vector4f scrollColor) {
         this.scrollColor = scrollColor;
+        return this;
     }
 
     /**
@@ -299,8 +305,9 @@ public class ScrollBar extends Component {
      *
      * @param arrowColor scrollbar arrow color to set.
      */
-    public void setArrowColor(Vector4f arrowColor) {
+    public ScrollBar setArrowColor(Vector4f arrowColor) {
         this.arrowColor = arrowColor;
+        return this;
     }
 
     /**
@@ -317,10 +324,11 @@ public class ScrollBar extends Component {
      *
      * @param visibleAmount visible size of viewport.
      */
-    public void setVisibleAmount(float visibleAmount) {
+    public ScrollBar setVisibleAmount(float visibleAmount) {
         if (visibleAmount > minValue && visibleAmount <= maxValue) {
             this.visibleAmount = visibleAmount;
         }
+        return this;
     }
 
     /**
@@ -337,8 +345,9 @@ public class ScrollBar extends Component {
      *
      * @param minValue minimum state of scrollbar to set.
      */
-    public void setMinValue(float minValue) {
+    public ScrollBar setMinValue(float minValue) {
         this.minValue = minValue;
+        return this;
     }
 
     /**
@@ -355,8 +364,9 @@ public class ScrollBar extends Component {
      *
      * @param maxValue maximum state of scrollbar to set.
      */
-    public void setMaxValue(float maxValue) {
+    public ScrollBar setMaxValue(float maxValue) {
         this.maxValue = maxValue;
+        return this;
     }
 
     /**
@@ -373,7 +383,7 @@ public class ScrollBar extends Component {
      *
      * @param curValue current state of scrollbar to set.
      */
-    public void setCurValue(float curValue) {
+    public ScrollBar setCurValue(float curValue) {
         if (curValue < minValue) {
             this.curValue = minValue;
         } else if (curValue > maxValue) {
@@ -381,6 +391,7 @@ public class ScrollBar extends Component {
         } else {
             this.curValue = curValue;
         }
+        return this;
     }
 
     /**
@@ -397,10 +408,11 @@ public class ScrollBar extends Component {
      *
      * @param scrollStep scrollbar scroll step to set.
      */
-    public void setScrollStep(float scrollStep) {
+    public ScrollBar setScrollStep(float scrollStep) {
         if (scrollStep > 0) {
             this.scrollStep = scrollStep;
         }
+        return this;
     }
 
     /**
@@ -444,7 +456,7 @@ public class ScrollBar extends Component {
      *
      * @param animation scroll bar animation to set.
      */
-    public void setAnimation(Animation animation) {
+    public ScrollBar setAnimation(Animation animation) {
         if (this.animation != null) {
             this.animation.stopAnimation();
         }
@@ -452,6 +464,7 @@ public class ScrollBar extends Component {
         if (animation != null) {
             this.animation.startAnimation();
         }
+        return this;
     }
 
     @Override

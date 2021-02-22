@@ -143,7 +143,8 @@ public class Button extends AbstractTextComponent {
         return textDirection;
     }
 
-    public void setTextDirection(TextDirection textDirection) {
+    public Button setTextDirection(TextDirection textDirection) {
         this.textDirection = textDirection;
+        return this;
     }
 }

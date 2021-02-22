@@ -87,10 +87,11 @@ public class Font {
      *
      * @param path path to set.
      */
-    public void setPath(Identifier path) {
+    public Font setPath(Identifier path) {
         if (this.path == null && path != null) {
             this.path = path;
         }
+        return this;
     }
 
     @Override

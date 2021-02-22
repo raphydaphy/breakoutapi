@@ -81,8 +81,9 @@ public class Frame {
      *
      * @param size frame size.
      */
-    public void setSize(Vector2f size) {
+    public Frame setSize(Vector2f size) {
         setSize(size.x, size.y);
+        return this;
     }
 
     /**
@@ -91,10 +92,11 @@ public class Frame {
      * @param width  width.
      * @param height height.
      */
-    public void setSize(float width, float height) {
+    public Frame setSize(float width, float height) {
         tooltipLayer.setSize(width, height);
         componentLayer.setSize(width, height);
         layers.forEach(l -> l.setSize(width, height));
+        return this;
     }
 
     /**
@@ -161,8 +163,9 @@ public class Frame {
         return componentLayer;
     }
 
-    public void setComponentLayer(Layer componentLayer) {
+    public Frame setComponentLayer(Layer componentLayer) {
         this.componentLayer = Objects.requireNonNull(componentLayer);
+        return this;
     }
 
     /**
@@ -174,8 +177,9 @@ public class Frame {
         return tooltipLayer;
     }
 
-    public void setTooltipLayer(Layer tooltipLayer) {
+    public Frame setTooltipLayer(Layer tooltipLayer) {
         this.tooltipLayer = Objects.requireNonNull(tooltipLayer);
+        return this;
     }
 
     /**

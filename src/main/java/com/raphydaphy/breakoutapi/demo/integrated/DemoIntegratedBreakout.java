@@ -1,8 +1,9 @@
-package com.raphydaphy.breakoutapi.demo;
+package com.raphydaphy.breakoutapi.demo.integrated;
 
 import com.mojang.blaze3d.platform.GlStateManager;
-import com.raphydaphy.breakoutapi.breakout.GUIBreakout;
-import com.raphydaphy.breakoutapi.breakout.window.GUIWindow;
+import com.raphydaphy.breakoutapi.breakout.AbstractBreakout;
+import com.raphydaphy.breakoutapi.breakout.Breakout;
+import com.raphydaphy.breakoutapi.breakout.window.BreakoutWindow;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.math.MatrixStack;
@@ -10,21 +11,19 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.Style;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
-import org.liquidengine.legui.component.Component;
 
-public class DemoBreakout extends GUIBreakout {
+public class DemoIntegratedBreakout extends Breakout {
   private static Identifier LEAVES_TEXTURE = new Identifier("textures/block/azalea_leaves.png");
   private static Identifier FURNACE_GUI = new Identifier("textures/gui/container/furnace.png");
 
-  public DemoBreakout() {
-    super(new DemoGUIWindow("GUI Window", 800, 600));
+  public DemoIntegratedBreakout(Identifier identifier) {
+    super(identifier, new BreakoutWindow("Demo Integrated Breakout", 480, 720));
   }
 
   @Override
   public void render() {
     super.render();
 
-/*
     MinecraftClient client = MinecraftClient.getInstance();
     MatrixStack stack = new MatrixStack();
 
@@ -43,6 +42,5 @@ public class DemoBreakout extends GUIBreakout {
 
     client.textRenderer.draw(stack, "normal scale :)", 300, 400, 0xffffff);
     GlStateManager.color4f(1, 1, 1, 1);
-*/
   }
 }

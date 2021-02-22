@@ -26,7 +26,7 @@ import org.liquidengine.legui.image.*;
 import org.liquidengine.legui.image.FBOImage;
 import org.liquidengine.legui.image.Image;
 import org.liquidengine.legui.image.StbBackedLoadableImage;
-import org.liquidengine.legui.style.Border;
+import org.liquidengine.legui.style.border.Border;
 import org.liquidengine.legui.style.border.SimpleLineBorder;
 import org.liquidengine.legui.system.renderer.BorderRenderer;
 import org.liquidengine.legui.system.renderer.ComponentRenderer;

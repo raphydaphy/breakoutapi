@@ -51,97 +51,108 @@ public class FlexStyle {
         this.alignSelf = AlignSelf.AUTO;
     }
 
-    public void setFlex(int flexGrow, int flexShrink, float flexBasis) {
+    public FlexStyle setFlex(int flexGrow, int flexShrink, float flexBasis) {
         setFlexGrow(flexGrow);
         setFlexShrink(flexShrink);
         setFlexBasis(flexBasis);
+        return this;
     }
 
-    public void setFlexFlow(FlexDirection flexDirection, FlexWrap flexWrap) {
+    public FlexStyle setFlexFlow(FlexDirection flexDirection, FlexWrap flexWrap) {
         setFlexDirection(flexDirection);
         setFlexWrap(flexWrap);
+        return this;
     }
 
     public AlignSelf getAlignSelf() {
         return alignSelf;
     }
 
-    public void setAlignSelf(AlignSelf alignSelf) {
+    public FlexStyle setAlignSelf(AlignSelf alignSelf) {
         this.alignSelf = alignSelf;
+        return this;
     }
 
     public int getFlexGrow() {
         return flexGrow;
     }
 
-    public void setFlexGrow(int flexGrow) {
+    public FlexStyle setFlexGrow(int flexGrow) {
         this.flexGrow = flexGrow;
+        return this;
     }
 
     public int getFlexShrink() {
         return flexShrink;
     }
 
-    public void setFlexShrink(int flexShrink) {
+    public FlexStyle setFlexShrink(int flexShrink) {
         this.flexShrink = flexShrink;
+        return this;
     }
 
     public float getFlexBasis() {
         return flexBasis;
     }
 
-    public void setFlexBasis(float flexBasis) {
+    public FlexStyle setFlexBasis(float flexBasis) {
         this.flexBasis = flexBasis;
+        return this;
     }
 
     public FlexDirection getFlexDirection() {
         return flexDirection;
     }
 
-    public void setFlexDirection(FlexDirection flexDirection) {
+    public FlexStyle setFlexDirection(FlexDirection flexDirection) {
         if (flexDirection != null) {
             this.flexDirection = flexDirection;
         }
+        return this;
     }
 
     public JustifyContent getJustifyContent() {
         return justifyContent;
     }
 
-    public void setJustifyContent(JustifyContent justifyContent) {
+    public FlexStyle setJustifyContent(JustifyContent justifyContent) {
         if (justifyContent != null) {
             this.justifyContent = justifyContent;
         }
+        return this;
     }
 
     public AlignItems getAlignItems() {
         return alignItems;
     }
 
-    public void setAlignItems(AlignItems alignItems) {
+    public FlexStyle setAlignItems(AlignItems alignItems) {
         if (alignItems != null) {
             this.alignItems = alignItems;
         }
+        return this;
     }
 
     public FlexWrap getFlexWrap() {
         return flexWrap;
     }
 
-    public void setFlexWrap(FlexWrap flexWrap) {
+    public FlexStyle setFlexWrap(FlexWrap flexWrap) {
         if (flexWrap != null) {
             this.flexWrap = flexWrap;
         }
+        return this;
     }
 
     public AlignContent getAlignContent() {
         return alignContent;
     }
 
-    public void setAlignContent(AlignContent alignContent) {
+    public FlexStyle setAlignContent(AlignContent alignContent) {
         if (alignContent != null) {
             this.alignContent = alignContent;
         }
+        return this;
     }
 
     /**

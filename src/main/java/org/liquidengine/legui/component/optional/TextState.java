@@ -108,9 +108,9 @@ public class TextState implements Serializable {
      *
      * @param text new text.
      */
-    public void setText(String text) {
+    public TextState setText(String text) {
         if (validator != null && !validator.test(text)) {
-            return;
+            return this;
         }
 
         String oldValue = this.text;
@@ -127,6 +127,7 @@ public class TextState implements Serializable {
         if (this.textSetCallback != null) {
             textSetCallback.accept(oldValue, newValue);
         }
+        return this;
     }
 
     /**
@@ -153,8 +154,9 @@ public class TextState implements Serializable {
      *
      * @param mouseCaretPosition mouse caret position to set.
      */
-    public void setMouseCaretPosition(int mouseCaretPosition) {
+    public TextState setMouseCaretPosition(int mouseCaretPosition) {
         this.mouseCaretPosition = mouseCaretPosition;
+        return this;
     }
 
     /**
@@ -171,8 +173,9 @@ public class TextState implements Serializable {
      *
      * @param editable editable text or not.
      */
-    public void setEditable(boolean editable) {
+    public TextState setEditable(boolean editable) {
         this.editable = editable;
+        return this;
     }
 
     /**
@@ -189,9 +192,10 @@ public class TextState implements Serializable {
      *
      * @param caretPosition caret position to set.
      */
-    public void setCaretPosition(int caretPosition) {
+    public TextState setCaretPosition(int caretPosition) {
         int length = text.length();
         this.caretPosition = caretPosition < 0 ? 0 : caretPosition > length ? length : caretPosition;
+        return this;
     }
 
     /**
@@ -208,8 +212,9 @@ public class TextState implements Serializable {
      *
      * @param startSelectionIndex start selection index to set.
      */
-    public void setStartSelectionIndex(int startSelectionIndex) {
+    public TextState setStartSelectionIndex(int startSelectionIndex) {
         this.startSelectionIndex = startSelectionIndex;
+        return this;
     }
 
     /**
@@ -226,8 +231,9 @@ public class TextState implements Serializable {
      *
      * @param endSelectionIndex end selection index to set.
      */
-    public void setEndSelectionIndex(int endSelectionIndex) {
+    public TextState setEndSelectionIndex(int endSelectionIndex) {
         this.endSelectionIndex = endSelectionIndex;
+        return this;
     }
 
     /**
@@ -252,16 +258,18 @@ public class TextState implements Serializable {
         return textWidth;
     }
 
-    public void setTextWidth(float textWidth) {
+    public TextState setTextWidth(float textWidth) {
         this.textWidth = textWidth;
+        return this;
     }
 
     public float getTextHeight() {
         return textHeight;
     }
 
-    public void setTextHeight(float textHeight) {
+    public TextState setTextHeight(float textHeight) {
         this.textHeight = textHeight;
+        return this;
     }
 
     /**
@@ -278,8 +286,9 @@ public class TextState implements Serializable {
      *
      * @param caretX caret x position.
      */
-    public void setCaretX(Float caretX) {
+    public TextState setCaretX(Float caretX) {
         this.caretX = caretX;
+        return this;
     }
 
     /**
@@ -296,8 +305,9 @@ public class TextState implements Serializable {
      *
      * @param caretY caret x position.
      */
-    public void setCaretY(Float caretY) {
+    public TextState setCaretY(Float caretY) {
         this.caretY = caretY;
+        return this;
     }
 
     @Override
@@ -338,8 +348,9 @@ public class TextState implements Serializable {
         return validator;
     }
 
-    public void setValidator(Predicate<String> validator) {
+    public TextState setValidator(Predicate<String> validator) {
         this.validator = validator;
+        return this;
     }
 
     public static final Predicate<String> INTEGER_VALIDATOR = s -> s.matches("-?\\d+");

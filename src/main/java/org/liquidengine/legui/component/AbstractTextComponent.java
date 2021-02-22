@@ -45,7 +45,8 @@ public abstract class AbstractTextComponent extends Component implements TextCom
     }
 
     @Override
-    public void setTextState(TextState textState) {
+    public AbstractTextComponent setTextState(TextState textState) {
         this.textState = Objects.requireNonNull(textState);
+        return this;
     }
 }

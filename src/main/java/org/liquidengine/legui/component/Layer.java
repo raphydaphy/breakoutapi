@@ -81,8 +81,9 @@ public class Layer extends Component {
      *
      * @param eventPassable true/false to enable/disable passing events to bottom layer.
      */
-    public void setEventPassable(boolean eventPassable) {
+    public Layer setEventPassable(boolean eventPassable) {
         this.eventPassable = eventPassable;
+        return this;
     }
 
     /**
@@ -99,8 +100,9 @@ public class Layer extends Component {
      *
      * @param eventReceivable true/false to enable/disable receiving events by layer.
      */
-    public void setEventReceivable(boolean eventReceivable) {
+    public Layer setEventReceivable(boolean eventReceivable) {
         this.eventReceivable = eventReceivable;
+        return this;
     }
 
 }

@@ -1,4 +1,4 @@
-package org.liquidengine.legui.style;
+package org.liquidengine.legui.style.border;
 
 /**
  * Abstract class defines hierarchy of borders.
@@ -24,7 +24,8 @@ public abstract class Border {
      *
      * @param enabled new 'enabled' state.
      */
-    public void setEnabled(boolean enabled) {
+    public Border setEnabled(boolean enabled) {
         this.enabled = enabled;
+        return this;
     }
 }

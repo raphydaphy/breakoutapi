@@ -1,10 +1,12 @@
 package com.raphydaphy.breakoutapi.mixin.client;
 
+import com.raphydaphy.breakoutapi.BreakoutAPI;
 import com.raphydaphy.breakoutapi.BreakoutAPIClient;
 import com.raphydaphy.breakoutapi.breakout.AbstractBreakout;
 import com.raphydaphy.breakoutapi.breakout.Breakout;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.Window;
+import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,27 +15,37 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.Iterator;
+import java.util.Map;
+
 @Mixin(MinecraftClient.class)
 public class MinecraftClientMixin {
 	@Shadow @Final
 	private Window window;
 
-	@Inject(at = @At("HEAD"), method = "render(Z)V")
-	private void beforeRender(CallbackInfo info) {
-		Breakout.checkError("before switch context");
-		GLFW.glfwMakeContextCurrent(this.window.getHandle());
-		Breakout.checkError("after switch context");
-	}
-
 	@Inject(at = @At(value = "INVOKE_STRING", args = "ldc=yield", target = "Lnet/minecraft/util/profiler/Profiler;swap(Ljava/lang/String;)V"), method = "render")
 	private void afterRender(CallbackInfo info) {
-		AbstractBreakout breakout = BreakoutAPIClient.CUR_BREAKOUT;
-		if (breakout == null) return;
+		MinecraftClient.getInstance().getProfiler().swap("render breakouts");
 
-		MinecraftClient.getInstance().getProfiler().swap("breakout");
+		Breakout.checkError("before rendering breakouts");
 
-		Breakout.checkError("before breakout");
-		breakout.setupRender();
-		Breakout.checkError("after breakout");
+		Iterator<Map.Entry<Identifier, AbstractBreakout>> iter = BreakoutAPIClient.getBreakouts().entrySet().iterator();
+		while (iter.hasNext()) {
+			Map.Entry<Identifier, AbstractBreakout> entry = iter.next();
+			Identifier identifier = entry.getKey();
+			AbstractBreakout breakout = entry.getValue();
+
+			if (breakout.getWindow().shouldClose()) {
+				BreakoutAPI.LOGGER.info("Closing breakout '" + identifier + "'");
+
+				breakout.destroy();
+				iter.remove();
+			} else {
+				breakout.setupRender();
+			}
+		}
+
+		Breakout.checkError("after rendering breakouts");
+		GLFW.glfwMakeContextCurrent(this.window.getHandle());
 	}
 }

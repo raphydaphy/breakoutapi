@@ -56,14 +56,14 @@ public class Tooltip extends AbstractTextComponent {
      *
      * @param component component to set.
      */
-    public void setComponent(Component component) {
+    public Tooltip setComponent(Component component) {
         // check self
         if (component == this) {
-            return;
+            return this;
         }
         // check same component
         if (this.component == component) {
-            return;
+            return this;
         }
         // remove tooltip from current component
         if (this.component != null) {
@@ -77,6 +77,7 @@ public class Tooltip extends AbstractTextComponent {
         if (component != null) {
             component.setTooltip(this);
         }
+        return this;
     }
 
     /**

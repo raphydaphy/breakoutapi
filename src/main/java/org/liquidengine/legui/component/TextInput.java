@@ -132,8 +132,9 @@ public class TextInput extends AbstractTextComponent {
      *
      * @param mouseCaretPosition mouse caret position to set.
      */
-    public void setMouseCaretPosition(int mouseCaretPosition) {
+    public TextInput setMouseCaretPosition(int mouseCaretPosition) {
         textState.setMouseCaretPosition(mouseCaretPosition);
+        return this;
     }
 
     /**
@@ -150,8 +151,9 @@ public class TextInput extends AbstractTextComponent {
      *
      * @param editable editable text or not.
      */
-    public void setEditable(boolean editable) {
+    public TextInput setEditable(boolean editable) {
         textState.setEditable(editable);
+        return this;
     }
 
     /**
@@ -168,8 +170,9 @@ public class TextInput extends AbstractTextComponent {
      *
      * @param caretPosition caret position to set.
      */
-    public void setCaretPosition(int caretPosition) {
+    public TextInput setCaretPosition(int caretPosition) {
         textState.setCaretPosition(caretPosition);
+        return this;
     }
 
     /**
@@ -186,8 +189,9 @@ public class TextInput extends AbstractTextComponent {
      *
      * @param startSelectionIndex start selection index to set.
      */
-    public void setStartSelectionIndex(int startSelectionIndex) {
+    public TextInput setStartSelectionIndex(int startSelectionIndex) {
         textState.setStartSelectionIndex(startSelectionIndex);
+        return this;
     }
 
     /**
@@ -204,8 +208,9 @@ public class TextInput extends AbstractTextComponent {
      *
      * @param endSelectionIndex end selection index to set.
      */
-    public void setEndSelectionIndex(int endSelectionIndex) {
+    public TextInput setEndSelectionIndex(int endSelectionIndex) {
         textState.setEndSelectionIndex(endSelectionIndex);
+        return this;
     }
 
     /**
