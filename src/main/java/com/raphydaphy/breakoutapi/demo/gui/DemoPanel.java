@@ -96,8 +96,8 @@ public class DemoPanel extends Panel {
       imageWrapper.setAscendible(true);
       imageWrapper.setTitleEnabled(true);
 
-      ImageView imageView = new ImageView(ImageLoader.loadImage(new Identifier(Legui.ID, "demo/fox.png")));
-      imageView.setPosition(15, 5).setSize(70, 70).getStyle().setBorderRadius(10f);
+      ImageView imageView = new ImageView(ImageLoader.loadImage(new Identifier("textures/gui/container/furnace.png")));
+      imageView.setPosition(15, 5).setSize(256, 256).getStyle().setBorderRadius(10f);
 
       imageWrapper.getTitle().getTextState().setText("Ascendible widget");
       imageWrapper.getContainer().add(imageView);

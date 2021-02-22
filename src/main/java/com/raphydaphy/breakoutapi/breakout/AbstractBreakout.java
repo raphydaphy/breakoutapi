@@ -20,7 +20,6 @@ public abstract class AbstractBreakout {
   public AbstractBreakout(Identifier identifier, BreakoutWindow window) {
     this.identifier = identifier;
     this.window = window;
-    this.window.setIcon(new Identifier(BreakoutAPI.MODID, "textures/icons/window_icon_16x16.png"), new Identifier(BreakoutAPI.MODID, "textures/icons/window_icon_32x32.png"));
 
     this.framebuffer = new Framebuffer(this.window.getFramebufferWidth(), this.window.getFramebufferHeight(), true, MinecraftClient.IS_SYSTEM_MAC);
     this.framebuffer.setClearColor(0.0F, 0.0F, 0.0F, 0.0F);

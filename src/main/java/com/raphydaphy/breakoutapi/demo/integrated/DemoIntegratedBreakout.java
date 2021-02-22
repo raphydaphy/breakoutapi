@@ -1,6 +1,7 @@
 package com.raphydaphy.breakoutapi.demo.integrated;
 
 import com.mojang.blaze3d.platform.GlStateManager;
+import com.raphydaphy.breakoutapi.BreakoutAPI;
 import com.raphydaphy.breakoutapi.breakout.AbstractBreakout;
 import com.raphydaphy.breakoutapi.breakout.Breakout;
 import com.raphydaphy.breakoutapi.breakout.window.BreakoutWindow;
@@ -18,6 +19,7 @@ public class DemoIntegratedBreakout extends Breakout {
 
   public DemoIntegratedBreakout(Identifier identifier) {
     super(identifier, new BreakoutWindow("Demo Integrated Breakout", 480, 720));
+    this.window.setIcon(new Identifier(BreakoutAPI.MODID, "textures/icons/window_icon_16x16.png"), new Identifier(BreakoutAPI.MODID, "textures/icons/window_icon_32x32.png"));
   }
 
   @Override
@@ -33,14 +35,15 @@ public class DemoIntegratedBreakout extends Breakout {
     client.getTextureManager().bindTexture(LEAVES_TEXTURE);
     DrawableHelper.drawTexture(stack, 50, 250, 0, 0, 0, 180, 300, 32, 32);
 
-    GlStateManager.color4f(1, 1, 1, 1);
+    GlStateManager.color4f(1, 0, 1, 1);
     GlStateManager.scaled(3, 3, 1);
 
-    DrawableHelper.drawCenteredText(stack, client.textRenderer, new LiteralText("yike").setStyle(Style.EMPTY.withBold(true).withItalic(true).withColor(Formatting.BLUE)), 145 / 3, 11 / 3, 0);
+    DrawableHelper.drawCenteredText(stack, client.textRenderer, new LiteralText("yike").setStyle(Style.EMPTY.withBold(true).withItalic(true).withColor(Formatting.RED)), 145 / 3, 11 / 3, 0);
+    GlStateManager.color4f(1, 1, 1, 1);
+
     client.textRenderer.draw(stack, "Hello world!", 100 / 3f, 200 / 3f, 0);
     GlStateManager.scaled(1/3f, 1/3f, 1);
 
     client.textRenderer.draw(stack, "normal scale :)", 300, 400, 0xffffff);
-    GlStateManager.color4f(1, 1, 1, 1);
   }
 }
