@@ -50,7 +50,7 @@ shadowJar {
 		include(dependency("org.lwjgl:lwjgl-yoga:${project.lwjgl_version}"))
 	}
 	relocate "org.joml", "com.raphydaphy.shaded.org.joml"
-	relocate "org.apache.commons", "com.raphydaphy.shaded.org.apache.commons"
+	relocate "org.apache.commons.collections4", "com.raphydaphy.shaded.org.apache.commons.collections4"
 }
 
 remapJar {
