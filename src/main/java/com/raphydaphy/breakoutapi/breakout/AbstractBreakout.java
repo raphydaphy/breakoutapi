@@ -16,10 +16,12 @@ public abstract class AbstractBreakout {
   private Identifier identifier;
   protected BreakoutWindow window;
   protected Framebuffer framebuffer;
+  protected MinecraftClient client;
 
   public AbstractBreakout(Identifier identifier, BreakoutWindow window) {
     this.identifier = identifier;
     this.window = window;
+    this.client = MinecraftClient.getInstance();
 
     this.framebuffer = new Framebuffer(this.window.getFramebufferWidth(), this.window.getFramebufferHeight(), true, MinecraftClient.IS_SYSTEM_MAC);
     this.framebuffer.setClearColor(0.0F, 0.0F, 0.0F, 0.0F);
@@ -45,7 +47,6 @@ public abstract class AbstractBreakout {
 
     RenderSystem.viewport(0, 0, this.window.getFramebufferWidth(), this.window.getFramebufferHeight());
 
-    this.window.update();
     this.render();
 
     this.framebuffer.endWrite();
@@ -83,5 +84,9 @@ public abstract class AbstractBreakout {
 
   public BreakoutWindow getWindow() {
      return this.window;
+  }
+
+  public Identifier getIdentifier() {
+    return this.identifier;
   }
 }

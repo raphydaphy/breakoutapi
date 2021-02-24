@@ -23,7 +23,12 @@ public class MinecraftClientMixin {
 	@Shadow @Final
 	private Window window;
 
-	@Inject(at = @At(value = "INVOKE_STRING", args = "ldc=yield", target = "Lnet/minecraft/util/profiler/Profiler;swap(Ljava/lang/String;)V"), method = "render")
+	@Inject(method = "onResolutionChanged", at = @At("HEAD"))
+	public void onResolutionChanged(CallbackInfo info) {
+		GLFW.glfwMakeContextCurrent(this.window.getHandle());
+	}
+
+	@Inject(method = "render", at = @At(value = "INVOKE_STRING", args = "ldc=yield", target = "Lnet/minecraft/util/profiler/Profiler;swap(Ljava/lang/String;)V"))
 	private void afterRender(CallbackInfo info) {
 		MinecraftClient.getInstance().getProfiler().swap("render breakouts");
 

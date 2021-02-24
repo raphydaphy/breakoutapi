@@ -4,7 +4,10 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.raphydaphy.breakoutapi.breakout.window.BreakoutWindow;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.Identifier;
+import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL30;
+
+import static org.lwjgl.glfw.GLFW.glfwGetWindowSize;
 
 public abstract class Breakout extends AbstractBreakout {
 

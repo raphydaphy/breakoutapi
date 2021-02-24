@@ -5,6 +5,8 @@ import com.raphydaphy.breakoutapi.BreakoutAPI;
 import com.raphydaphy.breakoutapi.breakout.window.callback.BreakoutWindowCallbackKeeper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.texture.TextureUtil;
+import net.minecraft.client.util.Monitor;
+import net.minecraft.client.util.Window;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
@@ -23,6 +25,9 @@ import java.nio.IntBuffer;
 
 public class BreakoutWindow {
   private final long handle;
+  protected MinecraftClient client;
+
+  private int x, y;
   private int width = 300;
   private int height = 720;
   private int framebufferWidth;
@@ -30,11 +35,28 @@ public class BreakoutWindow {
 
   public final BreakoutWindowCallbackKeeper keeper;
 
+  /***
+   * Creates a BreakoutWindow on the same monitor as the main game
+   ***/
   public BreakoutWindow(String title, int width, int height) {
+    this(title, width, height, null);
+  }
+
+  /**
+   * Creates a BreakoutWindow
+   *
+   * @param title The title of the window
+   * @param width The width of the window
+   * @param height The height of the window
+   * @param monitor The monitor which the window should display on.
+   *                If set to null, the primary monitor will be used
+   */
+  public BreakoutWindow(String title, int width, int height, @Nullable Monitor monitor) {
+    this.client = MinecraftClient.getInstance();
     this.width = width;
     this.height = height;
 
-    this.handle = GLFW.glfwCreateWindow(this.width, this.height, title, 0L, MinecraftClient.getInstance().getWindow().getHandle());
+    this.handle = GLFW.glfwCreateWindow(this.width, this.height, title, monitor == null ? 0L : monitor.getHandle(),this.client.getWindow().getHandle());
 
     GLFW.glfwMakeContextCurrent(this.handle);
     this.updateFramebufferSize();
@@ -44,18 +66,49 @@ public class BreakoutWindow {
 
     this.keeper.getChainFramebufferSizeCallback().add(this::onFramebufferSizeChanged);
     this.keeper.getChainWindowSizeCallback().add(this::onWindowSizeChanged);
+    this.keeper.getChainWindowPosCallback().add(this::onWindowPosChanged);
   }
 
-  public void update() {}
+  public void setPos(int x, int y) {
+    GLFW.glfwSetWindowPos(this.handle, x, y);
+    this.x = x;
+    this.y = y;
+  }
 
-  protected void onWindowSizeChanged(long window, int width, int height) {
+  /***
+   * Sets the window position relative to the main Minecraft window
+   *
+   * @param offsetX The window offset on the X axis
+   * @param offsetY The window offset on the Y axis
+   ***/
+  public void setRelativePos(int offsetX, int offsetY) {
+    Window main = this.client.getWindow();
+
+    int x = main.getX() + offsetX;
+    int y = main.getY() + offsetY;
+
+    this.setPos(x, y);
+  }
+
+  public void setSize(int width, int height) {
+    GLFW.glfwSetWindowSize(this.handle, width, height);
+  }
+
+  private void onWindowPosChanged(long window, int x, int y) {
+    if (window == this.handle){
+      this.x = x;
+      this.y = y;
+    }
+  }
+
+  private void onWindowSizeChanged(long window, int width, int height) {
     if (window == this.handle) {
       this.width = width;
       this.height = height;
     }
   }
 
-  protected void onFramebufferSizeChanged(long window, int width, int height) {
+  private void onFramebufferSizeChanged(long window, int width, int height) {
     if (window == this.handle) {
       int oldWidth = this.getFramebufferWidth();
       int oldHeight = this.getFramebufferHeight();
@@ -84,11 +137,9 @@ public class BreakoutWindow {
   public void setIcon(Identifier icon16, Identifier icon32) {
     RenderSystem.assertThread(RenderSystem::isInInitPhase);
 
-    MinecraftClient client = MinecraftClient.getInstance();
-
     try {
-      InputStream icon16Stream = client.getResourcePackDownloader().getPack().open(ResourceType.CLIENT_RESOURCES, icon16);
-      InputStream icon32Stream = client.getResourcePackDownloader().getPack().open(ResourceType.CLIENT_RESOURCES, icon32);
+      InputStream icon16Stream = this.client.getResourcePackDownloader().getPack().open(ResourceType.CLIENT_RESOURCES, icon16);
+      InputStream icon32Stream = this.client.getResourcePackDownloader().getPack().open(ResourceType.CLIENT_RESOURCES, icon32);
 
       MemoryStack memoryStack = MemoryStack.stackPush();
       Throwable var4 = null;
@@ -173,6 +224,19 @@ public class BreakoutWindow {
 
   public long getHandle() {
     return this.handle;
+  }
+
+  @Nullable
+  public Monitor getMonitor() {
+    return BreakoutMonitorTracker.getMonitor(this);
+  }
+
+  public int getX() {
+    return this.x;
+  }
+
+  public int getY() {
+    return this.y;
   }
 
   public int getWidth() {

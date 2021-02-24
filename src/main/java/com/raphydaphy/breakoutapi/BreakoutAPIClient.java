@@ -17,6 +17,10 @@ public class BreakoutAPIClient implements ClientModInitializer {
     ClientModPackets.register();
   }
 
+  public static void openBreakout(AbstractBreakout breakout) {
+    openBreakout(breakout.getIdentifier(), breakout);
+  }
+
   public static void openBreakout(Identifier identifier, AbstractBreakout breakout) {
     if (BREAKOUTS.containsKey(identifier)) {
       BreakoutAPI.LOGGER.warn("Tried to open breakout '" + identifier + "' when it was already open!");

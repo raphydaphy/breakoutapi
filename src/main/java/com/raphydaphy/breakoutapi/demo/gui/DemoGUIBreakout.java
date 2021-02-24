@@ -16,7 +16,8 @@ public class DemoGUIBreakout extends GUIBreakout {
   private DemoPanel gui;
 
   public DemoGUIBreakout(Identifier identifier) {
-    super(identifier, new BreakoutWindow("GUI Window", 800, 600));
+    super(identifier, new BreakoutWindow("Demo GUI Breakout", 800, 600));
+    this.window.setRelativePos(0, -660);
 
     Themes.setDefaultTheme(new FlatColoredTheme(
       fromInt(245, 245, 245, 1), // backgroundColor

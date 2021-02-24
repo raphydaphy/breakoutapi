@@ -20,30 +20,30 @@ public class DemoIntegratedBreakout extends Breakout {
   public DemoIntegratedBreakout(Identifier identifier) {
     super(identifier, new BreakoutWindow("Demo Integrated Breakout", 480, 720));
     this.window.setIcon(new Identifier(BreakoutAPI.MODID, "textures/icons/window_icon_16x16.png"), new Identifier(BreakoutAPI.MODID, "textures/icons/window_icon_32x32.png"));
+    this.window.setRelativePos(this.client.getWindow().getWidth() + 60, 0);
   }
 
   @Override
   public void render() {
     super.render();
 
-    MinecraftClient client = MinecraftClient.getInstance();
     MatrixStack stack = new MatrixStack();
 
-    client.getTextureManager().bindTexture(FURNACE_GUI);
+    this.client.getTextureManager().bindTexture(FURNACE_GUI);
     DrawableHelper.drawTexture(stack, 10, 10, 0, 0, 0, 256, 256, 256, 256);
 
-    client.getTextureManager().bindTexture(LEAVES_TEXTURE);
-    DrawableHelper.drawTexture(stack, 50, 250, 0, 0, 0, 180, 300, 32, 32);
+    this.client.getTextureManager().bindTexture(LEAVES_TEXTURE);
+    DrawableHelper.drawTexture(stack, 300, 50, 0, 0, 0, 180, 300, 32, 32);
 
     GlStateManager.color4f(1, 0, 1, 1);
     GlStateManager.scaled(3, 3, 1);
 
-    DrawableHelper.drawCenteredText(stack, client.textRenderer, new LiteralText("yike").setStyle(Style.EMPTY.withBold(true).withItalic(true).withColor(Formatting.RED)), 145 / 3, 11 / 3, 0);
+    DrawableHelper.drawCenteredText(stack, this.client.textRenderer, new LiteralText("hello world").setStyle(Style.EMPTY.withBold(true).withItalic(true).withColor(Formatting.RED)), 400 / 3, 11 / 3, 0);
     GlStateManager.color4f(1, 1, 1, 1);
 
-    client.textRenderer.draw(stack, "Hello world!", 100 / 3f, 200 / 3f, 0);
+    //client.textRenderer.draw(stack, "Hello world!", 100 / 3f, 50 / 3f, 0);
     GlStateManager.scaled(1/3f, 1/3f, 1);
 
-    client.textRenderer.draw(stack, "normal scale :)", 300, 400, 0xffffff);
+    this.client.textRenderer.draw(stack, "normal scale :)", 300, 400, 0xffffff);
   }
 }
