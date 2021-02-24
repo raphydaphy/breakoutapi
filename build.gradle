@@ -45,9 +45,6 @@ shadowJar {
 		include(dependency("org.liquidengine:cbchain:${project.cbchain_version}"))
 		include(dependency("org.joml:joml:${project.joml_version}"))
 		include(dependency("org.apache.commons:commons-collections4:${project.commons_collections_version}"))
-
-		include(dependency("org.lwjgl:lwjgl-nanovg:${project.lwjgl_version}"))
-		include(dependency("org.lwjgl:lwjgl-yoga:${project.lwjgl_version}"))
 	}
 	relocate "org.joml", "com.raphydaphy.shaded.org.joml"
 	relocate "org.apache.commons.collections4", "com.raphydaphy.shaded.org.apache.commons.collections4"
