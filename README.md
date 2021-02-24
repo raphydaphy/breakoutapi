@@ -2,41 +2,7 @@
 BreakoutAPI is a Minecraft mod which allows developers to create new windows that run alongside Minecraft. All the windows run on the same OpenGL context, so all the game assets and data is shared between them. With this library, you can create external GUIs, maps, inventory reports and much more - you could even render a portion of your Minecraft world from a different perspective, or split in-game GUIs between physical screens. 
 
 ## Using BreakoutAPI in your mod
-To get started using BreaakoutAPI, add the following to your **build.gradle**:
-```groovy
-def joml_version=1.9.25 
-def cbchain_version=1.0.0 
-def commons_collections_version=4.1 
-def lwjgl_version=3.2.2 
-def breakoutapi_version=1.0.0 
-
-repositories { 
-  mavenCentral() 
-  maven { url "https://oss.sonatype.org/content/repositories/releases/" } 
-  maven { url "https://raw.github.com/SpinyOwl/repo/releases" } 
-  maven { url "https://minecraft.curseforge.com/api/maven"}
-}
-
-dependencies { 
-  compile "org.joml:joml:$joml_version" 
-  compile "org.liquidengine:cbchain:$cbchain_version" 
-  compile "org.apache.commons:commons-collections4:$commons_collections_version"
-
-  implementation "org.lwjgl:lwjgl-nanovg:$lwjgl_version"
-  runtimeOnly "org.lwjgl:lwjgl-nanovg:$lwjgl_version:natives-windows"
-  runtimeOnly "org.lwjgl:lwjgl-nanovg:$lwjgl_version:natives-linux"
-  runtimeOnly "org.lwjgl:lwjgl-nanovg:$lwjgl_version:natives-macos" 
-
-  implementation "org.lwjgl:lwjgl-yoga:$lwjgl_version" 
-  runtimeOnly "org.lwjgl:lwjgl-yoga:$lwjgl_version:natives-windows" 
-  runtimeOnly "org.lwjgl:lwjgl-yoga:$lwjgl_version:natives-linux" 
-  runtimeOnly "org.lwjgl:lwjgl-yoga:$lwjgl_version:natives-macos" 
-
-  modCompile "breakoutapi:breakoutapi:$breakoutapi_version"
-}
-```
-
-Once you have added the necessary dependencies and reloaded gradle, you can create your own Breakout windows by extending the **AbstractBreakout** class:
+To get started using BreaakoutAPI, you will need to create aa class which extends **AbstractBreakout**:
 ```java
 public class ExampleBreakout extends Breakout {
 

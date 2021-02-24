@@ -1,6 +1,7 @@
 plugins {
-	id 'fabric-loom' version '0.5-SNAPSHOT'
-	id 'maven-publish'
+	id "fabric-loom" version "0.5-SNAPSHOT"
+	id "com.github.johnrengelman.shadow" version "6.1.0"
+	id "maven-publish"
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -24,9 +25,8 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	// compile "org.liquidengine:legui:${project.legui_version}"
-	compile "org.joml:joml:${project.joml_version}"
 	compile "org.liquidengine:cbchain:${project.cbchain_version}"
+	compile "org.joml:joml:${project.joml_version}"
 	compile "org.apache.commons:commons-collections4:${project.commons_collections_version}"
 
 	implementation "org.lwjgl:lwjgl-nanovg:${project.lwjgl_version}"
@@ -39,6 +39,26 @@ dependencies {
 	runtimeOnly "org.lwjgl:lwjgl-yoga:${project.lwjgl_version}:natives-linux"
 	runtimeOnly "org.lwjgl:lwjgl-yoga:${project.lwjgl_version}:natives-macos"
 }
+
+shadowJar {
+	dependencies {
+		include(dependency("org.liquidengine:cbchain:${project.cbchain_version}"))
+		include(dependency("org.joml:joml:${project.joml_version}"))
+		include(dependency("org.apache.commons:commons-collections4:${project.commons_collections_version}"))
+
+		include(dependency("org.lwjgl:lwjgl-nanovg:${project.lwjgl_version}"))
+		include(dependency("org.lwjgl:lwjgl-yoga:${project.lwjgl_version}"))
+	}
+	relocate "org.joml", "com.raphydaphy.shaded.org.joml"
+	relocate "org.apache.commons", "com.raphydaphy.shaded.org.apache.commons"
+}
+
+remapJar {
+	dependsOn(shadowJar)
+	input.set(shadowJar.archivePath)
+}
+
+tasks.build.dependsOn shadowJar
 
 processResources {
 	inputs.property "version", project.version
