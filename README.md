@@ -2,7 +2,32 @@
 BreakoutAPI is a Minecraft mod which allows developers to create new windows that run alongside Minecraft. All the windows run on the same OpenGL context, so all the game assets and data is shared between them. With this library, you can create external GUIs, maps, inventory reports and much more - you could even render a portion of your Minecraft world from a different perspective, or split in-game GUIs between physical screens. 
 
 ## Using BreakoutAPI in your mod
-To get started using BreaakoutAPI, you will need to create aa class which extends **AbstractBreakout**:
+To get started using BreaakoutAPI, add the following to your **build.gradle** file:
+```groovy
+def lwjgl_version=3.2.2
+def breakoutapi_version=7a14620
+
+repositories {
+	mavenCentral()
+	maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+	modCompile "com.github.raphydaphy:breakoutapi:$breakoutapi_version"
+
+	implementation "org.lwjgl:lwjgl-nanovg:$lwjgl_version"
+	runtimeOnly "org.lwjgl:lwjgl-nanovg:$lwjgl_version:natives-windows"
+	runtimeOnly "org.lwjgl:lwjgl-nanovg:$lwjgl_version:natives-linux"
+	runtimeOnly "org.lwjgl:lwjgl-nanovg:$lwjgl_version:natives-macos"
+
+	implementation "org.lwjgl:lwjgl-yoga:$lwjgl_version"
+	runtimeOnly "org.lwjgl:lwjgl-yoga:$lwjgl_version:natives-windows"
+	runtimeOnly "org.lwjgl:lwjgl-yoga:$lwjgl_version:natives-linux"
+	runtimeOnly "org.lwjgl:lwjgl-yoga:$lwjgl_version:natives-macos"
+}
+```
+
+Once you have added the required dependencies to your project, you will need to create aa class which extends **AbstractBreakout**:
 ```java
 public class ExampleBreakout extends Breakout {
 
