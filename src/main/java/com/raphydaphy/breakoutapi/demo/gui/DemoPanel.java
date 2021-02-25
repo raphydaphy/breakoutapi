@@ -7,6 +7,8 @@ import org.liquidengine.legui.component.optional.TextState;
 import org.liquidengine.legui.component.optional.align.HorizontalAlign;
 import org.liquidengine.legui.component.optional.align.VerticalAlign;
 import org.liquidengine.legui.image.loader.ImageLoader;
+import org.liquidengine.legui.style.Style;
+import org.liquidengine.legui.style.flex.FlexStyle;
 import org.liquidengine.legui.style.font.FontRegistry;
 
 public class DemoPanel extends Panel {
@@ -104,6 +106,36 @@ public class DemoPanel extends Panel {
       imageWrapper.setCloseable(false);
 
       this.add(imageWrapper);
+    }
+
+    Widget flexDemo = new Widget("Flex Layout Demo", 150, 400, 300, 150);
+    {
+      flexDemo.getContainer().getStyle().setDisplay(Style.DisplayType.FLEX);
+      flexDemo.getContainer().getFlexStyle().setFlexDirection(FlexStyle.FlexDirection.COLUMN);
+
+      Label one = new Label("Hello Flex World");
+      one.getStyle().enableFlex(200, 30).setFont(FontRegistry.ROBOTO_BOLD).setFontSize(25f);
+      flexDemo.getContainer().add(one);
+
+      Label two = new Label("this is a description");
+      two.getStyle().enableFlex(200, 20).setTextColor(1, 0.5f, 0, 1);
+      flexDemo.getContainer().add(two);
+
+      FlexPanel across = new FlexPanel(300, 50);
+      across.getStyle().getBackground().setColor(0, 1, 0, 0.2f);
+      across.getFlexStyle().setAlignItems(FlexStyle.AlignItems.CENTER).setJustifyContent(FlexStyle.JustifyContent.CENTER);
+
+      Label left = new Label("Name");
+      left.getStyle().enableFlex(60, 35).setFontSize(20f).setHorizontalAlign(HorizontalAlign.RIGHT).setPadding(2.5f);
+      across.add(left);
+
+      TextInput right = new TextInput();
+      right.getStyle().enableFlex(140, 35).setFontSize(20f).setPadding(2.5f);
+      across.add(right);
+
+      flexDemo.getContainer().add(across);
+
+      this.add(flexDemo);
     }
   }
 }

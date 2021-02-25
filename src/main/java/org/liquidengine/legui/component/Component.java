@@ -17,6 +17,7 @@ import org.liquidengine.legui.intersection.RectangleIntersector;
 import org.liquidengine.legui.listener.ListenerMap;
 import org.liquidengine.legui.listener.processor.EventProcessorProvider;
 import org.liquidengine.legui.style.Style;
+import org.liquidengine.legui.style.flex.FlexStyle;
 import org.liquidengine.legui.theme.Themes;
 
 import java.io.Serializable;
@@ -29,7 +30,7 @@ import java.util.stream.Stream;
 /**
  * Component is an object that have graphical representation in legui system.
  */
-public abstract class Component implements Serializable {
+public class Component implements Serializable {
     ////////////////////////////////
     //// COMPONENT BASE DATA
     ////////////////////////////////
@@ -179,6 +180,15 @@ public abstract class Component implements Serializable {
      */
     public Style getStyle() {
         return style;
+    }
+
+    /**
+     * Returns component flex style
+     *
+     * @return component flex style
+     */
+    public FlexStyle getFlexStyle() {
+        return this.getStyle().getFlexStyle();
     }
 
     /**

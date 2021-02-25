@@ -856,6 +856,16 @@ public class Style {
         return this;
     }
 
+    /**
+     * Used to quickly set the size of the element
+     *
+     * @param width The width of the element
+     * @param height The height of the element
+     */
+    public Style setSize(float width, float height) {
+        return this.setWidth(width).setHeight(height);
+    }
+
     public Shadow getShadow() {
         return shadow;
     }
@@ -960,6 +970,18 @@ public class Style {
      */
     public Style setHighlightColor(Vector4f highlightColor) {
         this.highlightColor = highlightColor;
+        return this;
+    }
+
+    /**
+     * Used to quickly configure the necessary properties to use flex layout
+     *
+     * @param width The width of the element
+     * @param height The height of the element
+     */
+    public Style enableFlex(float width, float height) {
+        this.setPosition(Style.PositionType.RELATIVE).setSize(width, height);
+        this.setMinimumSize(width, height).setMaximumSize(width, height);
         return this;
     }
 
