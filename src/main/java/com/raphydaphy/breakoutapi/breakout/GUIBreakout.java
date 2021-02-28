@@ -9,7 +9,6 @@ import org.liquidengine.legui.system.context.Context;
 import org.liquidengine.legui.system.handler.processor.SystemEventProcessor;
 import org.liquidengine.legui.system.handler.processor.SystemEventProcessorImpl;
 import org.liquidengine.legui.system.layout.LayoutManager;
-import org.liquidengine.legui.system.renderer.Renderer;
 import org.liquidengine.legui.system.renderer.nvg.NvgRenderer;
 
 public abstract class GUIBreakout extends AbstractBreakout {
@@ -17,13 +16,12 @@ public abstract class GUIBreakout extends AbstractBreakout {
   protected Context context;
 
   protected SystemEventProcessor systemEventProcessor;
-  private Renderer renderer;
+  private NvgRenderer renderer;
 
   public GUIBreakout(Identifier identifier, BreakoutWindow window) {
     super(identifier, window);
 
     this.frame = new Frame(this.window.getWidth(), this.window.getHeight());
-    this.createGuiElements(this.window.getWidth(), this.window.getHeight());
 
     this.context = new Context(this.getWindow().getHandle());
 
@@ -34,6 +32,7 @@ public abstract class GUIBreakout extends AbstractBreakout {
     renderer.initialize();
 
     this.window.keeper.getChainWindowSizeCallback().add(this::onWindowSizeChanged);
+    this.createGuiElements(this.window.getWidth(), this.window.getHeight());
   }
 
   protected abstract void createGuiElements(int width, int height);
@@ -50,6 +49,10 @@ public abstract class GUIBreakout extends AbstractBreakout {
     return this.context;
   }
 
+  public NvgRenderer getRenderer() {
+    return this.renderer;
+  }
+
   @Override
   public void render() {
     this.context.updateGlfwWindow();
@@ -63,6 +66,7 @@ public abstract class GUIBreakout extends AbstractBreakout {
 
     this.processSystemEvents();
     EventProcessorProvider.getInstance().processEvents();
+    this.frame.getContainer().updateRecursively();
   }
 
   private void onWindowSizeChanged(long window, int width, int height) {

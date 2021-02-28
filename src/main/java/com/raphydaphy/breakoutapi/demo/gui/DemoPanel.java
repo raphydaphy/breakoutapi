@@ -1,15 +1,18 @@
 package com.raphydaphy.breakoutapi.demo.gui;
 
 import net.minecraft.util.Identifier;
-import org.liquidengine.legui.Legui;
 import org.liquidengine.legui.component.*;
 import org.liquidengine.legui.component.optional.TextState;
 import org.liquidengine.legui.component.optional.align.HorizontalAlign;
 import org.liquidengine.legui.component.optional.align.VerticalAlign;
+import org.liquidengine.legui.event.MouseClickEvent;
 import org.liquidengine.legui.image.loader.ImageLoader;
 import org.liquidengine.legui.style.Style;
 import org.liquidengine.legui.style.flex.FlexStyle;
 import org.liquidengine.legui.style.font.FontRegistry;
+import org.liquidengine.legui.system.context.Context;
+import org.liquidengine.legui.system.renderer.nvg.NvgRenderer;
+import org.lwjgl.glfw.GLFW;
 
 public class DemoPanel extends Panel {
 
@@ -26,11 +29,11 @@ public class DemoPanel extends Panel {
     {
       desc.setTextState(new TextState(
         "This GUI is powered by the LEGUI library. It's being rendered with the\n" +
-        "same OpenGL Context as the Minecraft game window, so it has access\n" +
-        "to all the games resources and data.\n\n" +
-        "This window can also be used for any number of other purposes. It is\n" +
-        "fully integrated into the game, so a portion of the Minecraft world can\n" +
-        "be rendered here, or even a map, or a preview of the players inventory."
+          "same OpenGL Context as the Minecraft game window, so it has access\n" +
+          "to all the games resources and data.\n\n" +
+          "This window can also be used for any number of other purposes. It is\n" +
+          "fully integrated into the game, so a portion of the Minecraft world can\n" +
+          "be rendered here, or even a map, or a preview of the players inventory."
       ));
 
       desc.setHorizontalScrollBarVisible(false).setVerticalScrollBarVisible(false);
@@ -122,11 +125,11 @@ public class DemoPanel extends Panel {
       flexDemo.getContainer().add(two);
 
       FlexPanel across = new FlexPanel(300, 50);
-      across.getStyle().getBackground().setColor(0, 1, 0, 0.2f);
+      across.getStyle().setMargin(5, 0, 5, 0).getBackground().setColor(0, 1, 0, 0.2f);
       across.getFlexStyle().setAlignItems(FlexStyle.AlignItems.CENTER).setJustifyContent(FlexStyle.JustifyContent.CENTER);
 
       Label left = new Label("Name");
-      left.getStyle().enableFlex(60, 35).setFontSize(20f).setHorizontalAlign(HorizontalAlign.RIGHT).setPadding(2.5f);
+      left.getStyle().enableFlex(100, 20).setHorizontalAlign(HorizontalAlign.RIGHT).setFontSize(20f).setPadding(2.5f);
       across.add(left);
 
       TextInput right = new TextInput();
@@ -134,6 +137,26 @@ public class DemoPanel extends Panel {
       across.add(right);
 
       flexDemo.getContainer().add(across);
+
+      FlexPanel across2 = new FlexPanel(600, 50);
+      across2.getStyle().setMargin(5, 0, 5, 0).getBackground().setColor(1, 0, 0, 0.2f);
+      across2.getFlexStyle().setAlignItems(FlexStyle.AlignItems.CENTER);
+
+
+      Label flexLabel1 = new FlexLabel("Hello");
+      flexLabel1.getStyle().setFontSize(20f).setTextColor(0, 1, 1, 1).setMargin(0, 5);
+      flexLabel1.getStyle().getBackground().setColor(1, 1, 0, 0.5f);
+
+      Label flexLabel2 = new FlexLabel("This is some more text");
+      flexLabel2.getStyle().setFontSize(20f).setMargin(0, 5);
+      flexLabel2.getStyle().getBackground().setColor(0, 1, 0, 0.5f);
+
+      Label flexLabel3 = new FlexLabel("World");
+      flexLabel3.getStyle().setFontSize(20f).setTextColor(0, 0.5f, 1, 1).setMargin(0, 5);
+      flexLabel3.getStyle().getBackground().setColor(0, 1, 1, 0.5f);
+
+      across2.add(flexLabel1).add(flexLabel2).add(flexLabel3);
+      flexDemo.getContainer().add(across2);
 
       this.add(flexDemo);
     }

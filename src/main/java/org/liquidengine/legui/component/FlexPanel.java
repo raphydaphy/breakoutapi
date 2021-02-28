@@ -2,7 +2,6 @@ package org.liquidengine.legui.component;
 
 import org.joml.Vector2f;
 import org.liquidengine.legui.style.Style;
-import org.liquidengine.legui.style.color.ColorConstants;
 import org.liquidengine.legui.theme.Themes;
 
 public class FlexPanel extends Component {

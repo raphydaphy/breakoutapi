@@ -405,6 +405,22 @@ public class Style {
         return this;
     }
 
+    public Style setWidths(float width) {
+        return this.setWidth(width).setMinWidth(width).setMaxWidth(width);
+    }
+
+    public Style setWidths(Length width) {
+        return this.setWidth(width).setMinWidth(width).setMaxWidth(width);
+    }
+
+    public Style setHeights(float height) {
+        return this.setHeight(height).setMinHeight(height).setMaxHeight(height);
+    }
+
+    public Style setHeights(Length height) {
+        return this.setHeight(height).setMinHeight(height).setMaxHeight(height);
+    }
+
     public Style setPadding(float padding) {
         this.setPadding(pixel(padding));
         return this;
@@ -974,14 +990,34 @@ public class Style {
     }
 
     /**
+     * Sets the position type to relative (necessary to use flex layouts)
+     */
+    public Style enableFlex() {
+        return this.setPosition(PositionType.RELATIVE);
+    }
+
+    /**
      * Used to quickly configure the necessary properties to use flex layout
      *
      * @param width The width of the element
      * @param height The height of the element
      */
     public Style enableFlex(float width, float height) {
-        this.setPosition(Style.PositionType.RELATIVE).setSize(width, height);
-        this.setMinimumSize(width, height).setMaximumSize(width, height);
+        return this.enableFlex().setSize(width, height).setMinimumSize(width, height).setMaximumSize(width, height);
+    }
+
+    /**
+     * Used to quickly enable infinite flex growth in the specified direction
+     *
+     * @param direction The flex direction of the parent component
+     */
+    public Style enableFlexGrow(FlexStyle.FlexDirection direction) {
+        this.enableFlex().getFlexStyle().setFlexGrow(1);
+        if (direction == FlexStyle.FlexDirection.ROW || direction == FlexStyle.FlexDirection.ROW_REVERSE) {
+            this.setMaxWidth(Float.MAX_VALUE);
+        } else {
+            this.setMaxHeight(Float.MAX_VALUE);
+        }
         return this;
     }
 

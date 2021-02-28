@@ -1,5 +1,6 @@
 package org.liquidengine.legui.component;
 
+import com.raphydaphy.breakoutapi.BreakoutAPI;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -18,7 +19,10 @@ import org.liquidengine.legui.listener.ListenerMap;
 import org.liquidengine.legui.listener.processor.EventProcessorProvider;
 import org.liquidengine.legui.style.Style;
 import org.liquidengine.legui.style.flex.FlexStyle;
+import org.liquidengine.legui.system.context.Context;
+import org.liquidengine.legui.system.layout.Layout;
 import org.liquidengine.legui.theme.Themes;
+import org.liquidengine.legui.util.Utilites;
 
 import java.io.Serializable;
 import java.util.*;
@@ -791,6 +795,24 @@ public class Component implements Serializable {
     public List<Component> getChildComponents() {
         return new ArrayList<>(childComponents);
     }
+
+    /**
+     * Used to recursively update the component
+     */
+    public void updateRecursively() {
+        if (!this.isEmpty()) {
+            List<Component> childComponents = this.getChildComponents();
+            for (Component child : childComponents) {
+                child.updateRecursively();
+            }
+        }
+        this.update();
+    }
+
+    /**
+     * Used to update the component after rendering
+     */
+    public void update() {}
 
     @Override
     public boolean equals(Object o) {

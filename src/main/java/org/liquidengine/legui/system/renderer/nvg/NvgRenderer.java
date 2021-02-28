@@ -171,4 +171,8 @@ public class NvgRenderer extends AbstractRenderer {
         RendererProvider.getInstance().getComponentRenderers().forEach(ComponentRenderer::destroy);
         imageReferenceManager.destroy();
     }
+
+    public long getHandle() {
+        return this.nvgContext;
+    }
 }
