@@ -24,7 +24,6 @@ public class FlexLabel extends Label {
   }
 
   private void onWidthChanged(LabelWidthChangeEvent e) {
-    BreakoutAPI.LOGGER.info("Label '" + this.getTextState().getText() + "' received width update from " + this.getStyle().getWidth().get() + "px to " + e.getWidth() + "px");
     this.getStyle().setWidths(e.getWidth());
     if (this.autoHeight) this.getStyle().setHeights(this.getStyle().getFontSize());
   }
