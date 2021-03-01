@@ -799,20 +799,20 @@ public class Component implements Serializable {
     /**
      * Used to recursively update the component
      */
-    public void updateRecursively() {
+    public void updateRecursively(Context context, Frame frame) {
         if (!this.isEmpty()) {
             List<Component> childComponents = this.getChildComponents();
             for (Component child : childComponents) {
-                child.updateRecursively();
+                child.updateRecursively(context, frame);
             }
         }
-        this.update();
+        this.update(context, frame);
     }
 
     /**
      * Used to update the component after rendering
      */
-    public void update() {}
+    public void update(Context context, Frame frame) {}
 
     @Override
     public boolean equals(Object o) {

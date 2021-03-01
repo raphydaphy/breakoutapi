@@ -66,7 +66,7 @@ public abstract class GUIBreakout extends AbstractBreakout {
 
     this.processSystemEvents();
     EventProcessorProvider.getInstance().processEvents();
-    this.frame.getContainer().updateRecursively();
+    this.frame.getContainer().updateRecursively(this.context, this.frame);
   }
 
   private void onWindowSizeChanged(long window, int width, int height) {
