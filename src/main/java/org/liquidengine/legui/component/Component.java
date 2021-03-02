@@ -582,7 +582,11 @@ public class Component implements Serializable {
     }
 
     public Component setCursor(Context context, Cursor cursor) {
-        CursorServiceProvider.getInstance().setCursor(cursor, context);
+        return this.setCursor(context, cursor, false);
+    }
+
+    public Component setCursor(Context context, Cursor cursor, boolean force) {
+        if (force || this.cursor != cursor) CursorServiceProvider.getInstance().setCursor(cursor, context);
         this.cursor = cursor;
         return this;
     }

@@ -113,7 +113,7 @@ public class Button extends AbstractTextComponent {
     }
 
     protected void onCursorEnter(CursorEnterEvent e) {
-        this.setCursor(e.getContext(), e.isEntered() ? StandardCursor.HAND : null);
+        this.setCursor(e.getContext(), e.isEntered() ? StandardCursor.HAND : null, true);
     }
 
     @Override
