@@ -11,6 +11,7 @@ import net.minecraft.resource.ResourceType;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 import org.liquidengine.legui.system.context.CallbackKeeper;
+import org.lwjgl.PointerBuffer;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWImage;
 import org.lwjgl.stb.STBImage;
@@ -22,6 +23,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
+
+import static org.lwjgl.system.MemoryUtil.NULL;
 
 public class BreakoutWindow {
   private final long handle;
@@ -56,7 +59,26 @@ public class BreakoutWindow {
     this.width = width;
     this.height = height;
 
-    this.handle = GLFW.glfwCreateWindow(this.width, this.height, title, monitor == null ? 0L : monitor.getHandle(),this.client.getWindow().getHandle());
+    long sharedContext = this.client.getWindow().getHandle();
+    
+    // This is to release the current context, as per the documentation.
+    GLFW.glfwMakeContextCurrent(NULL);
+    this.handle = GLFW.glfwCreateWindow(this.width, this.height, title, monitor == null ? 0L : monitor.getHandle(), sharedContext);
+    
+    if (this.handle == NULL) {
+      // Just to be nice
+      GLFW.glfwMakeContextCurrent(sharedContext);
+      try (MemoryStack stack = MemoryStack.stackPush()) {
+        PointerBuffer errorPointer = stack.callocPointer(1);
+        GLFW.glfwGetError(errorPointer);
+        String errorMessage = errorPointer.get(0) != NULL ? MemoryUtil.memUTF8(errorPointer.get(0)) : null;
+        if (errorMessage != null) {
+          throw new RuntimeException("Failed to create GLFW window: " + errorMessage);
+        } else {
+          throw new RuntimeException("Failed to create GLFW window");
+        }
+      }
+    }
 
     GLFW.glfwMakeContextCurrent(this.handle);
     this.updateFramebufferSize();
