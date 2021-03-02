@@ -1,43 +1,34 @@
 package org.liquidengine.legui.cursor;
 
-public class Cursor {
-    public static final Cursor ARROW = new Cursor();
-    public static final Cursor H_RESIZE = new Cursor();
-    public static final Cursor V_RESIZE = new Cursor();
-    public static final Cursor CROSSHAIR = new Cursor();
-    public static final Cursor HAND = new Cursor();
-    public static final Cursor IBEAM = new Cursor();
+import net.minecraft.util.Identifier;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-    private final long imageReference;
-    private final int xHot;
-    private final int yHot;
+public abstract class Cursor {
 
-    private Cursor() {
-        xHot = 0;
-        yHot = 0;
-        imageReference = 0;
+    private final Identifier id;
+
+    public Cursor(Identifier id) {
+        this.id = id;
     }
 
-    /**
-     * @param imageReference the desired cursor image
-     * @param xHot           the desired x-coordinate, in pixels, of the cursor hotspot
-     * @param yHot           the desired y-coordinate, in pixels, of the cursor hotspot
-     */
-    public Cursor(long imageReference, int xHot, int yHot) {
-        this.imageReference = imageReference;
-        this.xHot = xHot;
-        this.yHot = yHot;
+    public abstract long createHandle();
+
+    public Identifier getId() {
+        return this.id;
     }
 
-    public long getImageReference() {
-        return imageReference;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Cursor that = (Cursor) o;
+        return new EqualsBuilder().appendSuper(super.equals(o)).append(this.id, that.id).isEquals();
     }
 
-    public int getxHot() {
-        return xHot;
-    }
-
-    public int getyHot() {
-        return yHot;
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37).appendSuper(super.hashCode()).append(this.id).toHashCode();
     }
 }

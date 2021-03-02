@@ -9,6 +9,7 @@ import org.liquidengine.legui.component.SplitPanel;
 import org.liquidengine.legui.component.optional.Orientation;
 import org.liquidengine.legui.cursor.Cursor;
 import org.liquidengine.legui.cursor.CursorServiceProvider;
+import org.liquidengine.legui.cursor.StandardCursor;
 import org.liquidengine.legui.event.CursorEnterEvent;
 import org.liquidengine.legui.event.Event;
 import org.liquidengine.legui.event.MouseClickEvent;
@@ -41,7 +42,7 @@ public class SplitPanelSeparatorListenerDelegate implements EventListener<Event>
             }
             if (e.getAction() == RELEASE) {
                 dragging = false;
-                CursorServiceProvider.getInstance().setCursor(Cursor.ARROW, e.getContext());
+                CursorServiceProvider.getInstance().setCursor(StandardCursor.ARROW, e.getContext());
             }
         }
 
@@ -49,11 +50,11 @@ public class SplitPanelSeparatorListenerDelegate implements EventListener<Event>
             CursorEnterEvent e = (CursorEnterEvent) event;
             Orientation orientation = splitPanel.getOrientation();
             if (e.isEntered() && orientation == HORIZONTAL) {
-                CursorServiceProvider.getInstance().setCursor(Cursor.H_RESIZE, e.getContext());
+                CursorServiceProvider.getInstance().setCursor(StandardCursor.H_RESIZE, e.getContext());
             } else if (e.isEntered() && orientation != HORIZONTAL) {
-                CursorServiceProvider.getInstance().setCursor(Cursor.V_RESIZE, e.getContext());
+                CursorServiceProvider.getInstance().setCursor(StandardCursor.V_RESIZE, e.getContext());
             } else if (!dragging) {
-                CursorServiceProvider.getInstance().setCursor(Cursor.ARROW, e.getContext());
+                CursorServiceProvider.getInstance().setCursor(StandardCursor.ARROW, e.getContext());
             }
         }
     }

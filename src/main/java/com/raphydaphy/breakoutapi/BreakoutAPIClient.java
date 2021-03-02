@@ -1,16 +1,15 @@
 package com.raphydaphy.breakoutapi;
 
 import com.raphydaphy.breakoutapi.breakout.AbstractBreakout;
-import com.raphydaphy.breakoutapi.breakout.Breakout;
 import com.raphydaphy.breakoutapi.network.ClientModPackets;
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.util.Identifier;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class BreakoutAPIClient implements ClientModInitializer {
-  private static Map<Identifier, AbstractBreakout> BREAKOUTS = new HashMap<>();
+  private static Map<Identifier, AbstractBreakout> BREAKOUTS = new ConcurrentHashMap<>();
 
   @Override
   public void onInitializeClient() {

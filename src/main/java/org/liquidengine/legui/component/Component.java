@@ -1,14 +1,14 @@
 package org.liquidengine.legui.component;
 
-import com.raphydaphy.breakoutapi.BreakoutAPI;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.joml.Vector2f;
-import org.liquidengine.legui.Legui;
 import org.liquidengine.legui.component.misc.listener.component.TabKeyEventListener;
 import org.liquidengine.legui.component.misc.listener.component.TooltipCursorEnterListener;
+import org.liquidengine.legui.cursor.Cursor;
+import org.liquidengine.legui.cursor.CursorServiceProvider;
 import org.liquidengine.legui.event.AddChildEvent;
 import org.liquidengine.legui.event.CursorEnterEvent;
 import org.liquidengine.legui.event.KeyEvent;
@@ -20,9 +20,7 @@ import org.liquidengine.legui.listener.processor.EventProcessorProvider;
 import org.liquidengine.legui.style.Style;
 import org.liquidengine.legui.style.flex.FlexStyle;
 import org.liquidengine.legui.system.context.Context;
-import org.liquidengine.legui.system.layout.Layout;
 import org.liquidengine.legui.theme.Themes;
-import org.liquidengine.legui.util.Utilites;
 
 import java.io.Serializable;
 import java.util.*;
@@ -96,6 +94,11 @@ public class Component implements Serializable {
      * Determines whether this component pressed or not (Mouse button is down and on this component).
      */
     private boolean pressed;
+
+    /**
+     * If set, this cursor will be activated when hovering over the component
+     */
+    private Cursor cursor = null;
 
     ////////////////////////////////
     //// CONTAINER BASE DATA
@@ -213,7 +216,17 @@ public class Component implements Serializable {
     private void initialize() {
         getListenerMap().addListener(CursorEnterEvent.class, new TooltipCursorEnterListener());
         getListenerMap().addListener(KeyEvent.class, new TabKeyEventListener());
+        getListenerMap().addListener(CursorEnterEvent.class, this::onCursorEnter);
         Themes.getDefaultTheme().getThemeManager().getComponentTheme(Component.class).applyAll(this);
+    }
+
+    private void onCursorEnter(CursorEnterEvent e) {
+        if (this.cursor == null) return;
+        if (e.isEntered()) {
+            CursorServiceProvider.getInstance().setCursor(this.cursor, e.getContext());
+        } else {
+            CursorServiceProvider.getInstance().resetCursor(e.getContext());
+        }
     }
 
     /**
@@ -571,6 +584,15 @@ public class Component implements Serializable {
      */
     public Component setFocusable(boolean focusable) {
         this.focusable = focusable;
+        return this;
+    }
+
+    public Cursor getCursor() {
+        return this.cursor;
+    }
+
+    public Component setCursor(Cursor cursor) {
+        this.cursor = cursor;
         return this;
     }
 

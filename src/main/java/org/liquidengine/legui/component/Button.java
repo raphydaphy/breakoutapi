@@ -8,6 +8,10 @@ import org.joml.Vector2f;
 import org.liquidengine.legui.component.event.button.ButtonContentChangeEvent;
 import org.liquidengine.legui.component.optional.TextState;
 import org.liquidengine.legui.component.optional.align.HorizontalAlign;
+import org.liquidengine.legui.cursor.Cursor;
+import org.liquidengine.legui.cursor.StandardCursor;
+import org.liquidengine.legui.event.CursorEnterEvent;
+import org.liquidengine.legui.event.MouseClickEvent;
 import org.liquidengine.legui.listener.processor.EventProcessorProvider;
 import org.liquidengine.legui.style.font.TextDirection;
 import org.liquidengine.legui.theme.Themes;
@@ -103,6 +107,7 @@ public class Button extends AbstractTextComponent {
                 EventProcessorProvider.getInstance().pushEvent(new ButtonContentChangeEvent(this, null, this.getFrame(), oldValue, newValue));
         this.textState = new TextState(text, callback);
         getStyle().setHorizontalAlign(HorizontalAlign.CENTER);
+        this.setCursor(StandardCursor.HAND);
         Themes.getDefaultTheme().getThemeManager().getComponentTheme(Button.class).applyAll(this);
     }
 
