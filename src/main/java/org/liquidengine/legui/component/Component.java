@@ -216,17 +216,7 @@ public class Component implements Serializable {
     private void initialize() {
         getListenerMap().addListener(CursorEnterEvent.class, new TooltipCursorEnterListener());
         getListenerMap().addListener(KeyEvent.class, new TabKeyEventListener());
-        getListenerMap().addListener(CursorEnterEvent.class, this::onCursorEnter);
         Themes.getDefaultTheme().getThemeManager().getComponentTheme(Component.class).applyAll(this);
-    }
-
-    private void onCursorEnter(CursorEnterEvent e) {
-        if (this.cursor == null) return;
-        if (e.isEntered()) {
-            CursorServiceProvider.getInstance().setCursor(this.cursor, e.getContext());
-        } else {
-            CursorServiceProvider.getInstance().resetCursor(e.getContext());
-        }
     }
 
     /**
@@ -591,7 +581,8 @@ public class Component implements Serializable {
         return this.cursor;
     }
 
-    public Component setCursor(Cursor cursor) {
+    public Component setCursor(Context context, Cursor cursor) {
+        CursorServiceProvider.getInstance().setCursor(cursor, context);
         this.cursor = cursor;
         return this;
     }

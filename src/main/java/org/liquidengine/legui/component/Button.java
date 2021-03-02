@@ -9,6 +9,7 @@ import org.liquidengine.legui.component.event.button.ButtonContentChangeEvent;
 import org.liquidengine.legui.component.optional.TextState;
 import org.liquidengine.legui.component.optional.align.HorizontalAlign;
 import org.liquidengine.legui.cursor.Cursor;
+import org.liquidengine.legui.cursor.CursorServiceProvider;
 import org.liquidengine.legui.cursor.StandardCursor;
 import org.liquidengine.legui.event.CursorEnterEvent;
 import org.liquidengine.legui.event.MouseClickEvent;
@@ -107,8 +108,12 @@ public class Button extends AbstractTextComponent {
                 EventProcessorProvider.getInstance().pushEvent(new ButtonContentChangeEvent(this, null, this.getFrame(), oldValue, newValue));
         this.textState = new TextState(text, callback);
         getStyle().setHorizontalAlign(HorizontalAlign.CENTER);
-        this.setCursor(StandardCursor.HAND);
+        getListenerMap().addListener(CursorEnterEvent.class, this::onCursorEnter);
         Themes.getDefaultTheme().getThemeManager().getComponentTheme(Button.class).applyAll(this);
+    }
+
+    protected void onCursorEnter(CursorEnterEvent e) {
+        this.setCursor(e.getContext(), e.isEntered() ? StandardCursor.HAND : null);
     }
 
     @Override

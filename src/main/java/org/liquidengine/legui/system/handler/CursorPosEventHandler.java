@@ -47,17 +47,17 @@ public class CursorPosEventHandler extends AbstractSystemEventHandler<SystemCurs
         Component prevTarget = context.getMouseTargetGui();
         context.setMouseTargetGui(targetComponent);
         if (targetComponent != prevTarget) {
-            if (targetComponent != null) {
-                targetComponent.setHovered(true);
-                Vector2f curPosInComponent = targetComponent.getAbsolutePosition().sub(cursorPosition).negate();
-                CursorEnterEvent enterEvent = new CursorEnterEvent(targetComponent, context, frame, true, curPosInComponent, cursorPosition);
-                EventProcessorProvider.getInstance().pushEvent(enterEvent);
-            }
             if (prevTarget != null) {
                 Vector2f curPosInPrevTarget = prevTarget.getAbsolutePosition().sub(cursorPosition).negate();
                 CursorEnterEvent exitEvent = new CursorEnterEvent(prevTarget, context, frame, false, curPosInPrevTarget, cursorPosition);
                 EventProcessorProvider.getInstance().pushEvent(exitEvent);
                 prevTarget.setHovered(false);
+            }
+            if (targetComponent != null) {
+                targetComponent.setHovered(true);
+                Vector2f curPosInComponent = targetComponent.getAbsolutePosition().sub(cursorPosition).negate();
+                CursorEnterEvent enterEvent = new CursorEnterEvent(targetComponent, context, frame, true, curPosInComponent, cursorPosition);
+                EventProcessorProvider.getInstance().pushEvent(enterEvent);
             }
         }
     }
