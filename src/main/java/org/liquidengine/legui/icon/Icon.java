@@ -102,8 +102,9 @@ public abstract class Icon implements Serializable {
      *
      * @param horizontalAlign horizontal align to set.
      */
-    public void setHorizontalAlign(HorizontalAlign horizontalAlign) {
+    public Icon setHorizontalAlign(HorizontalAlign horizontalAlign) {
         this.horizontalAlign = horizontalAlign;
+        return this;
     }
 
     /**
@@ -120,8 +121,9 @@ public abstract class Icon implements Serializable {
      *
      * @param verticalAlign vertical align to set.
      */
-    public void setVerticalAlign(VerticalAlign verticalAlign) {
+    public Icon setVerticalAlign(VerticalAlign verticalAlign) {
         this.verticalAlign = verticalAlign;
+        return this;
     }
 
     @Override
