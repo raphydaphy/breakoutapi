@@ -11,4 +11,9 @@ public class NumericInput<T extends Number> extends TextInput {
     super(value.toString());
     this.textState = new NumericTextState<>(value);
   }
+
+  @Override
+  public NumericTextState<T> getTextState() {
+    return (NumericTextState<T>) this.textState;
+  }
 }
