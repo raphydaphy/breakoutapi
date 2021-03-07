@@ -4,8 +4,8 @@ BreakoutAPI is a Minecraft mod which allows developers to create new windows tha
 ## Using BreakoutAPI in your mod
 To get started using BreaakoutAPI, add the following to your **build.gradle** file:
 ```groovy
-def lwjgl_version=3.2.2
-def breakoutapi_version=0a8061b
+def lwjgl_version="3.2.2"
+def breakoutapi_version="0a8061b"
 
 repositories {
 	mavenCentral()
