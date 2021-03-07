@@ -75,12 +75,15 @@ public class NumericTextState<T extends Number> extends TextState {
   }
 
   public T tryParse(String text) throws NumberFormatException {
-    if (text == null || text.length() == 0 || text.equals("-")) return (T)(Number)0;
+    boolean zero = text == null || text.length() == 0 || text.equals("-");
     if (this.sampleValue instanceof Float) {
+      if (zero) return (T)(Number)0f;
       return (T)(Number)Float.parseFloat(text);
     } else if (this.sampleValue instanceof Integer) {
+      if (zero) return (T)(Number)0;
       return (T)(Number)Integer.parseInt(text);
     } else if (this.sampleValue instanceof Double) {
+      if (zero) return (T)(Number)0d;
       return (T)(Number)Double.parseDouble(text);
     } else throw new UnsupportedOperationException("Unsupported numeric type: " + this.sampleValue.getClass());
   }
