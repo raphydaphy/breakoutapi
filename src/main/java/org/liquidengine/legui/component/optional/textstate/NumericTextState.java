@@ -51,7 +51,7 @@ public class NumericTextState<T extends Number> extends TextState {
     }
 
     if (this.numberSetCallback != null) {
-      this.numberSetCallback.accept(oldValue, newValue);
+      this.numberSetCallback.accept((T)oldValue, (T)newValue);
     }
     return this;
   }
@@ -74,7 +74,7 @@ public class NumericTextState<T extends Number> extends TextState {
     return this.numberSetCallback;
   }
 
-  private T tryParse(String text) throws NumberFormatException {
+  public T tryParse(String text) throws NumberFormatException {
     if (text == null || text.length() == 0 || text.equals("-")) return (T)(Number)0;
     if (this.sampleValue instanceof Float) {
       return (T)(Number)Float.parseFloat(text);

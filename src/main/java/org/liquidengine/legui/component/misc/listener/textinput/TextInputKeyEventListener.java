@@ -1,7 +1,10 @@
 package org.liquidengine.legui.component.misc.listener.textinput;
 
+import org.liquidengine.legui.component.NumericInput;
 import org.liquidengine.legui.component.TextInput;
+import org.liquidengine.legui.component.event.textinput.NumericInputContentChangeEvent;
 import org.liquidengine.legui.component.event.textinput.TextInputContentChangeEvent;
+import org.liquidengine.legui.component.optional.textstate.NumericTextState;
 import org.liquidengine.legui.component.optional.textstate.TextState;
 import org.liquidengine.legui.event.KeyEvent;
 import org.liquidengine.legui.event.KeyboardEvent;
@@ -39,8 +42,18 @@ public class TextInputKeyEventListener implements EventListener<KeyboardEvent> {
         processKeys(event, gui);
         String newText = gui.getTextState().getText();
         if (!oldText.equals(newText)) {
-            EventProcessorProvider.getInstance().pushEvent(
-                new TextInputContentChangeEvent<>(gui, event.getContext(), event.getFrame(), oldText, newText));
+            EventProcessorProvider.getInstance().pushEvent(new TextInputContentChangeEvent<>(
+              gui, event.getContext(), event.getFrame(), oldText, newText
+            ));
+
+            if (event.getTargetComponent() instanceof NumericInput) {
+                NumericInput<?> numericInput = (NumericInput<?>) event.getTargetComponent();
+                NumericTextState<?> numericTextState = numericInput.getTextState();
+                EventProcessorProvider.getInstance().pushEvent(new NumericInputContentChangeEvent(
+                  numericInput, event.getContext(), event.getFrame(),
+                  numericTextState.tryParse(oldText), numericTextState.getValue()
+                ));
+            }
         }
     }
 

@@ -1,7 +1,9 @@
 package com.raphydaphy.breakoutapi.demo.gui;
 
+import com.raphydaphy.breakoutapi.BreakoutAPI;
 import net.minecraft.util.Identifier;
 import org.liquidengine.legui.component.*;
+import org.liquidengine.legui.component.event.textinput.NumericInputContentChangeEvent;
 import org.liquidengine.legui.component.optional.textstate.TextState;
 import org.liquidengine.legui.component.optional.align.HorizontalAlign;
 import org.liquidengine.legui.component.optional.align.VerticalAlign;
@@ -163,6 +165,10 @@ public class DemoPanel extends Panel {
       intInput.getStyle().enableFlex(100, 30);
       intInputHolder.add(intLabel).add(intInput);
 
+      intInput.addValueChangeListener((e) -> {
+        BreakoutAPI.LOGGER.info("Integer input changed from " + e.getOldValue() + " to " + e.getNewValue());
+      });
+
       FlexPanel floatInputHolder = new FlexPanel(600, 100);
       floatInputHolder.getStyle().getBackground().setColor(0, 0, 1, 0.2f);
       floatInputHolder.getFlexStyle().setJustifyContent(FlexStyle.JustifyContent.CENTER).setAlignItems(FlexStyle.AlignItems.CENTER);
@@ -171,6 +177,10 @@ public class DemoPanel extends Panel {
       NumericInput<Float> floatInput = new NumericInput<>(3.94f);
       floatInput.getStyle().enableFlex(100, 30);
       floatInputHolder.add(floatLabel).add(floatInput);
+
+      floatInput.getListenerMap().addListener(NumericInputContentChangeEvent.class, (e) -> {
+        BreakoutAPI.LOGGER.info("Float input changed from " + e.getOldValue() + " to " + e.getNewValue());
+      });
 
       flexDemo.getContainer().add(intInputHolder).add(floatInputHolder);
 

@@ -32,6 +32,10 @@ public class ListenerMap {
         getListeners(eventClass).add(listener);
     }
 
+    public <E extends Event> void addExtensibleListener(Class<E> eventClass, EventListener<? extends E> listener) {
+        getExtensibleListeners(eventClass).add(listener);
+    }
+
     /**
      * Returns event listeners for specified event type.
      *
@@ -43,6 +47,16 @@ public class ListenerMap {
     public <E extends Event> List<EventListener<E>> getListeners(Class<E> eventClass) {
         lock.lock();
         List<EventListener<E>> eventListeners = (List<EventListener<E>>) listenerMap.get(eventClass);
+        if (eventListeners == null) {
+            listenerMap.put(eventClass, eventListeners = new CopyOnWriteArrayList<>());
+        }
+        lock.unlock();
+        return eventListeners;
+    }
+
+    public <E extends Event> List<EventListener<? extends E>> getExtensibleListeners(Class<E> eventClass) {
+        lock.lock();
+        List<EventListener<? extends E>> eventListeners = (List<EventListener<? extends E>>) listenerMap.get(eventClass);
         if (eventListeners == null) {
             listenerMap.put(eventClass, eventListeners = new CopyOnWriteArrayList<>());
         }

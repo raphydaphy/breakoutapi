@@ -1,7 +1,10 @@
 package org.liquidengine.legui.component.misc.listener.textinput;
 
+import org.liquidengine.legui.component.NumericInput;
 import org.liquidengine.legui.component.TextInput;
+import org.liquidengine.legui.component.event.textinput.NumericInputContentChangeEvent;
 import org.liquidengine.legui.component.event.textinput.TextInputContentChangeEvent;
+import org.liquidengine.legui.component.optional.textstate.NumericTextState;
 import org.liquidengine.legui.component.optional.textstate.TextState;
 import org.liquidengine.legui.event.CharEvent;
 import org.liquidengine.legui.listener.CharEventListener;
@@ -51,6 +54,15 @@ public class TextInputCharEventListener implements CharEventListener {
             textInput.setStartSelectionIndex(newCaretPosition);
             String newText = textState.getText();
             EventProcessorProvider.getInstance().pushEvent(new TextInputContentChangeEvent(textInput, event.getContext(), event.getFrame(), oldText, newText));
+
+            if (textInput instanceof NumericInput) {
+                NumericInput<?> numericInput = (NumericInput<?>) textInput;
+                NumericTextState<?> numericTextState = numericInput.getTextState();
+                EventProcessorProvider.getInstance().pushEvent(new NumericInputContentChangeEvent(
+                  numericInput, event.getContext(), event.getFrame(),
+                  numericTextState.tryParse(oldText), numericTextState.getValue()
+                ));
+            }
         }
     }
 }
