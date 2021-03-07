@@ -1,7 +1,7 @@
 package org.liquidengine.legui.component.misc.listener;
 
 import org.liquidengine.legui.component.TextComponent;
-import org.liquidengine.legui.component.optional.TextState;
+import org.liquidengine.legui.component.optional.textstate.TextState;
 import org.liquidengine.legui.system.Clipboard;
 
 import java.util.function.BiConsumer;

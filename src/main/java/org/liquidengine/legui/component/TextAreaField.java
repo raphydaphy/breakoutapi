@@ -13,7 +13,7 @@ import org.liquidengine.legui.component.misc.listener.textarea.TextAreaFieldChar
 import org.liquidengine.legui.component.misc.listener.textarea.TextAreaFieldDragEventListener;
 import org.liquidengine.legui.component.misc.listener.textarea.TextAreaFieldKeyEventListener;
 import org.liquidengine.legui.component.misc.listener.textarea.TextAreaFieldMouseClickEventListener;
-import org.liquidengine.legui.component.optional.TextState;
+import org.liquidengine.legui.component.optional.textstate.TextState;
 import org.liquidengine.legui.event.CharEvent;
 import org.liquidengine.legui.event.KeyboardEvent;
 import org.liquidengine.legui.event.MouseClickEvent;

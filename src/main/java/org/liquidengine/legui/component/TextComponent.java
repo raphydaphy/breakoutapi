@@ -1,6 +1,6 @@
 package org.liquidengine.legui.component;
 
-import org.liquidengine.legui.component.optional.TextState;
+import org.liquidengine.legui.component.optional.textstate.TextState;
 
 /**
  * Created by ShchAlexander on 07.03.2017.

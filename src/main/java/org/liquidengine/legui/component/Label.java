@@ -6,7 +6,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.joml.Vector2f;
 import org.liquidengine.legui.component.event.label.LabelContentChangeEvent;
-import org.liquidengine.legui.component.optional.TextState;
+import org.liquidengine.legui.component.optional.textstate.TextState;
 import org.liquidengine.legui.listener.processor.EventProcessorProvider;
 import org.liquidengine.legui.style.color.ColorConstants;
 import org.liquidengine.legui.style.font.TextDirection;

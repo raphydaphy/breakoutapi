@@ -2,17 +2,13 @@ package com.raphydaphy.breakoutapi.demo.gui;
 
 import net.minecraft.util.Identifier;
 import org.liquidengine.legui.component.*;
-import org.liquidengine.legui.component.optional.TextState;
+import org.liquidengine.legui.component.optional.textstate.TextState;
 import org.liquidengine.legui.component.optional.align.HorizontalAlign;
 import org.liquidengine.legui.component.optional.align.VerticalAlign;
-import org.liquidengine.legui.event.MouseClickEvent;
 import org.liquidengine.legui.image.loader.ImageLoader;
 import org.liquidengine.legui.style.Style;
 import org.liquidengine.legui.style.flex.FlexStyle;
 import org.liquidengine.legui.style.font.FontRegistry;
-import org.liquidengine.legui.system.context.Context;
-import org.liquidengine.legui.system.renderer.nvg.NvgRenderer;
-import org.lwjgl.glfw.GLFW;
 
 public class DemoPanel extends Panel {
 
@@ -157,6 +153,26 @@ public class DemoPanel extends Panel {
 
       across2.add(flexLabel1).add(flexLabel2).add(flexLabel3);
       flexDemo.getContainer().add(across2);
+
+      FlexPanel intInputHolder = new FlexPanel(600, 100);
+      intInputHolder.getStyle().getBackground().setColor(0, 1, 0, 0.2f);
+      intInputHolder.getFlexStyle().setJustifyContent(FlexStyle.JustifyContent.CENTER).setAlignItems(FlexStyle.AlignItems.CENTER);
+
+      Label intLabel = new FlexLabel("Integer Input: ");
+      NumericInput<Integer> intInput = new NumericInput<>(7);
+      intInput.getStyle().enableFlex(100, 30);
+      intInputHolder.add(intLabel).add(intInput);
+
+      FlexPanel floatInputHolder = new FlexPanel(600, 100);
+      floatInputHolder.getStyle().getBackground().setColor(0, 0, 1, 0.2f);
+      floatInputHolder.getFlexStyle().setJustifyContent(FlexStyle.JustifyContent.CENTER).setAlignItems(FlexStyle.AlignItems.CENTER);
+
+      Label floatLabel = new FlexLabel("Float Input: ");
+      NumericInput<Float> floatInput = new NumericInput<>(3.94f);
+      floatInput.getStyle().enableFlex(100, 30);
+      floatInputHolder.add(floatLabel).add(floatInput);
+
+      flexDemo.getContainer().add(intInputHolder).add(floatInputHolder);
 
       this.add(flexDemo);
     }

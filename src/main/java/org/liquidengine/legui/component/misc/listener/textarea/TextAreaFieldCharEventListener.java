@@ -2,7 +2,7 @@ package org.liquidengine.legui.component.misc.listener.textarea;
 
 import org.liquidengine.legui.component.TextAreaField;
 import org.liquidengine.legui.component.event.textarea.TextAreaFieldUpdateEvent;
-import org.liquidengine.legui.component.optional.TextState;
+import org.liquidengine.legui.component.optional.textstate.TextState;
 import org.liquidengine.legui.event.CharEvent;
 import org.liquidengine.legui.listener.CharEventListener;
 import org.liquidengine.legui.listener.processor.EventProcessorProvider;

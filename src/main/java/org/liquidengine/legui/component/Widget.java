@@ -12,7 +12,7 @@ import org.liquidengine.legui.component.misc.listener.widget.WidgetCloseButMouse
 import org.liquidengine.legui.component.misc.listener.widget.WidgetDragListener;
 import org.liquidengine.legui.component.misc.listener.widget.WidgetMinimizeButMouseClickEventListener;
 import org.liquidengine.legui.component.misc.listener.widget.WidgetResizeButtonDragListener;
-import org.liquidengine.legui.component.optional.TextState;
+import org.liquidengine.legui.component.optional.textstate.TextState;
 import org.liquidengine.legui.component.optional.align.HorizontalAlign;
 import org.liquidengine.legui.component.optional.align.VerticalAlign;
 import org.liquidengine.legui.event.MouseClickEvent;

@@ -14,7 +14,7 @@ import org.liquidengine.legui.component.misc.listener.textinput.TextInputCharEve
 import org.liquidengine.legui.component.misc.listener.textinput.TextInputDragEventListener;
 import org.liquidengine.legui.component.misc.listener.textinput.TextInputKeyEventListener;
 import org.liquidengine.legui.component.misc.listener.textinput.TextInputMouseClickEventListener;
-import org.liquidengine.legui.component.optional.TextState;
+import org.liquidengine.legui.component.optional.textstate.TextState;
 import org.liquidengine.legui.event.CharEvent;
 import org.liquidengine.legui.event.KeyboardEvent;
 import org.liquidengine.legui.event.MouseClickEvent;
@@ -124,7 +124,7 @@ public class TextInput extends AbstractTextComponent {
      * @return mouse caret position.
      */
     public int getMouseCaretPosition() {
-        return textState.getMouseCaretPosition();
+        return getTextState().getMouseCaretPosition();
     }
 
     /**
@@ -133,7 +133,7 @@ public class TextInput extends AbstractTextComponent {
      * @param mouseCaretPosition mouse caret position to set.
      */
     public TextInput setMouseCaretPosition(int mouseCaretPosition) {
-        textState.setMouseCaretPosition(mouseCaretPosition);
+        getTextState().setMouseCaretPosition(mouseCaretPosition);
         return this;
     }
 
@@ -143,7 +143,7 @@ public class TextInput extends AbstractTextComponent {
      * @return true if text is editable.
      */
     public boolean isEditable() {
-        return textState.isEditable();
+        return getTextState().isEditable();
     }
 
     /**
@@ -152,7 +152,7 @@ public class TextInput extends AbstractTextComponent {
      * @param editable editable text or not.
      */
     public TextInput setEditable(boolean editable) {
-        textState.setEditable(editable);
+        getTextState().setEditable(editable);
         return this;
     }
 
@@ -162,7 +162,7 @@ public class TextInput extends AbstractTextComponent {
      * @return caret position.
      */
     public int getCaretPosition() {
-        return textState.getCaretPosition();
+        return getTextState().getCaretPosition();
     }
 
     /**
@@ -171,7 +171,7 @@ public class TextInput extends AbstractTextComponent {
      * @param caretPosition caret position to set.
      */
     public TextInput setCaretPosition(int caretPosition) {
-        textState.setCaretPosition(caretPosition);
+        getTextState().setCaretPosition(caretPosition);
         return this;
     }
 
@@ -181,7 +181,7 @@ public class TextInput extends AbstractTextComponent {
      * @return start selection index.
      */
     public int getStartSelectionIndex() {
-        return textState.getStartSelectionIndex();
+        return getTextState().getStartSelectionIndex();
     }
 
     /**
@@ -190,7 +190,7 @@ public class TextInput extends AbstractTextComponent {
      * @param startSelectionIndex start selection index to set.
      */
     public TextInput setStartSelectionIndex(int startSelectionIndex) {
-        textState.setStartSelectionIndex(startSelectionIndex);
+        getTextState().setStartSelectionIndex(startSelectionIndex);
         return this;
     }
 
@@ -200,7 +200,7 @@ public class TextInput extends AbstractTextComponent {
      * @return end selection index.
      */
     public int getEndSelectionIndex() {
-        return textState.getEndSelectionIndex();
+        return getTextState().getEndSelectionIndex();
     }
 
     /**
@@ -209,7 +209,7 @@ public class TextInput extends AbstractTextComponent {
      * @param endSelectionIndex end selection index to set.
      */
     public TextInput setEndSelectionIndex(int endSelectionIndex) {
-        textState.setEndSelectionIndex(endSelectionIndex);
+        getTextState().setEndSelectionIndex(endSelectionIndex);
         return this;
     }
 
@@ -219,7 +219,7 @@ public class TextInput extends AbstractTextComponent {
      * @return selected text.
      */
     public String getSelection() {
-        return textState.getSelection();
+        return getTextState().getSelection();
     }
 
     /**
@@ -252,7 +252,7 @@ public class TextInput extends AbstractTextComponent {
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
-                .append("textState", textState)
+                .append("textState", getTextState())
                 .toString();
     }
 
@@ -270,7 +270,7 @@ public class TextInput extends AbstractTextComponent {
 
         return new EqualsBuilder()
                 .appendSuper(super.equals(o))
-                .append(textState, input.textState)
+                .append(getTextState(), input.getTextState())
                 .isEquals();
     }
 
@@ -278,7 +278,7 @@ public class TextInput extends AbstractTextComponent {
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
                 .appendSuper(super.hashCode())
-                .append(textState)
+                .append(getTextState())
                 .toHashCode();
     }
 

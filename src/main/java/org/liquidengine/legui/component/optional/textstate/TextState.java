@@ -1,4 +1,4 @@
-package org.liquidengine.legui.component.optional;
+package org.liquidengine.legui.component.optional.textstate;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -15,27 +15,27 @@ public class TextState implements Serializable {
     /**
      * Text data.
      */
-    private String text = "";
+    protected String text = "";
 
     /**
      * Used to store caret position in text.
      */
-    private int caretPosition;
+    protected int caretPosition;
 
     /**
      * Used to store caret position calculated on mouse position base. Updated by renderers.
      */
-    private int mouseCaretPosition;
+    protected int mouseCaretPosition;
 
     /**
      * Used to store start selection index.
      */
-    private int startSelectionIndex;
+    protected int startSelectionIndex;
 
     /**
      * Used to store end selection index.
      */
-    private int endSelectionIndex;
+    protected int endSelectionIndex;
 
     /**
      * Used to store text input editable state. If true then text could be updated by user input.
@@ -60,7 +60,6 @@ public class TextState implements Serializable {
      * Default constructor.
      */
     public TextState() {
-        this("", null);
     }
 
     /**
@@ -245,6 +244,10 @@ public class TextState implements Serializable {
         if (startSelectionIndex < 0 || endSelectionIndex < 0) {
             return null;
         }
+        int length = text.length();
+        if (startSelectionIndex > length) startSelectionIndex = length;
+        if (endSelectionIndex > length) endSelectionIndex = length;
+
         String selection;
         if (startSelectionIndex > endSelectionIndex) {
             selection = text.substring(endSelectionIndex, startSelectionIndex);
@@ -346,6 +349,10 @@ public class TextState implements Serializable {
 
     public Predicate<String> getValidator() {
         return validator;
+    }
+
+    public BiConsumer<String, String> getTextSetCallback() {
+        return this.textSetCallback;
     }
 
     public TextState setValidator(Predicate<String> validator) {

@@ -1,7 +1,7 @@
 package org.liquidengine.legui.component;
 
 import org.joml.Vector2f;
-import org.liquidengine.legui.component.optional.TextState;
+import org.liquidengine.legui.component.optional.textstate.TextState;
 
 import java.util.Objects;
 

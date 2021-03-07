@@ -11,14 +11,12 @@ import org.liquidengine.legui.component.misc.animation.textarea.TextAreaScrollAn
 import org.liquidengine.legui.component.misc.listener.textarea.TextAreaFieldUpdateListener;
 import org.liquidengine.legui.component.misc.listener.textarea.TextAreaViewportScrollListener;
 import org.liquidengine.legui.component.optional.Orientation;
-import org.liquidengine.legui.component.optional.TextState;
+import org.liquidengine.legui.component.optional.textstate.TextState;
 import org.liquidengine.legui.event.ScrollEvent;
 import org.liquidengine.legui.style.Style.DisplayType;
 import org.liquidengine.legui.style.color.ColorConstants;
 import org.liquidengine.legui.style.length.Length;
 import org.liquidengine.legui.theme.Themes;
-
-import java.util.Objects;
 
 import static org.liquidengine.legui.style.length.LengthType.pixel;
 

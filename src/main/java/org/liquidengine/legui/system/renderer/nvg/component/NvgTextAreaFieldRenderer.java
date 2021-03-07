@@ -8,7 +8,7 @@ import org.liquidengine.legui.component.Component;
 import org.liquidengine.legui.component.TextAreaField;
 import org.liquidengine.legui.component.event.textarea.TextAreaFieldHeightChangeEvent;
 import org.liquidengine.legui.component.event.textarea.TextAreaFieldWidthChangeEvent;
-import org.liquidengine.legui.component.optional.TextState;
+import org.liquidengine.legui.component.optional.textstate.TextState;
 import org.liquidengine.legui.component.optional.align.HorizontalAlign;
 import org.liquidengine.legui.component.optional.align.VerticalAlign;
 import org.liquidengine.legui.input.Mouse;

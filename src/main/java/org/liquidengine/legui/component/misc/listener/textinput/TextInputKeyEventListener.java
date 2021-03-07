@@ -2,7 +2,7 @@ package org.liquidengine.legui.component.misc.listener.textinput;
 
 import org.liquidengine.legui.component.TextInput;
 import org.liquidengine.legui.component.event.textinput.TextInputContentChangeEvent;
-import org.liquidengine.legui.component.optional.TextState;
+import org.liquidengine.legui.component.optional.textstate.TextState;
 import org.liquidengine.legui.event.KeyEvent;
 import org.liquidengine.legui.event.KeyboardEvent;
 import org.liquidengine.legui.input.KeyAction;

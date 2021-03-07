@@ -3,7 +3,7 @@ package org.liquidengine.legui.system.renderer.nvg.component;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
 import org.liquidengine.legui.component.Tooltip;
-import org.liquidengine.legui.component.optional.TextState;
+import org.liquidengine.legui.component.optional.textstate.TextState;
 import org.liquidengine.legui.component.optional.align.HorizontalAlign;
 import org.liquidengine.legui.component.optional.align.VerticalAlign;
 import org.liquidengine.legui.style.Style;

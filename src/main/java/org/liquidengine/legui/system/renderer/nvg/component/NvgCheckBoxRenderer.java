@@ -10,7 +10,7 @@ import org.joml.Vector2f;
 import org.joml.Vector2fc;
 import org.joml.Vector4f;
 import org.liquidengine.legui.component.CheckBox;
-import org.liquidengine.legui.component.optional.TextState;
+import org.liquidengine.legui.component.optional.textstate.TextState;
 import org.liquidengine.legui.component.optional.align.HorizontalAlign;
 import org.liquidengine.legui.component.optional.align.VerticalAlign;
 import org.liquidengine.legui.icon.Icon;
