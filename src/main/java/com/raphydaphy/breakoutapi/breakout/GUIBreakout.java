@@ -1,6 +1,7 @@
 package com.raphydaphy.breakoutapi.breakout;
 
 import com.raphydaphy.breakoutapi.breakout.window.BreakoutWindow;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import org.liquidengine.legui.animation.AnimatorProvider;
 import org.liquidengine.legui.component.Frame;
@@ -54,7 +55,7 @@ public abstract class GUIBreakout extends AbstractBreakout {
   }
 
   @Override
-  public void render() {
+  public void render(MatrixStack matrixStack) {
     this.context.updateGlfwWindow();
     LayoutManager.getInstance().layout(this.frame);
     this.renderer.render(this.getFrame(), this.getContext());

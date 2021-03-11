@@ -7,6 +7,7 @@ import com.raphydaphy.breakoutapi.BreakoutAPIClient;
 import com.raphydaphy.breakoutapi.breakout.window.BreakoutWindow;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.Framebuffer;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL30;
@@ -32,7 +33,7 @@ public abstract class AbstractBreakout {
     this.window.keeper.getChainResolutionChangedCallback().add(this::onResolutionChanged);
   }
 
-  public abstract void render();
+  public abstract void render(MatrixStack matrixStack);
   protected void postRender() {}
 
   public void setupRender() {
@@ -40,21 +41,24 @@ public abstract class AbstractBreakout {
 
     GLFW.glfwMakeContextCurrent(this.window.getHandle());
 
-    RenderSystem.pushMatrix();
+    MatrixStack matrixStack = RenderSystem.getModelViewStack();
+    matrixStack.push();
+    RenderSystem.applyModelViewMatrix();
     RenderSystem.clear(GL30.GL_COLOR_BUFFER_BIT | GL30.GL_DEPTH_BUFFER_BIT, MinecraftClient.IS_SYSTEM_MAC);
 
     this.framebuffer.beginWrite(true);
 
     RenderSystem.viewport(0, 0, this.window.getFramebufferWidth(), this.window.getFramebufferHeight());
 
-    this.render();
+    this.render(matrixStack);
 
     this.framebuffer.endWrite();
-    RenderSystem.popMatrix();
+    matrixStack.pop();
 
-    RenderSystem.pushMatrix();
+    matrixStack.push();
+    RenderSystem.applyModelViewMatrix();
     this.framebuffer.draw(this.window.getFramebufferWidth(), this.window.getFramebufferHeight());
-    RenderSystem.popMatrix();
+    matrixStack.pop();
 
     this.window.swapBuffers();
 

@@ -3,7 +3,10 @@ package com.raphydaphy.breakoutapi.breakout;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.raphydaphy.breakoutapi.breakout.window.BreakoutWindow;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.render.DiffuseLighting;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Matrix4f;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL30;
 
@@ -16,17 +19,19 @@ public abstract class Breakout extends AbstractBreakout {
   }
 
   @Override
-  public void render() {
+  public void render(MatrixStack matrixStack) {
     RenderSystem.enableTexture();
     RenderSystem.enableCull();
 
     RenderSystem.clearColor(1, 1, 1, 1);
     RenderSystem.clear(GL30.GL_COLOR_BUFFER_BIT | GL30.GL_DEPTH_BUFFER_BIT, MinecraftClient.IS_SYSTEM_MAC);
 
-    RenderSystem.matrixMode(GL30.GL_PROJECTION);
-    RenderSystem.loadIdentity();
-    RenderSystem.ortho(0, this.window.getFramebufferWidth(), this.window.getFramebufferHeight(), 0, 0, 1000);
-    RenderSystem.matrixMode(GL30.GL_MODELVIEW);
-    RenderSystem.loadIdentity();
+    Matrix4f matrix4f = Matrix4f.method_34239(0.0F, (float)((double)window.getFramebufferWidth()), 0.0F, (float)((double)window.getFramebufferHeight()), 1000.0F, 3000.0F);
+    RenderSystem.setProjectionMatrix(matrix4f);
+
+    matrixStack.method_34426();
+    matrixStack.translate(0.0D, 0.0D, -2000.0D);
+    RenderSystem.applyModelViewMatrix();
+    DiffuseLighting.enableGuiDepthLighting();
   }
 }
