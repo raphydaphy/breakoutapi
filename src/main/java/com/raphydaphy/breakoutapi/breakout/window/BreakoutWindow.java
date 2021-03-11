@@ -1,9 +1,13 @@
 package com.raphydaphy.breakoutapi.breakout.window;
 
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.raphydaphy.breakoutapi.BreakoutAPI;
 import com.raphydaphy.breakoutapi.breakout.window.callback.BreakoutWindowCallbackKeeper;
+import it.unimi.dsi.fastutil.objects.Reference2IntMap;
+import it.unimi.dsi.fastutil.objects.Reference2IntOpenHashMap;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.render.VertexFormat;
 import net.minecraft.client.texture.TextureUtil;
 import net.minecraft.client.util.Monitor;
 import net.minecraft.client.util.Window;
@@ -35,6 +39,8 @@ public class BreakoutWindow {
   private int height = 720;
   private int framebufferWidth;
   private int framebufferHeight;
+
+  protected Reference2IntMap<VertexFormat> vertexFormatVAOs = new Reference2IntOpenHashMap<>();
 
   public final BreakoutWindowCallbackKeeper keeper;
 
@@ -290,5 +296,9 @@ public class BreakoutWindow {
 
   public void destroy() {
     GLFW.glfwDestroyWindow(this.handle);
+  }
+
+  public int getVAOforVertexFormat(VertexFormat fmt) {
+    return vertexFormatVAOs.computeIntIfAbsent(fmt, format -> GlStateManager.method_34407());
   }
 }

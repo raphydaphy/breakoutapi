@@ -39,6 +39,8 @@ public abstract class AbstractBreakout {
   public void setupRender() {
     if (this.window.shouldClose()) return;
 
+    RenderContextTracker.pushContext(this);
+
     GLFW.glfwMakeContextCurrent(this.window.getHandle());
 
     MatrixStack matrixStack = RenderSystem.getModelViewStack();
@@ -64,6 +66,7 @@ public abstract class AbstractBreakout {
 
     this.postRender();
 
+    RenderContextTracker.popContext();
   }
 
 
