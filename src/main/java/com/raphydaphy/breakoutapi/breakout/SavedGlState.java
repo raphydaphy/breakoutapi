@@ -3,6 +3,10 @@ package com.raphydaphy.breakoutapi.breakout;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.raphydaphy.breakoutapi.mixin.client.CapabilityTrackerAccessor;
 import com.raphydaphy.breakoutapi.mixin.client.GlStateManagerAccessor;
+import org.lwjgl.opengl.GL30;
+import org.lwjgl.system.MemoryUtil;
+
+import java.nio.ByteBuffer;
 
 public class SavedGlState {
   private boolean blendEnabled;
@@ -44,6 +48,58 @@ public class SavedGlState {
   private boolean colorMaskGreen;
   private boolean colorMaskBlue;
   private boolean colorMaskAlpha;
+
+  public void glRecord() {
+    blendEnabled = GL30.glIsEnabled(GL30.GL_BLEND);
+    blendSrcFactorRGB = GL30.glGetInteger(GL30.GL_BLEND_SRC_RGB);
+    blendDstFactorRGB = GL30.glGetInteger(GL30.GL_BLEND_DST_RGB);
+    blendSrcFactorAlpha = GL30.glGetInteger(GL30.GL_BLEND_SRC_ALPHA);
+    blendDstFactorAlpha = GL30.glGetInteger(GL30.GL_BLEND_DST_ALPHA);
+
+    depthFunc = GL30.glGetInteger(GL30.GL_DEPTH_FUNC);
+    depthMask = GL30.glGetBoolean(GL30.GL_DEPTH_WRITEMASK);
+    depthTestEnabled = GL30.glIsEnabled(GL30.GL_DEPTH);
+
+    cullEnabled = GL30.glIsEnabled(GL30.GL_CULL_FACE);
+    cullMode = GL30.glGetInteger(GL30.GL_CULL_FACE_MODE);
+
+    polyOffsetFill = GL30.glIsEnabled(GL30.GL_POLYGON_OFFSET_FILL);
+    polyOffsetLine = GL30.glIsEnabled(GL30.GL_POLYGON_OFFSET_LINE);
+    polyOffsetFactor = GL30.glGetFloat(GL30.GL_POLYGON_OFFSET_FACTOR);
+    polyOffsetUnits = GL30.glGetFloat(GL30.GL_POLYGON_OFFSET_UNITS);
+
+    colorLogicEnabled = GL30.glIsEnabled(GL30.GL_COLOR_LOGIC_OP);
+    colorLogicOp = GL30.glGetInteger(GL30.GL_LOGIC_OP_MODE);
+
+    stencilSubFunc = GL30.glGetInteger(GL30.GL_STENCIL_FUNC);
+    stencilSubRef = GL30.glGetInteger(GL30.GL_STENCIL_REF);
+    stencilSubMask = GL30.glGetInteger(GL30.GL_STENCIL_VALUE_MASK);
+    stencilMask = GL30.glGetInteger(GL30.GL_STENCIL_WRITEMASK);
+    stencilSfail = GL30.glGetInteger(GL30.GL_STENCIL_FAIL);
+    stencilDpfail = GL30.glGetInteger(GL30.GL_STENCIL_PASS_DEPTH_FAIL);
+    stencilDppass = GL30.glGetInteger(GL30.GL_STENCIL_PASS_DEPTH_PASS);
+
+    scissorTestEnabled = GL30.glIsEnabled(GL30.GL_SCISSOR_TEST);
+
+    activeTexture = GL30.glGetInteger(GL30.GL_ACTIVE_TEXTURE) - GL30.GL_TEXTURE0;
+
+//    GlStateManager.Texture2DState[] textures = GlStateManagerAccessor.getTextures();
+//    for (int i = 0; i < 12; i++) {
+//      texturesBound[i] = textures[i].boundTexture;
+//      texturesEnabled[i] = textures[i].capState;
+//    }
+
+    ByteBuffer buf = MemoryUtil.memAlloc(4);
+
+    GL30.glGetBooleanv(GL30.GL_COLOR_WRITEMASK, buf);
+
+    colorMaskRed = buf.get(0) != 0;
+    colorMaskGreen = buf.get(1) != 0;
+    colorMaskBlue = buf.get(2) != 0;
+    colorMaskAlpha = buf.get(3) != 0;
+
+    MemoryUtil.memFree(buf);
+  }
 
   public void record() {
     GlStateManager.BlendFuncState blend = GlStateManagerAccessor.getBlend();

@@ -22,7 +22,7 @@ public abstract class AbstractBreakout {
     this.window = window;
     this.client = MinecraftClient.getInstance();
     this.glState = new SavedGlState();
-    this.glState.record();
+    this.glState.glRecord();
 
     this.framebuffer = new Framebuffer(this.window.getFramebufferWidth(), this.window.getFramebufferHeight(), true, MinecraftClient.IS_SYSTEM_MAC);
     this.framebuffer.setClearColor(0.0F, 0.0F, 0.0F, 0.0F);
