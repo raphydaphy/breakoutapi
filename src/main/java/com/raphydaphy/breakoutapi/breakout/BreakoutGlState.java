@@ -36,6 +36,15 @@ public class BreakoutGlState {
 
   private boolean scissorTestEnabled;
 
+  private int activeTexture;
+  private final boolean[] texturesEnabled = new boolean[12];
+  private final int[] texturesBound = new int[12];
+
+  private boolean colorMaskRed;
+  private boolean colorMaskGreen;
+  private boolean colorMaskBlue;
+  private boolean colorMaskAlpha;
+
   public void record() {
     GlStateManager.BlendFuncState blend = GlStateManagerAccessor.getBlend();
     blendEnabled = ((CapabilityTrackerAccessor)blend.capState).getState();
@@ -74,6 +83,20 @@ public class BreakoutGlState {
 
     GlStateManager.ScissorTestState scissorTest = GlStateManagerAccessor.getScissorTest();
     scissorTestEnabled = ((CapabilityTrackerAccessor)scissorTest.capState).getState();
+
+    activeTexture = GlStateManagerAccessor.getActiveTexture();
+
+    GlStateManager.Texture2DState[] textures = GlStateManagerAccessor.getTextures();
+    for (int i = 0; i < 12; i++) {
+      texturesBound[i] = textures[i].boundTexture;
+      texturesEnabled[i] = textures[i].capState;
+    }
+
+    GlStateManager.ColorMask colorMask = GlStateManagerAccessor.getColorMask();
+    colorMaskRed = colorMask.red;
+    colorMaskGreen = colorMask.green;
+    colorMaskBlue = colorMask.blue;
+    colorMaskAlpha = colorMask.alpha;
   }
 
   public void apply() {
@@ -114,5 +137,19 @@ public class BreakoutGlState {
 
     GlStateManager.ScissorTestState scissorTest = GlStateManagerAccessor.getScissorTest();
     ((CapabilityTrackerAccessor)scissorTest.capState).setStateInternal(scissorTestEnabled);
+
+    GlStateManagerAccessor.setActiveTexture(activeTexture);
+
+    GlStateManager.Texture2DState[] textures = GlStateManagerAccessor.getTextures();
+    for (int i = 0; i < 12; i++) {
+      textures[i].boundTexture = texturesBound[i];
+      textures[i].capState = texturesEnabled[i];
+    }
+
+    GlStateManager.ColorMask colorMask = GlStateManagerAccessor.getColorMask();
+    colorMask.red = colorMaskRed;
+    colorMask.green = colorMaskGreen;
+    colorMask.blue = colorMaskBlue;
+    colorMask.alpha = colorMaskAlpha;
   }
 }

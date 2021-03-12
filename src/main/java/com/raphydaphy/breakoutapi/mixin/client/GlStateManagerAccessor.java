@@ -55,4 +55,9 @@ public interface GlStateManagerAccessor {
   static GlStateManager.Texture2DState[] getTextures() {
     throw new IllegalStateException("Mixin not applied!");
   }
+
+  @Accessor("COLOR_MASK")
+  static GlStateManager.ColorMask getColorMask() {
+    throw new IllegalStateException("Mixin not applied!");
+  }
 }
