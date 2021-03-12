@@ -6,38 +6,13 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(GlStateManager.class)
 public interface GlStateManagerAccessor {
-  @Accessor("LIGHT_ENABLE")
-  static GlStateManager.CapabilityTracker[] getLightsEnabled() {
-    throw new IllegalStateException("Mixin not applied!");
-  }
-
-  @Accessor("DEPTH")
-  static GlStateManager.DepthTestState getDepth() {
-    throw new IllegalStateException("Mixin not applied!");
-  }
-
-  @Accessor("LIGHTING")
-  static GlStateManager.CapabilityTracker getLighting() {
-    throw new IllegalStateException("Mixin not applied!");
-  }
-
-  @Accessor("ALPHA_TEST")
-  static GlStateManager.AlphaTestState getAlphaTest() {
-    throw new IllegalStateException("Mixin not applied!");
-  }
-
-  @Accessor("COLOR_MATERIAL")
-  static GlStateManager.ColorMaterialState getColorMaterial() {
-    throw new IllegalStateException("Mixin not applied!");
-  }
-
   @Accessor("BLEND")
   static GlStateManager.BlendFuncState getBlend() {
     throw new IllegalStateException("Mixin not applied!");
   }
 
-  @Accessor("FOG")
-  static GlStateManager.FogState getFog() {
+  @Accessor("DEPTH")
+  static GlStateManager.DepthTestState getDepth() {
     throw new IllegalStateException("Mixin not applied!");
   }
 
@@ -53,11 +28,6 @@ public interface GlStateManagerAccessor {
 
   @Accessor("COLOR_LOGIC")
   static GlStateManager.LogicOpState getColorLogic() {
-    throw new IllegalStateException("Mixin not applied!");
-  }
-
-  @Accessor("TEX_GEN")
-  static GlStateManager.TexGenState getTexGen() {
     throw new IllegalStateException("Mixin not applied!");
   }
 
