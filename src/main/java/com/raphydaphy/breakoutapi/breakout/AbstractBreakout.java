@@ -1,17 +1,12 @@
 package com.raphydaphy.breakoutapi.breakout;
 
-import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.raphydaphy.breakoutapi.BreakoutAPI;
-import com.raphydaphy.breakoutapi.BreakoutAPIClient;
 import com.raphydaphy.breakoutapi.breakout.window.BreakoutWindow;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.Framebuffer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL21;
 import org.lwjgl.opengl.GL30;
 import org.lwjgl.opengl.GL45;
 
@@ -20,13 +15,13 @@ public abstract class AbstractBreakout {
   protected BreakoutWindow window;
   protected Framebuffer framebuffer;
   protected MinecraftClient client;
-  protected BreakoutGlState glState;
+  protected SavedGlState glState;
 
   public AbstractBreakout(Identifier identifier, BreakoutWindow window) {
     this.identifier = identifier;
     this.window = window;
     this.client = MinecraftClient.getInstance();
-    this.glState = new BreakoutGlState();
+    this.glState = new SavedGlState();
     this.glState.record();
 
     this.framebuffer = new Framebuffer(this.window.getFramebufferWidth(), this.window.getFramebufferHeight(), true, MinecraftClient.IS_SYSTEM_MAC);

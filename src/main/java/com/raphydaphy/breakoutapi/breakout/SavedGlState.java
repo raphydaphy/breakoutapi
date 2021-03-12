@@ -4,7 +4,7 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import com.raphydaphy.breakoutapi.mixin.client.CapabilityTrackerAccessor;
 import com.raphydaphy.breakoutapi.mixin.client.GlStateManagerAccessor;
 
-public class BreakoutGlState {
+public class SavedGlState {
   private boolean blendEnabled;
   private int blendSrcFactorRGB;
   private int blendDstFactorRGB;

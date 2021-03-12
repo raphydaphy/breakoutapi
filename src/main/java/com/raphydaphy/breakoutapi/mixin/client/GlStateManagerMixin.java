@@ -1,11 +1,7 @@
 package com.raphydaphy.breakoutapi.mixin.client;
 
 import com.mojang.blaze3d.platform.GlStateManager;
-import com.raphydaphy.breakoutapi.breakout.BreakoutGlState;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(GlStateManager.class)
 public class GlStateManagerMixin {
