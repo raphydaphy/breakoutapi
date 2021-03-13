@@ -7,6 +7,7 @@ import com.raphydaphy.breakoutapi.breakout.window.callback.BreakoutWindowCallbac
 import it.unimi.dsi.fastutil.objects.Reference2IntMap;
 import it.unimi.dsi.fastutil.objects.Reference2IntOpenHashMap;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gl.GlDebug;
 import net.minecraft.client.render.VertexFormat;
 import net.minecraft.client.texture.TextureUtil;
 import net.minecraft.client.util.Monitor;
@@ -94,6 +95,7 @@ public class BreakoutWindow {
     }
 
     GLFW.glfwMakeContextCurrent(this.handle);
+    GlDebug.enableDebug(this.client.options.glDebugVerbosity, false);
     this.updateFramebufferSize();
 
     this.keeper = new BreakoutWindowCallbackKeeper();
