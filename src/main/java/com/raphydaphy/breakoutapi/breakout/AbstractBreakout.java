@@ -22,15 +22,17 @@ public abstract class AbstractBreakout {
     this.window = window;
     this.client = MinecraftClient.getInstance();
     this.glState = new SavedGlState();
-    this.glState.glRecord();
+    try (BreakoutWindow.ContextHolder ctx = window.switchToContext()) {
+      this.glState.glRecord();
 
-    this.framebuffer = new Framebuffer(this.window.getFramebufferWidth(), this.window.getFramebufferHeight(), true, MinecraftClient.IS_SYSTEM_MAC);
-    this.framebuffer.setClearColor(0.0F, 0.0F, 0.0F, 0.0F);
+      this.framebuffer = new Framebuffer(this.window.getFramebufferWidth(), this.window.getFramebufferHeight(), true, MinecraftClient.IS_SYSTEM_MAC);
+      this.framebuffer.setClearColor(0.0F, 0.0F, 0.0F, 0.0F);
 
-    RenderSystem.setupDefaultState(0, 0, this.window.getFramebufferWidth(), this.window.getFramebufferHeight());
+      RenderSystem.setupDefaultState(0, 0, this.window.getFramebufferWidth(), this.window.getFramebufferHeight());
 
-    this.onResolutionChanged(this.window.getFramebufferWidth(), this.window.getFramebufferHeight());
-    this.window.keeper.getChainResolutionChangedCallback().add(this::onResolutionChanged);
+      this.onResolutionChanged(this.window.getFramebufferWidth(), this.window.getFramebufferHeight());
+      this.window.keeper.getChainResolutionChangedCallback().add(this::onResolutionChanged);
+    }
   }
 
   public abstract void render(MatrixStack matrixStack);

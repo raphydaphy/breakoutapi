@@ -9,7 +9,6 @@
     "client.MinecraftClientMixin",
     "client.MonitorTrackerMixin",
     "client.WindowMixin",
-    "client.MonitorTrackerMixin",
     "client.VertexFormatMixin",
     "client.GlStateManagerMixin"
   ],

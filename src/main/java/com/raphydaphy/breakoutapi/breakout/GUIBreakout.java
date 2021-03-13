@@ -22,18 +22,20 @@ public abstract class GUIBreakout extends AbstractBreakout {
   public GUIBreakout(Identifier identifier, BreakoutWindow window) {
     super(identifier, window);
 
-    this.frame = new Frame(this.window.getWidth(), this.window.getHeight());
+    try (BreakoutWindow.ContextHolder ctx = window.switchToContext()) {
+      this.frame = new Frame(this.window.getWidth(), this.window.getHeight());
 
-    this.context = new Context(this.getWindow().getHandle());
+      this.context = new Context(this.getWindow().getHandle());
 
-    this.systemEventProcessor = new SystemEventProcessorImpl();
-    SystemEventProcessor.addDefaultCallbacks(this.window.keeper, this.systemEventProcessor);
+      this.systemEventProcessor = new SystemEventProcessorImpl();
+      SystemEventProcessor.addDefaultCallbacks(this.window.keeper, this.systemEventProcessor);
 
-    this.renderer = new NvgRenderer();
-    renderer.initialize();
+      this.renderer = new NvgRenderer();
+      renderer.initialize();
 
-    this.window.keeper.getChainWindowSizeCallback().add(this::onWindowSizeChanged);
-    this.createGuiElements(this.window.getWidth(), this.window.getHeight());
+      this.window.keeper.getChainWindowSizeCallback().add(this::onWindowSizeChanged);
+      this.createGuiElements(this.window.getWidth(), this.window.getHeight());
+    }
   }
 
   protected abstract void createGuiElements(int width, int height);

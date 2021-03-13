@@ -104,6 +104,7 @@ public class BreakoutWindow {
     this.keeper.getChainFramebufferSizeCallback().add(this::onFramebufferSizeChanged);
     this.keeper.getChainWindowSizeCallback().add(this::onWindowSizeChanged);
     this.keeper.getChainWindowPosCallback().add(this::onWindowPosChanged);
+    GLFW.glfwMakeContextCurrent(sharedContext);
   }
 
   public void setPos(int x, int y) {
@@ -302,5 +303,17 @@ public class BreakoutWindow {
 
   public int getVAOforVertexFormat(VertexFormat fmt) {
     return vertexFormatVAOs.computeIntIfAbsent(fmt, format -> GlStateManager.method_34407());
+  }
+
+  public ContextHolder switchToContext() {
+    GLFW.glfwMakeContextCurrent(handle);
+    return new ContextHolder();
+  }
+
+  public class ContextHolder implements AutoCloseable {
+    @Override
+    public void close() {
+      GLFW.glfwMakeContextCurrent(BreakoutWindow.this.client.getWindow().getHandle());
+    }
   }
 }
