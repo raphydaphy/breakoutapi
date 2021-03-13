@@ -9,8 +9,7 @@
     "client.MinecraftClientMixin",
     "client.MonitorTrackerMixin",
     "client.WindowMixin",
-    "client.VertexFormatMixin",
-    "client.GlStateManagerMixin"
+    "client.VertexFormatMixin"
   ],
   "injectors": {
     "defaultRequire": 1
