@@ -58,7 +58,7 @@ public class SavedGlState {
 
     depthFunc = GL30.glGetInteger(GL30.GL_DEPTH_FUNC);
     depthMask = GL30.glGetBoolean(GL30.GL_DEPTH_WRITEMASK);
-    depthTestEnabled = GL30.glIsEnabled(GL30.GL_DEPTH);
+    depthTestEnabled = GL30.glIsEnabled(GL30.GL_DEPTH_TEST);
 
     cullEnabled = GL30.glIsEnabled(GL30.GL_CULL_FACE);
     cullMode = GL30.glGetInteger(GL30.GL_CULL_FACE_MODE);
