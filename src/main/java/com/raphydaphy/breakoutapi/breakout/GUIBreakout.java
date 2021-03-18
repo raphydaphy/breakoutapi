@@ -1,6 +1,7 @@
 package com.raphydaphy.breakoutapi.breakout;
 
 import com.raphydaphy.breakoutapi.breakout.window.BreakoutWindow;
+import com.raphydaphy.breakoutapi.mixin.client.BufferRendererAccessor;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import org.liquidengine.legui.animation.AnimatorProvider;
@@ -61,6 +62,10 @@ public abstract class GUIBreakout extends AbstractBreakout {
     this.context.updateGlfwWindow();
     LayoutManager.getInstance().layout(this.frame);
     this.renderer.render(this.getFrame(), this.getContext());
+
+    BufferRendererAccessor.setCurrentElementBufferObject(-1);
+    BufferRendererAccessor.setCurrentVertexArrayObject(-1);
+    BufferRendererAccessor.setCurrentVertexBufferObject(-1);
   }
 
   @Override

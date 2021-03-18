@@ -1,6 +1,7 @@
 package com.raphydaphy.breakoutapi.breakout;
 
 import com.mojang.blaze3d.platform.GlStateManager;
+import com.raphydaphy.breakoutapi.mixin.client.BufferRendererAccessor;
 import com.raphydaphy.breakoutapi.mixin.client.CapabilityTrackerAccessor;
 import com.raphydaphy.breakoutapi.mixin.client.GlStateManagerAccessor;
 import org.lwjgl.opengl.GL30;
@@ -48,6 +49,10 @@ public class SavedGlState {
   private boolean colorMaskGreen;
   private boolean colorMaskBlue;
   private boolean colorMaskAlpha;
+
+  private int currentVertexArrayObject;
+  private int currentVertexBufferObject;
+  private int currentElementBufferObject;
 
   public void glRecord() {
     blendEnabled = GL30.glIsEnabled(GL30.GL_BLEND);
@@ -99,6 +104,10 @@ public class SavedGlState {
     colorMaskAlpha = buf.get(3) != 0;
 
     MemoryUtil.memFree(buf);
+
+    currentElementBufferObject = GL30.glGetInteger(GL30.GL_ELEMENT_ARRAY_BUFFER_BINDING);
+    currentVertexArrayObject = GL30.glGetInteger(GL30.GL_VERTEX_ARRAY_BINDING);
+    currentVertexBufferObject = GL30.glGetInteger(GL30.GL_VERTEX_ARRAY_BUFFER_BINDING);
   }
 
   public void record() {
@@ -153,6 +162,10 @@ public class SavedGlState {
     colorMaskGreen = colorMask.green;
     colorMaskBlue = colorMask.blue;
     colorMaskAlpha = colorMask.alpha;
+
+    currentElementBufferObject = BufferRendererAccessor.getCurrentElementBufferObject();
+    currentVertexArrayObject = BufferRendererAccessor.getCurrentVertexArrayObject();
+    currentVertexBufferObject = BufferRendererAccessor.getCurrentVertexBufferObject();
   }
 
   public void apply() {
@@ -207,5 +220,9 @@ public class SavedGlState {
     colorMask.green = colorMaskGreen;
     colorMask.blue = colorMaskBlue;
     colorMask.alpha = colorMaskAlpha;
+
+    BufferRendererAccessor.setCurrentElementBufferObject(currentElementBufferObject);
+    BufferRendererAccessor.setCurrentVertexArrayObject(currentVertexArrayObject);
+    BufferRendererAccessor.setCurrentVertexBufferObject(currentVertexBufferObject);
   }
 }
