@@ -176,8 +176,8 @@ public class BreakoutWindow {
     RenderSystem.assertThread(RenderSystem::isInInitPhase);
 
     try {
-      InputStream icon16Stream = this.client.getResourcePackDownloader().getPack().open(ResourceType.CLIENT_RESOURCES, icon16);
-      InputStream icon32Stream = this.client.getResourcePackDownloader().getPack().open(ResourceType.CLIENT_RESOURCES, icon32);
+      InputStream icon16Stream = this.client.getResourcePackProvider().getPack().open(ResourceType.CLIENT_RESOURCES, icon16);
+      InputStream icon32Stream = this.client.getResourcePackProvider().getPack().open(ResourceType.CLIENT_RESOURCES, icon32);
 
       MemoryStack memoryStack = MemoryStack.stackPush();
       Throwable var4 = null;
@@ -302,7 +302,7 @@ public class BreakoutWindow {
   }
 
   public int getVAOforVertexFormat(VertexFormat fmt) {
-    return vertexFormatVAOs.computeIntIfAbsent(fmt, format -> GlStateManager.method_34407());
+    return vertexFormatVAOs.computeIntIfAbsent(fmt, format -> GlStateManager.genVertexArray());
   }
 
   public ContextHolder switchToContext() {
