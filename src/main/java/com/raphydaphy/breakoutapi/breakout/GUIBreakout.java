@@ -63,9 +63,9 @@ public abstract class GUIBreakout extends AbstractBreakout {
     LayoutManager.getInstance().layout(this.frame);
     this.renderer.render(this.getFrame(), this.getContext());
 
-    BufferRendererAccessor.setCurrentElementBufferObject(-1);
-    BufferRendererAccessor.setCurrentVertexArrayObject(-1);
-    BufferRendererAccessor.setCurrentVertexBufferObject(-1);
+    BufferRendererAccessor.setCurrentElementBuffer(-1);
+    BufferRendererAccessor.setCurrentVertexArray(-1);
+    BufferRendererAccessor.setCurrentVertexBuffer(-1);
   }
 
   @Override

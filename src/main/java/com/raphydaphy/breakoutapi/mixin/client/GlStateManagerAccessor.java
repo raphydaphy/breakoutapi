@@ -36,7 +36,7 @@ public interface GlStateManagerAccessor {
     throw new IllegalStateException("Mixin not applied!");
   }
 
-  @Accessor("SCISSOR_TEST")
+  @Accessor("SCISSOR")
   static GlStateManager.ScissorTestState getScissorTest() {
     throw new IllegalStateException("Mixin not applied!");
   }

@@ -163,9 +163,9 @@ public class SavedGlState {
     colorMaskBlue = colorMask.blue;
     colorMaskAlpha = colorMask.alpha;
 
-    currentElementBufferObject = BufferRendererAccessor.getCurrentElementBufferObject();
-    currentVertexArrayObject = BufferRendererAccessor.getCurrentVertexArrayObject();
-    currentVertexBufferObject = BufferRendererAccessor.getCurrentVertexBufferObject();
+    currentElementBufferObject = BufferRendererAccessor.getCurrentElementBuffer();
+    currentVertexArrayObject = BufferRendererAccessor.getCurrentVertexArray();
+    currentVertexBufferObject = BufferRendererAccessor.getCurrentVertexBuffer();
   }
 
   public void apply() {
@@ -221,8 +221,8 @@ public class SavedGlState {
     colorMask.blue = colorMaskBlue;
     colorMask.alpha = colorMaskAlpha;
 
-    BufferRendererAccessor.setCurrentElementBufferObject(currentElementBufferObject);
-    BufferRendererAccessor.setCurrentVertexArrayObject(currentVertexArrayObject);
-    BufferRendererAccessor.setCurrentVertexBufferObject(currentVertexBufferObject);
+    BufferRendererAccessor.setCurrentElementBuffer(currentElementBufferObject);
+    BufferRendererAccessor.setCurrentVertexArray(currentVertexArrayObject);
+    BufferRendererAccessor.setCurrentVertexBuffer(currentVertexBufferObject);
   }
 }

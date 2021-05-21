@@ -1,6 +1,7 @@
 package com.raphydaphy.breakoutapi.breakout.window;
 
 import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.platform.TextureUtil;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.raphydaphy.breakoutapi.BreakoutAPI;
 import com.raphydaphy.breakoutapi.breakout.window.callback.BreakoutWindowCallbackKeeper;
@@ -9,7 +10,6 @@ import it.unimi.dsi.fastutil.objects.Reference2IntOpenHashMap;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.GlDebug;
 import net.minecraft.client.render.VertexFormat;
-import net.minecraft.client.texture.TextureUtil;
 import net.minecraft.client.util.Monitor;
 import net.minecraft.client.util.Window;
 import net.minecraft.resource.ResourceType;
@@ -247,7 +247,7 @@ public class BreakoutWindow {
 
     ByteBuffer var6;
     try {
-      byteBuffer = TextureUtil.readAllToByteBuffer(in);
+      byteBuffer = TextureUtil.readResource(in);
       byteBuffer.rewind();
       var6 = STBImage.stbi_load_from_memory(byteBuffer, x, y, channels, 0);
     } finally {
@@ -302,7 +302,7 @@ public class BreakoutWindow {
   }
 
   public int getVAOforVertexFormat(VertexFormat fmt) {
-    return vertexFormatVAOs.computeIntIfAbsent(fmt, format -> GlStateManager.genVertexArray());
+    return vertexFormatVAOs.computeIntIfAbsent(fmt, format -> GlStateManager._glGenVertexArrays());
   }
 
   public ContextHolder switchToContext() {

@@ -6,33 +6,33 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(BufferRenderer.class)
 public interface BufferRendererAccessor {
-  @Accessor("currentElementBufferObject")
-  static int getCurrentElementBufferObject() {
+  @Accessor("currentElementBuffer")
+  static int getCurrentElementBuffer() {
     throw new IllegalStateException("Mixin not applied!");
   }
 
-  @Accessor("currentElementBufferObject")
-  static void setCurrentElementBufferObject(int ebo) {
+  @Accessor("currentElementBuffer")
+  static void setCurrentElementBuffer(int ebo) {
     throw new IllegalStateException("Mixin not applied!");
   }
 
-  @Accessor("currentVertexArrayObject")
-  static int getCurrentVertexArrayObject() {
+  @Accessor("currentVertexArray")
+  static int getCurrentVertexArray() {
     throw new IllegalStateException("Mixin not applied!");
   }
 
-  @Accessor("currentVertexArrayObject")
-  static void setCurrentVertexArrayObject(int vao) {
+  @Accessor("currentVertexArray")
+  static void setCurrentVertexArray(int vao) {
     throw new IllegalStateException("Mixin not applied!");
   }
 
-  @Accessor("currentVertexBufferObject")
-  static int getCurrentVertexBufferObject() {
+  @Accessor("currentVertexBuffer")
+  static int getCurrentVertexBuffer() {
     throw new IllegalStateException("Mixin not applied!");
   }
 
-  @Accessor("currentVertexBufferObject")
-  static void setCurrentVertexBufferObject(int vbo) {
+  @Accessor("currentVertexBuffer")
+  static void setCurrentVertexBuffer(int vbo) {
     throw new IllegalStateException("Mixin not applied!");
   }
 }
